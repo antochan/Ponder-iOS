@@ -14,7 +14,11 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         setupTabBar()
     }
-    
+}
+
+//MARK: - Private
+
+private extension TabBarController {
     func setupTabBar() {
         setupTabBarShadows()
         setupTabViewControllers()
@@ -36,19 +40,22 @@ class TabBarController: UITabBarController {
     }
     
     func setupTabViewControllers() {
-        let homeViewController = HomeViewController()
-        homeViewController.tabBarItem.image = UIImage(named: "Home_Unselected")
-        homeViewController.tabBarItem.selectedImage = UIImage(named: "Home_Selected")
-        
-        let searchViewController = SearchViewController()
-        searchViewController.tabBarItem.image = UIImage(named: "Search_Unselected")
-        searchViewController.tabBarItem.selectedImage = UIImage(named: "Search_Selected")
-        
-        viewControllers = [homeViewController, searchViewController]
+        let homeViewController = createViewController(vc: HomeViewController(), selectedImage: #imageLiteral(resourceName: "Home_Selected"), unselectedImage: #imageLiteral(resourceName: "Home_Unselected"))
+        let searchViewController = createViewController(vc: SearchViewController(), selectedImage: #imageLiteral(resourceName: "Search_Selected"), unselectedImage: #imageLiteral(resourceName: "Search_Unselected"))
+        let addViewController = createViewController(vc: AddViewController(), selectedImage: #imageLiteral(resourceName: "Add_Selected"), unselectedImage: #imageLiteral(resourceName: "Add_Unselected"))
+        let notificationViewController = createViewController(vc: AddViewController(), selectedImage: #imageLiteral(resourceName: "Bell_Selected"), unselectedImage: #imageLiteral(resourceName: "Bell_Unselected"))
+        let accountViewController = createViewController(vc: AccountViewController(), selectedImage: #imageLiteral(resourceName: "User_Selected"), unselectedImage: #imageLiteral(resourceName: "User_Unselected"))
+        viewControllers = [homeViewController, searchViewController, addViewController, notificationViewController, accountViewController]
     }
     
     func setupTabItemInsets() {
         guard let items = tabBar.items else { return }
         items.forEach { $0.imageInsets = UIEdgeInsets(top: 4, left: 0, bottom: -4, right: 0) }
+    }
+    
+    func createViewController(vc: UIViewController, selectedImage: UIImage, unselectedImage: UIImage) -> UIViewController {
+        vc.tabBarItem.image = unselectedImage
+        vc.tabBarItem.selectedImage = selectedImage
+        return vc
     }
 }

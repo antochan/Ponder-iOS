@@ -16,6 +16,9 @@
 		8A14F95324C958A60012B92B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A14F95224C958A60012B92B /* TabBarController.swift */; };
 		8A14F95524C95B5A0012B92B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A14F95424C95B5A0012B92B /* HomeViewController.swift */; };
 		8A14F95724C95B6E0012B92B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A14F95624C95B6E0012B92B /* SearchViewController.swift */; };
+		8A14F95924C964790012B92B /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A14F95824C964790012B92B /* AddViewController.swift */; };
+		8A14F95B24C969CC0012B92B /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A14F95A24C969CC0012B92B /* NotificationViewController.swift */; };
+		8A14F95D24C96B690012B92B /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A14F95C24C96B690012B92B /* AccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		8A14F95224C958A60012B92B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8A14F95424C95B5A0012B92B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8A14F95624C95B6E0012B92B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8A14F95824C964790012B92B /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		8A14F95A24C969CC0012B92B /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		8A14F95C24C96B690012B92B /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +146,9 @@
 				8A14F95224C958A60012B92B /* TabBarController.swift */,
 				8A14F95424C95B5A0012B92B /* HomeViewController.swift */,
 				8A14F95624C95B6E0012B92B /* SearchViewController.swift */,
+				8A14F95824C964790012B92B /* AddViewController.swift */,
+				8A14F95A24C969CC0012B92B /* NotificationViewController.swift */,
+				8A14F95C24C96B690012B92B /* AccountViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -311,6 +320,9 @@
 			files = (
 				8A14F95724C95B6E0012B92B /* SearchViewController.swift in Sources */,
 				8A14F95324C958A60012B92B /* TabBarController.swift in Sources */,
+				8A14F95D24C96B690012B92B /* AccountViewController.swift in Sources */,
+				8A14F95924C964790012B92B /* AddViewController.swift in Sources */,
+				8A14F95B24C969CC0012B92B /* NotificationViewController.swift in Sources */,
 				8A14F91D24C9533E0012B92B /* AppDelegate.swift in Sources */,
 				8A14F91F24C9533E0012B92B /* SceneDelegate.swift in Sources */,
 				8A14F95524C95B5A0012B92B /* HomeViewController.swift in Sources */,
