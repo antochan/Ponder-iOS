@@ -83,9 +83,7 @@ private extension PoemContentComponent {
     }
     
     func configureSubviews() {
-        addSubview(poemImageView)
-        addSubview(poemImageOverlayView)
-        addSubview(poemContentStack)
+        addSubviews(poemImageView, poemImageOverlayView, poemContentStack)
         poemContentStack.addArrangedSubview(poemContentLabel)
     }
     
