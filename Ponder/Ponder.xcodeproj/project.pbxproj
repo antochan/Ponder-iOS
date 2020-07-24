@@ -32,6 +32,8 @@
 		8A14F97424CA3E640012B92B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A14F97324CA3E640012B92B /* Extensions.swift */; };
 		8A14F97624CA3FDD0012B92B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A14F97524CA3FDD0012B92B /* Fonts.swift */; };
 		8A14F97924CA43080012B92B /* PoemContentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A14F97824CA43080012B92B /* PoemContentComponent.swift */; };
+		8A2533CF24CA82CD0014ACC1 /* PoemCarouselComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2533CE24CA82CD0014ACC1 /* PoemCarouselComponent.swift */; };
+		8A2533D124CA83E30014ACC1 /* Poem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2533D024CA83E30014ACC1 /* Poem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		8A14F97324CA3E640012B92B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8A14F97524CA3FDD0012B92B /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		8A14F97824CA43080012B92B /* PoemContentComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemContentComponent.swift; sourceTree = "<group>"; };
+		8A2533CE24CA82CD0014ACC1 /* PoemCarouselComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemCarouselComponent.swift; sourceTree = "<group>"; };
+		8A2533D024CA83E30014ACC1 /* Poem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +201,7 @@
 		8A14F94F24C953B80012B92B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8A2533D024CA83E30014ACC1 /* Poem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 			children = (
 				8A14F96A24CA3CE90012B92B /* HomeView.swift */,
 				8A14F97824CA43080012B92B /* PoemContentComponent.swift */,
+				8A2533CE24CA82CD0014ACC1 /* PoemCarouselComponent.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -383,6 +389,7 @@
 				8A14F97224CA3DBC0012B92B /* ButtonComponent.swift in Sources */,
 				8A14F96324CA3B500012B92B /* PressScalable.swift in Sources */,
 				8A14F95924C964790012B92B /* AddViewController.swift in Sources */,
+				8A2533D124CA83E30014ACC1 /* Poem.swift in Sources */,
 				8A14F95B24C969CC0012B92B /* NotificationViewController.swift in Sources */,
 				8A14F97924CA43080012B92B /* PoemContentComponent.swift in Sources */,
 				8A14F96724CA3B8C0012B92B /* Colors.swift in Sources */,
@@ -393,6 +400,7 @@
 				8A14F97624CA3FDD0012B92B /* Fonts.swift in Sources */,
 				8A14F95F24CA3B160012B92B /* Components.swift in Sources */,
 				8A14F97024CA3DAC0012B92B /* ComponentTableViewCell.swift in Sources */,
+				8A2533CF24CA82CD0014ACC1 /* PoemCarouselComponent.swift in Sources */,
 				8A14F95524C95B5A0012B92B /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

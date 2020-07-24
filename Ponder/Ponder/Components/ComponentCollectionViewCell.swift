@@ -8,9 +8,7 @@
 
 import UIKit
 
-class ComponentCollectionViewCell<T: Component & Reusable & UIView>: UICollectionViewCell, Pressable {
-    public let configuration = PressableConfiguration(pressScale: .large)
-    
+class ComponentCollectionViewCell<T: Component & Reusable & UIView>: UICollectionViewCell {
     public let component = T(frame: .zero)
     
     override init(frame: CGRect) {
@@ -21,13 +19,6 @@ class ComponentCollectionViewCell<T: Component & Reusable & UIView>: UICollectio
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()
-    }
-    
-    public override var isHighlighted: Bool {
-        didSet {
-            set(isPressed: isHighlighted,
-                animated: true)
-        }
     }
     
     func commonInit() {
@@ -43,10 +34,10 @@ class ComponentCollectionViewCell<T: Component & Reusable & UIView>: UICollectio
         component.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            component.topAnchor.constraint(equalTo: topAnchor, constant: Spacing.four),
-            component.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.eight),
+            component.topAnchor.constraint(equalTo: topAnchor),
+            component.leadingAnchor.constraint(equalTo: leadingAnchor),
             component.trailingAnchor.constraint(equalTo: trailingAnchor),
-            component.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Spacing.four)
+            component.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     

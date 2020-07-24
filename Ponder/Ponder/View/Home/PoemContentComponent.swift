@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PoemContentComponent: UIView, Component {
+class PoemContentComponent: UIView, Component, Reusable {
     struct ViewModel {
         let poemImage: UIImage
         let poemText: String
@@ -66,6 +66,11 @@ class PoemContentComponent: UIView, Component {
         poemContentLabel.attributedText = attributedString
         
         poemContentLabel.numberOfLines = isExpanded ? 0 : 4
+    }
+    
+    func prepareForReuse() {
+        poemImageView.image = nil
+        poemContentLabel.text = nil
     }
 }
 

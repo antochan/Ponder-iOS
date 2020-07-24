@@ -9,11 +9,10 @@
 import UIKit
 
 class HomeView: UIView {
-    let poemContent: PoemContentComponent = {
-        let poemContent = PoemContentComponent()
-        poemContent.translatesAutoresizingMaskIntoConstraints = false
-        poemContent.apply(viewModel: PoemContentComponent.ViewModel(poemImage: #imageLiteral(resourceName: "Build faster"), poemText: "they leave\nand act like it never happened\nthey come back\nand act like they never left", isExpanded: false))
-        return poemContent
+    private let poemCarousel: PoemCarouselComponent = {
+        let carousel = PoemCarouselComponent()
+        carousel.translatesAutoresizingMaskIntoConstraints = false
+        return carousel
     }()
     
     override init(frame: CGRect) {
@@ -26,6 +25,9 @@ class HomeView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func applyPoems(poems: PoemCarouselData) {
+        poemCarousel.apply(viewModel: PoemCarouselComponent.ViewModel(carouselData: poems))
+    }
 }
 
 //MARK: - Private
@@ -37,15 +39,15 @@ private extension HomeView {
     }
     
     func configureSubviews() {
-        addSubview(poemContent)
+        addSubview(poemCarousel)
     }
     
     func configureLayout() {
         NSLayoutConstraint.activate([
-            poemContent.topAnchor.constraint(equalTo: topAnchor),
-            poemContent.leadingAnchor.constraint(equalTo: leadingAnchor),
-            poemContent.trailingAnchor.constraint(equalTo: trailingAnchor),
-            poemContent.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7)
+            poemCarousel.topAnchor.constraint(equalTo: topAnchor),
+            poemCarousel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            poemCarousel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            poemCarousel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7)
         ])
     }
 }
