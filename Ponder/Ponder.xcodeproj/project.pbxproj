@@ -34,6 +34,8 @@
 		8A14F97924CA43080012B92B /* PoemContentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A14F97824CA43080012B92B /* PoemContentComponent.swift */; };
 		8A2533CF24CA82CD0014ACC1 /* PoemCarouselComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2533CE24CA82CD0014ACC1 /* PoemCarouselComponent.swift */; };
 		8A2533D124CA83E30014ACC1 /* Poem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2533D024CA83E30014ACC1 /* Poem.swift */; };
+		8A2533D324CA8A770014ACC1 /* PoemDetailsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2533D224CA8A770014ACC1 /* PoemDetailsComponent.swift */; };
+		8A2533D624CAA9FC0014ACC1 /* PageControlComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2533D524CAA9FC0014ACC1 /* PageControlComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 		8A14F97824CA43080012B92B /* PoemContentComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemContentComponent.swift; sourceTree = "<group>"; };
 		8A2533CE24CA82CD0014ACC1 /* PoemCarouselComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemCarouselComponent.swift; sourceTree = "<group>"; };
 		8A2533D024CA83E30014ACC1 /* Poem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poem.swift; sourceTree = "<group>"; };
+		8A2533D224CA8A770014ACC1 /* PoemDetailsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDetailsComponent.swift; sourceTree = "<group>"; };
+		8A2533D524CAA9FC0014ACC1 /* PageControlComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControlComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,11 +246,21 @@
 		8A14F97724CA42060012B92B /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				8A2533D424CAA9E60014ACC1 /* Components */,
 				8A14F96A24CA3CE90012B92B /* HomeView.swift */,
-				8A14F97824CA43080012B92B /* PoemContentComponent.swift */,
-				8A2533CE24CA82CD0014ACC1 /* PoemCarouselComponent.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		8A2533D424CAA9E60014ACC1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8A14F97824CA43080012B92B /* PoemContentComponent.swift */,
+				8A2533CE24CA82CD0014ACC1 /* PoemCarouselComponent.swift */,
+				8A2533D224CA8A770014ACC1 /* PoemDetailsComponent.swift */,
+				8A2533D524CAA9FC0014ACC1 /* PageControlComponent.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,6 +397,7 @@
 				8A14F95324C958A60012B92B /* TabBarController.swift in Sources */,
 				8A14F96E24CA3D830012B92B /* ComponentCollectionViewCell.swift in Sources */,
 				8A14F96124CA3B3D0012B92B /* PressHighlightable.swift in Sources */,
+				8A2533D624CAA9FC0014ACC1 /* PageControlComponent.swift in Sources */,
 				8A14F96B24CA3CE90012B92B /* HomeView.swift in Sources */,
 				8A14F96524CA3B600012B92B /* Pressable.swift in Sources */,
 				8A14F95D24C96B690012B92B /* AccountViewController.swift in Sources */,
@@ -402,6 +417,7 @@
 				8A14F97024CA3DAC0012B92B /* ComponentTableViewCell.swift in Sources */,
 				8A2533CF24CA82CD0014ACC1 /* PoemCarouselComponent.swift in Sources */,
 				8A14F95524C95B5A0012B92B /* HomeViewController.swift in Sources */,
+				8A2533D324CA8A770014ACC1 /* PoemDetailsComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

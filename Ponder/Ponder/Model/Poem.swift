@@ -13,6 +13,7 @@ struct Poem {
     let poemImage: UIImage
     let poemContent: String
     let poemTags: [String]
+    let comments: [String]
     let author: String
     let likes: Int
 }

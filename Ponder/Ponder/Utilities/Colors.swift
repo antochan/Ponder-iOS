@@ -40,5 +40,6 @@ extension UIColor {
 extension UIColor {
     struct AppColors {
         static let lightGray = UIColor(hexString: "#D3D3D3")
+        static let gray = UIColor(hexString: "#808080")
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PoemCarouselComponent: UIView, Component {
+class PoemCarouselComponent: UIView, Component, Actionable {
     struct ViewModel {
         var carouselData: PoemCarouselData
         
@@ -19,9 +19,26 @@ class PoemCarouselComponent: UIView, Component {
         static let defaultViewModel = ViewModel(carouselData: PoemCarouselData(poems: []))
     }
     
+    private var currentIndexPath: Int = 0 {
+        didSet {
+            actions?.currentPageHandler(currentIndexPath)
+        }
+    }
+    
     private var viewModel = ViewModel.defaultViewModel {
         didSet {
             collectionView.reloadData()
+        }
+    }
+    
+    public var actions: Actions?
+    
+    public struct Actions {
+        public typealias CurrentIndexHandler = (_ page: Int) -> Void
+        let currentPageHandler: CurrentIndexHandler
+        
+        public init(currentPageHandler: @escaping CurrentIndexHandler) {
+            self.currentPageHandler = currentPageHandler
         }
     }
     
@@ -36,11 +53,7 @@ class PoemCarouselComponent: UIView, Component {
         collectionView.isPagingEnabled = true
         return collectionView
     }()
-    
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 350)
-    }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -87,6 +100,7 @@ private extension PoemCarouselComponent {
 }
 
 //MARK: - UICollectionView Delegate & DataSource
+
 extension PoemCarouselComponent: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.carouselData.poems.count
@@ -102,5 +116,28 @@ extension PoemCarouselComponent: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+}
+
+//MARK: - ScrollViewDelegate
+
+extension PoemCarouselComponent {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        getCurrentIndexPath(scrollView)
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            getCurrentIndexPath(scrollView)
+        }
+    }
+    
+    private func getCurrentIndexPath(_ scrollView: UIScrollView) {
+        let centerX = scrollView.contentOffset.x + scrollView.bounds.width / 2.0
+        collectionView.visibleCells.forEach { (cell) in
+            if cell.frame.contains(CGPoint(x: centerX, y: cell.center.y)), let index = collectionView.indexPath(for: cell) {
+                currentIndexPath = index.row
+            }
+        }
     }
 }

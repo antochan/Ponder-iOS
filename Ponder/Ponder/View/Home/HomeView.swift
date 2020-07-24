@@ -8,12 +8,24 @@
 
 import UIKit
 
+protocol HomePageDelegate {
+    func pageChanged(newPage: Int)
+}
+
 class HomeView: UIView {
     private let poemCarousel: PoemCarouselComponent = {
         let carousel = PoemCarouselComponent()
         carousel.translatesAutoresizingMaskIntoConstraints = false
         return carousel
     }()
+    
+    private let poemDetails: PoemDetailsComponent = {
+        let details = PoemDetailsComponent()
+        details.translatesAutoresizingMaskIntoConstraints = false
+        return details
+    }()
+    
+    var delegate: HomePageDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,8 +37,13 @@ class HomeView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func applyPoems(poems: PoemCarouselData) {
+    func applyPoemList(poems: PoemCarouselData) {
         poemCarousel.apply(viewModel: PoemCarouselComponent.ViewModel(carouselData: poems))
+        
+    }
+    
+    func applyPoemDetails(poem: Poem) {
+        poemDetails.apply(viewModel: PoemDetailsComponent.ViewModel(poem: poem))
     }
 }
 
@@ -36,10 +53,11 @@ private extension HomeView {
     func commonInit() {
         configureSubviews()
         configureLayout()
+        setupActions()
     }
     
     func configureSubviews() {
-        addSubview(poemCarousel)
+        addSubviews(poemCarousel, poemDetails)
     }
     
     func configureLayout() {
@@ -47,7 +65,18 @@ private extension HomeView {
             poemCarousel.topAnchor.constraint(equalTo: topAnchor),
             poemCarousel.leadingAnchor.constraint(equalTo: leadingAnchor),
             poemCarousel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            poemCarousel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7)
+            poemCarousel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7),
+            
+            poemDetails.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -Spacing.twentyFour),
+            poemDetails.leadingAnchor.constraint(equalTo: leadingAnchor),
+            poemDetails.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
+    }
+    
+    func setupActions() {
+        poemCarousel.actions = PoemCarouselComponent.Actions(currentPageHandler: { [weak self] currentPage in
+            guard let strongSelf = self else { return }
+            strongSelf.delegate?.pageChanged(newPage: currentPage)
+        })
     }
 }

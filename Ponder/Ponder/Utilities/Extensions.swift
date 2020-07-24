@@ -42,3 +42,15 @@ public extension NSAttributedString {
         return width
     }
 }
+
+extension UIStackView {
+    func addArrangedSubviews(_ arrangedViews: UIView...) {
+        arrangedViews.forEach { addArrangedSubview($0) }
+    }
+}
+
+extension UIView {
+    func addSubviews(_ views: UIView...) {
+        views.forEach { addSubview($0) }
+    }
+}
