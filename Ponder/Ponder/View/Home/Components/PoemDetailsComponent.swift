@@ -91,6 +91,28 @@ class PoemDetailsComponent: UIView, Component {
         return pageControl
     }()
     
+    private let hashTagStack: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = Spacing.twelve
+        stackView.alignment = .leading
+        stackView.distribution = .fillProportionally
+        return stackView
+    }()
+    
+    private let currentPageLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.georgia(size: 11)
+        label.textColor = UIColor.AppColors.lightGray
+        label.numberOfLines = 1
+        label.textAlignment = .right
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -106,6 +128,11 @@ class PoemDetailsComponent: UIView, Component {
         commentsLabel.text = "\(viewModel.poem.comments.count) Comments"
         
         pageControl.apply(viewModel: PageControlComponent.ViewModel(totalPageCount: viewModel.totalPageCount, currentPage: viewModel.currentPage))
+        hashTagStack.removeAllArrangedSubviews()
+        viewModel.poem.poemTags.forEach {
+            hashTagStack.addArrangedSubviews(createHashTagLabel(hashtag: $0))
+        }
+        currentPageLabel.text = "Showing page \(viewModel.currentPage) out of \(viewModel.totalPageCount)"
     }
 }
 
@@ -116,7 +143,7 @@ private extension PoemDetailsComponent {
     }
     
     func configureSubviews() {
-        addSubviews(mainSocialsStack, nameStack, pageControl)
+        addSubviews(mainSocialsStack, nameStack, pageControl, currentPageLabel, hashTagStack)
         mainSocialsStack.addArrangedSubviews(iconsStack, socialStatsStack)
         iconsStack.addArrangedSubviews(createIconButton(image: #imageLiteral(resourceName: "heart_empty")), createIconButton(image: #imageLiteral(resourceName: "Comment")), createIconButton(image: #imageLiteral(resourceName: "more")))
         nameStack.addArrangedSubviews(nameLabel, timeLabel)
@@ -133,7 +160,13 @@ private extension PoemDetailsComponent {
             
             pageControl.bottomAnchor.constraint(equalTo: mainSocialsStack.topAnchor, constant: -Spacing.thirtyTwo),
             pageControl.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
-            pageControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour)
+            pageControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
+            
+            currentPageLabel.bottomAnchor.constraint(equalTo: pageControl.topAnchor, constant: -Spacing.sixteen),
+            currentPageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
+            
+            hashTagStack.bottomAnchor.constraint(equalTo: currentPageLabel.topAnchor, constant: -Spacing.twelve),
+            hashTagStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour)
         ])
     }
     
@@ -143,5 +176,13 @@ private extension PoemDetailsComponent {
         button.widthAnchor.constraint(equalToConstant: 22).isActive = true
         button.setImage(image, for: .normal)
         return button
+    }
+    
+    func createHashTagLabel(hashtag: String) -> UILabel {
+        let label = UILabel()
+        label.textColor = UIColor.AppColors.lightGray
+        label.font = UIFont.georgia(size: 16)
+        label.text = hashtag
+        return label
     }
 }
