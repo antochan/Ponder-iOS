@@ -29,6 +29,16 @@ class PageControlComponent: UIView, Component {
         stackView.alignment = .center
         return stackView
     }()
+    
+    private let currentPageLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.georgia(size: 11)
+        label.textColor = UIColor.AppColors.lightGray
+        label.numberOfLines = 1
+        label.textAlignment = .right
+        return label
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,6 +55,7 @@ class PageControlComponent: UIView, Component {
         for index in 1...pageCap {
             pageControlStack.addArrangedSubviews(createPageView(shouldHighlight: index == viewModel.currentPage.correctPageIndex(perPage: 5)))
         }
+        currentPageLabel.text = "Showing page \(viewModel.currentPage) out of \(viewModel.totalPageCount)"
     }
     
 }
@@ -58,7 +69,7 @@ private extension PageControlComponent {
     }
     
     func configureSubviews() {
-        addSubviews(pageControlBase, pageControlStack)
+        addSubviews(pageControlBase, pageControlStack, currentPageLabel)
     }
     
     func configureLayout() {
@@ -72,7 +83,10 @@ private extension PageControlComponent {
             pageControlStack.topAnchor.constraint(equalTo: pageControlBase.topAnchor),
             pageControlStack.leadingAnchor.constraint(equalTo: pageControlBase.leadingAnchor),
             pageControlStack.trailingAnchor.constraint(equalTo: pageControlBase.trailingAnchor),
-            pageControlStack.bottomAnchor.constraint(equalTo: pageControlBase.bottomAnchor)
+            pageControlStack.bottomAnchor.constraint(equalTo: pageControlBase.bottomAnchor),
+            
+            currentPageLabel.bottomAnchor.constraint(equalTo: pageControlStack.topAnchor, constant: -Spacing.sixteen),
+            currentPageLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
     
