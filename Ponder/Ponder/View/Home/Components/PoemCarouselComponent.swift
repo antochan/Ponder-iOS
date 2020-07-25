@@ -19,7 +19,7 @@ class PoemCarouselComponent: UIView, Component, Actionable {
         static let defaultViewModel = ViewModel(carouselData: PoemCarouselData(poems: []))
     }
     
-    private var currentIndexPath: Int = 0 {
+    private var currentIndexPath: Int = 1 {
         didSet {
             actions?.currentPageHandler(currentIndexPath)
         }
@@ -136,7 +136,7 @@ extension PoemCarouselComponent {
         let centerX = scrollView.contentOffset.x + scrollView.bounds.width / 2.0
         collectionView.visibleCells.forEach { (cell) in
             if cell.frame.contains(CGPoint(x: centerX, y: cell.center.y)), let index = collectionView.indexPath(for: cell) {
-                currentIndexPath = index.row
+                currentIndexPath = index.row + 1
             }
         }
     }

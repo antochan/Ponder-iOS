@@ -54,3 +54,43 @@ extension UIView {
         views.forEach { addSubview($0) }
     }
 }
+
+extension UIStackView {
+    func removeAllArrangedSubviews() {
+        let removedSubviews = arrangedSubviews.reduce([]) { (allSubviews, subview) -> [UIView] in
+            self.removeArrangedSubview(subview)
+            return allSubviews + [subview]
+        }
+        // Deactivate all constraints
+        NSLayoutConstraint.deactivate(removedSubviews.flatMap({ $0.constraints }))
+        
+        // Remove the views from self
+        removedSubviews.forEach({ $0.removeFromSuperview() })
+    }
+}
+
+extension Int {
+    func correctPageIndex(perPage: Int) -> Int {
+        if self < perPage { return self }
+        if self % perPage == 0 { return perPage }
+        return self % perPage
+    }
+    
+    func correctTotalPage(perPage: Int, currentPage: Int, totalPage: Int) -> Int {
+        var nonFullPageValues = [Int]()
+        var nonFullPageCount = 0
+        for i in 0...perPage {
+            if (totalPage - i) % perPage == 0 {
+                break
+            } else {
+                nonFullPageValues.append(totalPage - i)
+                nonFullPageCount += 1
+            }
+        }
+        if nonFullPageValues.contains(currentPage) {
+            return nonFullPageCount
+        } else {
+            return perPage
+        }
+    }
+}

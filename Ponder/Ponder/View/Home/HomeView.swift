@@ -42,8 +42,8 @@ class HomeView: UIView {
         
     }
     
-    func applyPoemDetails(poem: Poem) {
-        poemDetails.apply(viewModel: PoemDetailsComponent.ViewModel(poem: poem))
+    func applyPoemDetails(poem: Poem, totalPage: Int, currentPage: Int) {
+        poemDetails.apply(viewModel: PoemDetailsComponent.ViewModel(poem: poem, totalPageCount: totalPage, currentPage: currentPage))
     }
 }
 

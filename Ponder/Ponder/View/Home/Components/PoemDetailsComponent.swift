@@ -11,6 +11,8 @@ import UIKit
 class PoemDetailsComponent: UIView, Component {
     struct ViewModel {
         let poem: Poem
+        let totalPageCount: Int
+        let currentPage: Int
     }
     
     private let iconsStack: UIStackView = {
@@ -60,7 +62,7 @@ class PoemDetailsComponent: UIView, Component {
     
     private let likesLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.georgia(size: 15)
+        label.font = UIFont.georgia(size: 13)
         label.textColor = UIColor.AppColors.gray
         label.numberOfLines = 1
         return label
@@ -68,7 +70,7 @@ class PoemDetailsComponent: UIView, Component {
     
     private let commentsLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.georgia(size: 15)
+        label.font = UIFont.georgia(size: 13)
         label.textColor = UIColor.AppColors.gray
         label.numberOfLines = 1
         return label
@@ -81,6 +83,12 @@ class PoemDetailsComponent: UIView, Component {
         stackView.spacing = Spacing.sixteen
         stackView.alignment = .leading
         return stackView
+    }()
+    
+    private let pageControl: PageControlComponent = {
+        let pageControl = PageControlComponent()
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        return pageControl
     }()
     
     override init(frame: CGRect) {
@@ -96,6 +104,8 @@ class PoemDetailsComponent: UIView, Component {
         nameLabel.text = viewModel.poem.author
         likesLabel.text = "\(viewModel.poem.likes) Likes"
         commentsLabel.text = "\(viewModel.poem.comments.count) Comments"
+        
+        pageControl.apply(viewModel: PageControlComponent.ViewModel(totalPageCount: viewModel.totalPageCount, currentPage: viewModel.currentPage))
     }
 }
 
@@ -106,7 +116,7 @@ private extension PoemDetailsComponent {
     }
     
     func configureSubviews() {
-        addSubviews(mainSocialsStack, nameStack)
+        addSubviews(mainSocialsStack, nameStack, pageControl)
         mainSocialsStack.addArrangedSubviews(iconsStack, socialStatsStack)
         iconsStack.addArrangedSubviews(createIconButton(image: #imageLiteral(resourceName: "heart_empty")), createIconButton(image: #imageLiteral(resourceName: "Comment")), createIconButton(image: #imageLiteral(resourceName: "more")))
         nameStack.addArrangedSubviews(nameLabel, timeLabel)
@@ -119,7 +129,11 @@ private extension PoemDetailsComponent {
             nameStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
             
             mainSocialsStack.centerYAnchor.constraint(equalTo: nameStack.centerYAnchor),
-            mainSocialsStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour)
+            mainSocialsStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
+            
+            pageControl.bottomAnchor.constraint(equalTo: mainSocialsStack.topAnchor, constant: -Spacing.thirtyTwo),
+            pageControl.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
+            pageControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour)
         ])
     }
     
