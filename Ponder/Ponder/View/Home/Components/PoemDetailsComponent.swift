@@ -152,7 +152,9 @@ private extension PoemDetailsComponent {
         addSubviews(mainSocialsStack, nameStack, pageControl, currentPageLabel, hashTagScrollView)
         hashTagScrollView.addSubview(hashTagStack)
         mainSocialsStack.addArrangedSubviews(iconsStack, socialStatsStack)
-        iconsStack.addArrangedSubviews(createIconButton(image: #imageLiteral(resourceName: "heart_empty")), createIconButton(image: #imageLiteral(resourceName: "Comment")), createIconButton(image: #imageLiteral(resourceName: "more")))
+        iconsStack.addArrangedSubviews(createIconButton(image: #imageLiteral(resourceName: "heart_empty"), buttonType: .like),
+                                       createIconButton(image: #imageLiteral(resourceName: "Comment"), buttonType: .comments),
+                                       createIconButton(image: #imageLiteral(resourceName: "more"), buttonType: .more))
         nameStack.addArrangedSubviews(nameLabel, timeLabel)
         socialStatsStack.addArrangedSubviews(likesLabel, commentsLabel)
     }
@@ -185,11 +187,20 @@ private extension PoemDetailsComponent {
         ])
     }
     
-    func createIconButton(image: UIImage) -> UIButton {
+    func createIconButton(image: UIImage, buttonType: HomeIconType) -> UIButton {
         let button = UIButton()
         button.heightAnchor.constraint(equalToConstant: 22).isActive = true
         button.widthAnchor.constraint(equalToConstant: 22).isActive = true
         button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(iconButtonTapped), for: .touchUpInside)
+        switch buttonType {
+        case .like:
+            button.tag = HomeIconType.like.rawValue
+        case .comments:
+            button.tag = HomeIconType.comments.rawValue
+        case .more:
+            button.tag = HomeIconType.more.rawValue
+        }
         return button
     }
     
@@ -199,5 +210,18 @@ private extension PoemDetailsComponent {
         label.font = UIFont.georgia(size: 14)
         label.text = hashtag
         return label
+    }
+    
+    @objc func iconButtonTapped(sender: UIButton) {
+        switch sender.tag {
+        case HomeIconType.like.rawValue:
+            print("like tapped")
+        case HomeIconType.comments.rawValue:
+            print("comment tapped")
+        case HomeIconType.more.rawValue:
+            print("more tapped")
+        default:
+            break
+        }
     }
 }

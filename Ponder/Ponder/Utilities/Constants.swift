@@ -9,6 +9,12 @@
 
 import UIKit
 
+public enum HomeIconType: Int {
+    case like
+    case comments
+    case more
+}
+
 public enum Lines {
     static let staticLine = 5
     static let multiLine = 0
