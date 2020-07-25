@@ -91,13 +91,19 @@ class PoemDetailsComponent: UIView, Component {
         return pageControl
     }()
     
+    private let hashTagScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        return scrollView
+    }()
+    
     private let hashTagStack: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = Spacing.twelve
-        stackView.alignment = .leading
-        stackView.distribution = .fillProportionally
         return stackView
     }()
     
@@ -143,7 +149,8 @@ private extension PoemDetailsComponent {
     }
     
     func configureSubviews() {
-        addSubviews(mainSocialsStack, nameStack, pageControl, currentPageLabel, hashTagStack)
+        addSubviews(mainSocialsStack, nameStack, pageControl, currentPageLabel, hashTagScrollView)
+        hashTagScrollView.addSubview(hashTagStack)
         mainSocialsStack.addArrangedSubviews(iconsStack, socialStatsStack)
         iconsStack.addArrangedSubviews(createIconButton(image: #imageLiteral(resourceName: "heart_empty")), createIconButton(image: #imageLiteral(resourceName: "Comment")), createIconButton(image: #imageLiteral(resourceName: "more")))
         nameStack.addArrangedSubviews(nameLabel, timeLabel)
@@ -165,8 +172,16 @@ private extension PoemDetailsComponent {
             currentPageLabel.bottomAnchor.constraint(equalTo: pageControl.topAnchor, constant: -Spacing.sixteen),
             currentPageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
             
-            hashTagStack.bottomAnchor.constraint(equalTo: currentPageLabel.topAnchor, constant: -Spacing.twelve),
-            hashTagStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour)
+            hashTagScrollView.bottomAnchor.constraint(equalTo: currentPageLabel.topAnchor, constant: -Spacing.twelve),
+            hashTagScrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
+            hashTagScrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
+            hashTagScrollView.topAnchor.constraint(equalTo: topAnchor),
+            hashTagScrollView.heightAnchor.constraint(equalTo: hashTagStack.heightAnchor),
+            
+            hashTagStack.leadingAnchor.constraint(equalTo: hashTagScrollView.leadingAnchor),
+            hashTagStack.trailingAnchor.constraint(equalTo: hashTagScrollView.trailingAnchor),
+            hashTagStack.topAnchor.constraint(equalTo: hashTagScrollView.topAnchor),
+            hashTagStack.bottomAnchor.constraint(equalTo: hashTagScrollView.bottomAnchor),
         ])
     }
     
@@ -180,8 +195,8 @@ private extension PoemDetailsComponent {
     
     func createHashTagLabel(hashtag: String) -> UILabel {
         let label = UILabel()
-        label.textColor = UIColor.AppColors.lightGray
-        label.font = UIFont.georgia(size: 16)
+        label.textColor = UIColor.AppColors.gray
+        label.font = UIFont.georgia(size: 14)
         label.text = hashtag
         return label
     }

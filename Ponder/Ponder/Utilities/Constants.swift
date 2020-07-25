@@ -9,6 +9,15 @@
 
 import UIKit
 
+public enum Lines {
+    static let staticLine = 5
+    static let multiLine = 0
+}
+
+public enum Page {
+    static let homePageCap = 5
+}
+
 public enum Spacing {
     public static let zero: CGFloat = 0
     public static let four: CGFloat = 4

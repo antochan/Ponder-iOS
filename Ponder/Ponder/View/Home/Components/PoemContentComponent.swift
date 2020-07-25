@@ -40,7 +40,7 @@ class PoemContentComponent: UIView, Component, Reusable {
         let label = UILabel()
         label.font = UIFont.georgia(size: 16)
         label.textAlignment = .left
-        label.numberOfLines = 4
+        label.numberOfLines = Lines.staticLine
         return label
     }()
 
@@ -65,7 +65,7 @@ class PoemContentComponent: UIView, Component, Reusable {
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
         poemContentLabel.attributedText = attributedString
         
-        poemContentLabel.numberOfLines = isExpanded ? 0 : 4
+        poemContentLabel.numberOfLines = isExpanded ? Lines.multiLine : Lines.staticLine
     }
     
     func prepareForReuse() {

@@ -65,11 +65,12 @@ private extension HomeView {
             poemCarousel.topAnchor.constraint(equalTo: topAnchor),
             poemCarousel.leadingAnchor.constraint(equalTo: leadingAnchor),
             poemCarousel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            poemCarousel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7),
+            poemCarousel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.65),
             
             poemDetails.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -Spacing.twentyFour),
             poemDetails.leadingAnchor.constraint(equalTo: leadingAnchor),
-            poemDetails.trailingAnchor.constraint(equalTo: trailingAnchor)
+            poemDetails.trailingAnchor.constraint(equalTo: trailingAnchor),
+            poemDetails.topAnchor.constraint(equalTo: poemCarousel.bottomAnchor, constant: Spacing.sixteen)
         ])
     }
     

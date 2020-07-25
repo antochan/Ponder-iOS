@@ -41,9 +41,9 @@ class PageControlComponent: UIView, Component {
     
     func apply(viewModel: ViewModel) {
         pageControlStack.removeAllArrangedSubviews()
-        let pageCap = viewModel.totalPageCount.correctTotalPage(perPage: 5, currentPage: viewModel.currentPage, totalPage: viewModel.totalPageCount)
+        let pageCap = viewModel.totalPageCount.correctTotalPage(perPage: Page.homePageCap, currentPage: viewModel.currentPage, totalPage: viewModel.totalPageCount)
         for index in 1...pageCap {
-            pageControlStack.addArrangedSubviews(createPageView(shouldHighlight: index == viewModel.currentPage.correctPageIndex(perPage: 5)))
+            pageControlStack.addArrangedSubviews(createPageView(shouldHighlight: index == viewModel.currentPage.correctPageIndex(perPage: Page.homePageCap)))
         }
     }
     
