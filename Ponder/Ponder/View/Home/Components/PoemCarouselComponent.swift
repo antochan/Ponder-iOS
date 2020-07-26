@@ -117,6 +117,11 @@ extension PoemCarouselComponent: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
+    
+    func setupHeroId(shouldAddHero: Bool, currentPage: Int) {
+        let cell = collectionView.cellForItem(at: IndexPath(item: currentPage - 1, section: 0)) as? ComponentCollectionViewCell<PoemContentComponent>
+        cell?.component.setupHeroId(addHero: shouldAddHero)
+    }
 }
 
 //MARK: - ScrollViewDelegate

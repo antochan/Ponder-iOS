@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Hero
 
 class HomeViewController: UIViewController {
     let homeView = HomeView()
@@ -18,7 +19,7 @@ class HomeViewController: UIViewController {
     }
     
     let mockPoemData: PoemCarouselData = PoemCarouselData(poems: [
-        Poem(id: "1", poemImage: #imageLiteral(resourceName: "Engage your customers"), poemContent: "you fit into me\nlike a hook into an eye\na fish hook\n an open eye", poemTags: ["#Fish", "#Swag", "#Eyes", "#Simple", "#DailyPoetry", "#Inspiration"], comments: [], author: "Antonio", likes: 10),
+        Poem(id: "1", poemImage: #imageLiteral(resourceName: "Engage your customers"), poemContent: "you fit into me\nlike a hook into an eye\na fish hook\nan open eye", poemTags: ["#Fish", "#Swag", "#Eyes", "#Simple", "#DailyPoetry", "#Inspiration"], comments: [], author: "Antonio", likes: 10),
         Poem(id: "2", poemImage: #imageLiteral(resourceName: "Build faster"), poemContent: "they leave\nand act like it never happened\nthey come back\nand act like they never left", poemTags: ["#Destiny", "#Daily Poem", "#ForYouPage", "#HypeTrain", "#Developers"], comments: [], author: "Hiroo", likes: 8),
         Poem(id: "3", poemImage: #imageLiteral(resourceName: "girl_abstract"), poemContent: "Test Poem\nI am test\nHiroo Aoy\nAnto", poemTags: ["#Test", "#Swag"], comments: [], author: "Spike", likes: 44),
         Poem(id: "1", poemImage: #imageLiteral(resourceName: "Engage your customers"), poemContent: "you fit into me\nlike a hook into an eye\na fish hook\n an open eye", poemTags: ["#Test", "#Swag"], comments: [], author: "Antonio", likes: 10),
@@ -39,6 +40,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        isHeroEnabled = true
         homeView.delegate = self
         homeView.applyPoemList(poems: mockPoemData)
         homeView.applyPoemDetails(poem: mockPoemData.poems[currentPage - 1], totalPage: mockPoemData.poems.count, currentPage: currentPage)
@@ -49,7 +51,31 @@ class HomeViewController: UIViewController {
 //MARK: - HomePageDelegate
 
 extension HomeViewController: HomePageDelegate {
+    func iconTapped(buttonType: HomeIconType) {
+        switch buttonType {
+        case .like:
+            print(mockPoemData.poems[currentPage - 1])
+        case .comments:
+            homeView.setupHeroId(shouldAddHero: true, currentPage: currentPage)
+            let commentsViewController = HomeCommentsViewController(poem: mockPoemData.poems[currentPage - 1])
+            commentsViewController.delegate = self
+            commentsViewController.modalPresentationStyle = .fullScreen
+            commentsViewController.isHeroEnabled = true
+            present(commentsViewController, animated: true)
+        case .more:
+            print(mockPoemData.poems[currentPage - 1])
+        }
+    }
+    
     func pageChanged(newPage: Int) {
         currentPage = newPage
+    }
+}
+
+//MARK: - HomeCommentsDelegate
+
+extension HomeViewController: HomeCommentsDelegate {
+    func dismissed() {
+        homeView.setupHeroId(shouldAddHero: false, currentPage: currentPage)
     }
 }

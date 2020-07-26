@@ -1,0 +1,6 @@
+framework module Pods_Ponder_PonderUITests {
+  umbrella header "Pods-Ponder-PonderUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -9,6 +9,16 @@
 
 import UIKit
 
+public enum HeroIds {
+    static let poemContentView = "PoemContentView"
+    static let poemHashtagView = "PoemHashtagView"
+}
+
+public enum HomeConstants {
+    static let carouselHeightMultiplier: CGFloat = 0.65
+    static let imageHeightMultiplier: CGFloat = 0.45
+}
+
 public enum HomeIconType: Int {
     case like
     case comments

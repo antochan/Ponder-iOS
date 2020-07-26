@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol HomeIconDelegate: AnyObject {
+    func buttonTapped(buttonType: HomeIconType)
+}
+
 class PoemDetailsComponent: UIView, Component {
     struct ViewModel {
         let poem: Poem
@@ -96,6 +100,7 @@ class PoemDetailsComponent: UIView, Component {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
+        scrollView.hero.id = HeroIds.poemHashtagView
         return scrollView
     }()
     
@@ -118,6 +123,8 @@ class PoemDetailsComponent: UIView, Component {
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return label
     }()
+    
+    weak var delegate: HomeIconDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -215,11 +222,11 @@ private extension PoemDetailsComponent {
     @objc func iconButtonTapped(sender: UIButton) {
         switch sender.tag {
         case HomeIconType.like.rawValue:
-            print("like tapped")
+            delegate?.buttonTapped(buttonType: .like)
         case HomeIconType.comments.rawValue:
-            print("comment tapped")
+            delegate?.buttonTapped(buttonType: .comments)
         case HomeIconType.more.rawValue:
-            print("more tapped")
+            delegate?.buttonTapped(buttonType: .more)
         default:
             break
         }

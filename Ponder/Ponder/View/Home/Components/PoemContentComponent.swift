@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Hero
 
 class PoemContentComponent: UIView, Component, Reusable {
     struct ViewModel {
@@ -29,18 +30,13 @@ class PoemContentComponent: UIView, Component, Reusable {
         return view
     }()
     
-    private let poemContentStack: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        return stackView
-    }()
-    
     private let poemContentLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.georgia(size: 16)
         label.textAlignment = .left
         label.numberOfLines = Lines.staticLine
+        label.textColor = .black
         return label
     }()
 
@@ -72,6 +68,10 @@ class PoemContentComponent: UIView, Component, Reusable {
         poemImageView.image = nil
         poemContentLabel.text = nil
     }
+    
+    func setupHeroId(addHero: Bool) {
+        poemContentLabel.hero.id = addHero ? HeroIds.poemContentView : nil
+    }
 }
 
 //MARK: - Private
@@ -83,8 +83,7 @@ private extension PoemContentComponent {
     }
     
     func configureSubviews() {
-        addSubviews(poemImageView, poemImageOverlayView, poemContentStack)
-        poemContentStack.addArrangedSubview(poemContentLabel)
+        addSubviews(poemImageView, poemImageOverlayView, poemContentLabel)
     }
     
     func configureLayout() {
@@ -92,16 +91,16 @@ private extension PoemContentComponent {
             poemImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             poemImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             poemImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            poemImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.45),
+            poemImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: HomeConstants.imageHeightMultiplier),
             
             poemImageOverlayView.topAnchor.constraint(equalTo: topAnchor),
             poemImageOverlayView.leadingAnchor.constraint(equalTo: leadingAnchor),
             poemImageOverlayView.trailingAnchor.constraint(equalTo: trailingAnchor),
             poemImageOverlayView.bottomAnchor.constraint(equalTo: poemImageView.bottomAnchor),
             
-            poemContentStack.topAnchor.constraint(equalTo: poemImageOverlayView.bottomAnchor, constant: Spacing.twentyFour),
-            poemContentStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
-            poemContentStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour)
+            poemContentLabel.topAnchor.constraint(equalTo: poemImageOverlayView.bottomAnchor, constant: Spacing.twentyFour),
+            poemContentLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
+            poemContentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
         ])
     }
 }
