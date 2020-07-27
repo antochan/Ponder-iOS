@@ -34,6 +34,7 @@ class HomeCommentsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         homeCommentView.dismissButton.addTarget(self, action: #selector(dismissTapped), for: .touchUpInside)
         homeCommentView.applyPoem(poem: poem)
     }

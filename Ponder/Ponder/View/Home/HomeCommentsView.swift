@@ -66,6 +66,21 @@ class HomeCommentsView: UIView {
         return stackView
     }()
     
+    private let headerDividerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor.AppColors.lightGray.withAlphaComponent(0.25)
+        view.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        view.hero.id = HeroIds.homePoemDividerView
+        return view
+    }()
+    
+    private let commentsTableView: CommentsTableViewComponent = {
+        let commentsTable = CommentsTableViewComponent()
+        commentsTable.translatesAutoresizingMaskIntoConstraints = false
+        return commentsTable
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
@@ -83,6 +98,7 @@ class HomeCommentsView: UIView {
         poem.poemTags.forEach {
             hashTagStack.addArrangedSubviews(createHashTagLabel(hashtag: $0))
         }
+        commentsTableView.apply(viewModel: CommentsTableViewComponent.ViewModel(currentUser: nil, comments: poem.comments))
     }
     
     func updatePoemLabel(poemText: String, isExpanded: Bool) {
@@ -106,7 +122,7 @@ private extension HomeCommentsView {
     
     func configureSubviews() {
         addSubviews(poemImageView, poemImageOverlayView, poemContentView)
-        poemContentView.addSubviews(dismissButton, poemContentLabel, hashTagScrollView)
+        poemContentView.addSubviews(dismissButton, poemContentLabel, hashTagScrollView, headerDividerView, commentsTableView)
         hashTagScrollView.addSubview(hashTagStack)
     }
     
@@ -144,13 +160,22 @@ private extension HomeCommentsView {
             hashTagStack.trailingAnchor.constraint(equalTo: hashTagScrollView.trailingAnchor),
             hashTagStack.topAnchor.constraint(equalTo: hashTagScrollView.topAnchor),
             hashTagStack.bottomAnchor.constraint(equalTo: hashTagScrollView.bottomAnchor),
+            
+            headerDividerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
+            headerDividerView.topAnchor.constraint(equalTo: hashTagStack.bottomAnchor, constant: Spacing.twentyFour),
+            headerDividerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
+            
+            commentsTableView.topAnchor.constraint(equalTo: headerDividerView.bottomAnchor, constant: Spacing.twentyFour),
+            commentsTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
+            commentsTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
+            commentsTableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Spacing.thirtyTwo)
         ])
     }
     
     func createHashTagLabel(hashtag: String) -> UILabel {
         let label = UILabel()
         label.textColor = UIColor.AppColors.gray
-        label.font = UIFont.georgia(size: 14)
+        label.font = UIFont.main(size: 14)
         label.text = hashtag
         return label
     }

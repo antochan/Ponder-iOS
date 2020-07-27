@@ -39,6 +39,10 @@
 		8A2533D624CAA9FC0014ACC1 /* PageControlComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2533D524CAA9FC0014ACC1 /* PageControlComponent.swift */; };
 		8A2E06D024CCA43900E195BE /* HomeCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E06CF24CCA43900E195BE /* HomeCommentsViewController.swift */; };
 		8A2E06D224CCA49800E195BE /* HomeCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E06D124CCA49800E195BE /* HomeCommentsView.swift */; };
+		8A32C5D524CD57F700A8D2DE /* CommentsTableViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5D424CD57F700A8D2DE /* CommentsTableViewComponent.swift */; };
+		8A32C5D724CD581300A8D2DE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5D624CD581300A8D2DE /* User.swift */; };
+		8A32C5D924CD5C0700A8D2DE /* CommentsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5D824CD5C0700A8D2DE /* CommentsComponent.swift */; };
+		8A32C5DB24CE4F5000A8D2DE /* CommentTextFieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5DA24CE4F5000A8D2DE /* CommentTextFieldComponent.swift */; };
 		EF745C57A8A96D536A5A075C /* Pods_Ponder_PonderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F4D8F2C360A5B6399C7E4E /* Pods_Ponder_PonderUITests.framework */; };
 		FDD3331AC28478B8C532DEFD /* Pods_PonderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFCB436CCD7E06EBACDBB32 /* Pods_PonderTests.framework */; };
 /* End PBXBuildFile section */
@@ -104,6 +108,10 @@
 		8A2533D524CAA9FC0014ACC1 /* PageControlComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControlComponent.swift; sourceTree = "<group>"; };
 		8A2E06CF24CCA43900E195BE /* HomeCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCommentsViewController.swift; sourceTree = "<group>"; };
 		8A2E06D124CCA49800E195BE /* HomeCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCommentsView.swift; sourceTree = "<group>"; };
+		8A32C5D424CD57F700A8D2DE /* CommentsTableViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewComponent.swift; sourceTree = "<group>"; };
+		8A32C5D624CD581300A8D2DE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8A32C5D824CD5C0700A8D2DE /* CommentsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsComponent.swift; sourceTree = "<group>"; };
+		8A32C5DA24CE4F5000A8D2DE /* CommentTextFieldComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextFieldComponent.swift; sourceTree = "<group>"; };
 		9723BC56F014973C3DDCD89D /* Pods-Ponder-PonderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ponder-PonderUITests.debug.xcconfig"; path = "Target Support Files/Pods-Ponder-PonderUITests/Pods-Ponder-PonderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CDCBDD22F9F6C51A41AD9E53 /* Pods-Ponder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ponder.release.xcconfig"; path = "Target Support Files/Pods-Ponder/Pods-Ponder.release.xcconfig"; sourceTree = "<group>"; };
 		D1F4D8F2C360A5B6399C7E4E /* Pods_Ponder_PonderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ponder_PonderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				8A2533D024CA83E30014ACC1 /* Poem.swift */,
+				8A32C5D624CD581300A8D2DE /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -287,10 +296,8 @@
 		8A2533D424CAA9E60014ACC1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				8A14F97824CA43080012B92B /* PoemContentComponent.swift */,
-				8A2533CE24CA82CD0014ACC1 /* PoemCarouselComponent.swift */,
-				8A2533D224CA8A770014ACC1 /* PoemDetailsComponent.swift */,
-				8A2533D524CAA9FC0014ACC1 /* PageControlComponent.swift */,
+				8A32C5D324CD57C800A8D2DE /* HomeComments */,
+				8A32C5D224CD57B800A8D2DE /* Home */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -302,6 +309,27 @@
 				8A2E06CF24CCA43900E195BE /* HomeCommentsViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		8A32C5D224CD57B800A8D2DE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8A2533CE24CA82CD0014ACC1 /* PoemCarouselComponent.swift */,
+				8A2533D224CA8A770014ACC1 /* PoemDetailsComponent.swift */,
+				8A2533D524CAA9FC0014ACC1 /* PageControlComponent.swift */,
+				8A14F97824CA43080012B92B /* PoemContentComponent.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		8A32C5D324CD57C800A8D2DE /* HomeComments */ = {
+			isa = PBXGroup;
+			children = (
+				8A32C5D424CD57F700A8D2DE /* CommentsTableViewComponent.swift */,
+				8A32C5D824CD5C0700A8D2DE /* CommentsComponent.swift */,
+				8A32C5DA24CE4F5000A8D2DE /* CommentTextFieldComponent.swift */,
+			);
+			path = HomeComments;
 			sourceTree = "<group>";
 		};
 		ACA462083AA40FC491EEE654 /* Pods */ = {
@@ -556,12 +584,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A14F95724C95B6E0012B92B /* SearchViewController.swift in Sources */,
+				8A32C5D924CD5C0700A8D2DE /* CommentsComponent.swift in Sources */,
 				8A14F95324C958A60012B92B /* TabBarController.swift in Sources */,
+				8A32C5D524CD57F700A8D2DE /* CommentsTableViewComponent.swift in Sources */,
 				8A14F96E24CA3D830012B92B /* ComponentCollectionViewCell.swift in Sources */,
 				8A14F96124CA3B3D0012B92B /* PressHighlightable.swift in Sources */,
 				8A2E06D224CCA49800E195BE /* HomeCommentsView.swift in Sources */,
 				8A2533D624CAA9FC0014ACC1 /* PageControlComponent.swift in Sources */,
 				8A14F96B24CA3CE90012B92B /* HomeView.swift in Sources */,
+				8A32C5DB24CE4F5000A8D2DE /* CommentTextFieldComponent.swift in Sources */,
+				8A32C5D724CD581300A8D2DE /* User.swift in Sources */,
 				8A14F96524CA3B600012B92B /* Pressable.swift in Sources */,
 				8A14F95D24C96B690012B92B /* AccountViewController.swift in Sources */,
 				8A14F97224CA3DBC0012B92B /* ButtonComponent.swift in Sources */,

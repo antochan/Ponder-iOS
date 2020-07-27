@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Hero
 
 class PageControlComponent: UIView, Component {
     struct ViewModel {
@@ -18,6 +19,7 @@ class PageControlComponent: UIView, Component {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.AppColors.lightGray.withAlphaComponent(0.25)
+        view.hero.id = HeroIds.homePoemDividerView
         return view
     }()
     

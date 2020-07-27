@@ -38,7 +38,8 @@ class PoemDetailsComponent: UIView, Component {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.georgiaBold(size: 21)
+        label.font = UIFont.mainBold(size: 21)
+        label.textColor = .darkGray
         label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         label.textAlignment = .right
         label.numberOfLines = 1
@@ -47,7 +48,7 @@ class PoemDetailsComponent: UIView, Component {
     
     private let timeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.georgia(size: 17)
+        label.font = UIFont.mainMedium(size: 17)
         label.textColor = UIColor.AppColors.lightGray
         label.textAlignment = .right
         label.numberOfLines = 1
@@ -66,7 +67,7 @@ class PoemDetailsComponent: UIView, Component {
     
     private let likesLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.georgia(size: 13)
+        label.font = UIFont.main(size: 13)
         label.textColor = UIColor.AppColors.gray
         label.numberOfLines = 1
         return label
@@ -74,7 +75,7 @@ class PoemDetailsComponent: UIView, Component {
     
     private let commentsLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.georgia(size: 13)
+        label.font = UIFont.main(size: 13)
         label.textColor = UIColor.AppColors.gray
         label.numberOfLines = 1
         return label
@@ -115,7 +116,7 @@ class PoemDetailsComponent: UIView, Component {
     private let currentPageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.georgia(size: 11)
+        label.font = UIFont.main(size: 11)
         label.textColor = UIColor.AppColors.lightGray
         label.numberOfLines = 1
         label.textAlignment = .right
@@ -214,7 +215,7 @@ private extension PoemDetailsComponent {
     func createHashTagLabel(hashtag: String) -> UILabel {
         let label = UILabel()
         label.textColor = UIColor.AppColors.gray
-        label.font = UIFont.georgia(size: 14)
+        label.font = UIFont.main(size: 14)
         label.text = hashtag
         return label
     }

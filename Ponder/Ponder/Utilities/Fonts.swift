@@ -16,4 +16,16 @@ extension UIFont {
     class func georgiaBold(size: CGFloat) -> UIFont {
         return UIFont(name: "Georgia-Bold", size: size)!
     }
+    
+    class func main(size: CGFloat) -> UIFont {
+        return UIFont(name: "HelveticaNeue", size: size)!
+    }
+    
+    class func mainBold(size: CGFloat) -> UIFont {
+        return UIFont(name: "HelveticaNeue-Bold", size: size)!
+    }
+    
+    class func mainMedium(size: CGFloat) -> UIFont {
+        return UIFont(name: "HelveticaNeue-Medium", size: size)!
+    }
 }
