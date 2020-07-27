@@ -39,6 +39,17 @@ class CommentsTableViewComponent: UIView, Component {
         inputView.translatesAutoresizingMaskIntoConstraints = false
         return inputView
     }()
+    
+    private let noCommentLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.main(size: 14)
+        label.text = "No comments yet, be the first to comment below!"
+        label.textAlignment = .center
+        label.textColor = UIColor.AppColors.lightGray
+        label.numberOfLines = 0
+        return label
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,6 +63,7 @@ class CommentsTableViewComponent: UIView, Component {
     func apply(viewModel: ViewModel) {
         commentInputView.apply(viewModel: CommentTextFieldComponent.ViewModel(user: viewModel.currentUser))
         self.viewModel = viewModel
+        noCommentLabel.isHidden = !viewModel.comments.isEmpty
     }
 }
 
@@ -65,7 +77,7 @@ private extension CommentsTableViewComponent {
     }
     
     func configureSubviews() {
-        addSubviews(commentInputView, tableView)
+        addSubviews(commentInputView, tableView, noCommentLabel)
     }
     
     func configureLayout() {
@@ -77,7 +89,11 @@ private extension CommentsTableViewComponent {
             tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: commentInputView.topAnchor)
+            tableView.bottomAnchor.constraint(equalTo: commentInputView.topAnchor),
+            
+            noCommentLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
+            noCommentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
+            noCommentLabel.centerYAnchor.constraint(equalTo: tableView.centerYAnchor)
         ])
     }
     

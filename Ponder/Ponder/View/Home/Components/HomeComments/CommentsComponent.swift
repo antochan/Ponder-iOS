@@ -26,6 +26,10 @@ class CommentsComponent: UIView, Component, Reusable {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 22).isActive = true
+        imageView.layer.cornerRadius = 11
+        imageView.clipsToBounds = true
         return imageView
     }()
     

@@ -13,9 +13,16 @@ class CommentTextFieldComponent: UIView, Component {
         let user: User?
     }
     
-    private let inputStack: UIStackView = {
+    private let mainInputStack: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = Spacing.twelve
+        return stackView
+    }()
+    
+    private let inputStack: UIStackView = {
+        let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = Spacing.sixteen
         stackView.alignment = .center
@@ -26,6 +33,8 @@ class CommentTextFieldComponent: UIView, Component {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 15
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -36,6 +45,22 @@ class CommentTextFieldComponent: UIView, Component {
         textView.isScrollEnabled = false
         textView.font = UIFont.main(size: 15)
         return textView
+    }()
+    
+    private let commentButton: ButtonComponent = {
+        let button = ButtonComponent()
+        let buttonVM = ButtonComponent.ViewModel(style: .primary, text: "Submit", backgroundColor: .black, borderColor: .black, textColor: .white)
+        button.apply(viewModel: buttonVM)
+        button.isHidden = true
+        return button
+    }()
+    
+    private let loginButton: ButtonComponent = {
+        let button = ButtonComponent()
+        let buttonVM = ButtonComponent.ViewModel(style: .primary, text: "Login / Sign Up", backgroundColor: .black, borderColor: .black, textColor: .white)
+        button.apply(viewModel: buttonVM)
+        button.isHidden = true
+        return button
     }()
     
     override init(frame: CGRect) {
@@ -49,6 +74,8 @@ class CommentTextFieldComponent: UIView, Component {
     
     func apply(viewModel: ViewModel) {
         profileImageView.image = viewModel.user?.profilePicture ?? #imageLiteral(resourceName: "User_Unselected")
+        inputStack.isHidden = viewModel.user == nil
+        loginButton.isHidden = !inputStack.isHidden
     }
 }
 
@@ -58,10 +85,12 @@ private extension CommentTextFieldComponent {
     func commonInit() {
         configureSubviews()
         configureLayout()
+        commentTextField.delegate = self
     }
     
     func configureSubviews() {
-        addSubview(inputStack)
+        addSubview(mainInputStack)
+        mainInputStack.addArrangedSubviews(inputStack, commentButton, loginButton)
         inputStack.addArrangedSubviews(profileImageView, commentTextField)
     }
     
@@ -70,10 +99,10 @@ private extension CommentTextFieldComponent {
             profileImageView.heightAnchor.constraint(equalToConstant: 30),
             profileImageView.widthAnchor.constraint(equalToConstant: 30),
             
-            inputStack.topAnchor.constraint(equalTo: topAnchor, constant: Spacing.sixteen),
-            inputStack.leadingAnchor.constraint(equalTo: leadingAnchor),
-            inputStack.trailingAnchor.constraint(equalTo: trailingAnchor),
-            inputStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Spacing.sixteen)
+            mainInputStack.topAnchor.constraint(equalTo: topAnchor, constant: Spacing.sixteen),
+            mainInputStack.leadingAnchor.constraint(equalTo: leadingAnchor),
+            mainInputStack.trailingAnchor.constraint(equalTo: trailingAnchor),
+            mainInputStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Spacing.sixteen)
         ])
     }
 }
@@ -86,5 +115,14 @@ extension CommentTextFieldComponent: UITextViewDelegate {
             textView.text = nil
             textView.textColor = .black
         }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            textView.text = "Add a Comment"
+            textView.textColor = UIColor.AppColors.lightGray
+        }
+        
+        commentButton.isHidden = textView.text == "" || textView.textColor == UIColor.AppColors.lightGray
     }
 }

@@ -91,14 +91,14 @@ class HomeCommentsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func applyPoem(poem: Poem) {
+    func applyPoem(poem: Poem, user: User?) {
         poemImageView.image = poem.poemImage
         updatePoemLabel(poemText: poem.poemContent, isExpanded: false)
         hashTagStack.removeAllArrangedSubviews()
         poem.poemTags.forEach {
             hashTagStack.addArrangedSubviews(createHashTagLabel(hashtag: $0))
         }
-        commentsTableView.apply(viewModel: CommentsTableViewComponent.ViewModel(currentUser: nil, comments: poem.comments))
+        commentsTableView.apply(viewModel: CommentsTableViewComponent.ViewModel(currentUser: user, comments: poem.comments))
     }
     
     func updatePoemLabel(poemText: String, isExpanded: Bool) {

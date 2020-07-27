@@ -18,6 +18,8 @@ class HomeViewController: UIViewController {
         }
     }
     
+    let mockUser = User(id: "123", profilePicture: #imageLiteral(resourceName: "Me copy"), username: "AntoGOV")
+    
     let mockPoemData: PoemCarouselData = PoemCarouselData(poems: [
         Poem(id: "1",
              poemImage: #imageLiteral(resourceName: "Engage your customers"),
@@ -87,7 +89,7 @@ extension HomeViewController: HomePageDelegate {
             print(mockPoemData.poems[currentPage - 1])
         case .comments:
             homeView.setupHeroId(shouldAddHero: true, currentPage: currentPage)
-            let commentsViewController = HomeCommentsViewController(poem: mockPoemData.poems[currentPage - 1])
+            let commentsViewController = HomeCommentsViewController(poem: mockPoemData.poems[currentPage - 1], user: mockUser)
             commentsViewController.delegate = self
             commentsViewController.modalPresentationStyle = .fullScreen
             commentsViewController.isHeroEnabled = true

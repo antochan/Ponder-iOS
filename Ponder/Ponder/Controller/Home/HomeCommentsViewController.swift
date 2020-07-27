@@ -16,6 +16,7 @@ class HomeCommentsViewController: UIViewController {
     let homeCommentView = HomeCommentsView()
     
     private let poem: Poem
+    private let user: User?
     weak var delegate: HomeCommentsDelegate?
     
     override func loadView() {
@@ -23,8 +24,9 @@ class HomeCommentsViewController: UIViewController {
         view = homeCommentView
     }
     
-    init(poem: Poem) {
+    init(poem: Poem, user: User?) {
         self.poem = poem
+        self.user = user
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -36,7 +38,7 @@ class HomeCommentsViewController: UIViewController {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         homeCommentView.dismissButton.addTarget(self, action: #selector(dismissTapped), for: .touchUpInside)
-        homeCommentView.applyPoem(poem: poem)
+        homeCommentView.applyPoem(poem: poem, user: user)
     }
     
     
