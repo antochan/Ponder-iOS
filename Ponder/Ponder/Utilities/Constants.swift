@@ -12,7 +12,6 @@ import UIKit
 public enum HeroIds {
     static let poemContentView = "PoemContentView"
     static let poemHashtagView = "PoemHashtagView"
-    static let homePoemDividerView = "PoemDividerView"
 }
 
 public enum HomeConstants {

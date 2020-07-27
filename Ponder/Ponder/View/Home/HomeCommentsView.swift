@@ -71,13 +71,13 @@ class HomeCommentsView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.AppColors.lightGray.withAlphaComponent(0.25)
         view.heightAnchor.constraint(equalToConstant: 2).isActive = true
-        view.hero.id = HeroIds.homePoemDividerView
         return view
     }()
     
     private let commentsTableView: CommentsTableViewComponent = {
         let commentsTable = CommentsTableViewComponent()
         commentsTable.translatesAutoresizingMaskIntoConstraints = false
+        commentsTable.hero.modifiers = [.translate(y: UIScreen.main.bounds.height * 0.5)]
         return commentsTable
     }()
     
