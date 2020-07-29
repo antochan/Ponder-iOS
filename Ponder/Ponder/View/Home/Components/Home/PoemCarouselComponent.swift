@@ -35,10 +35,13 @@ class PoemCarouselComponent: UIView, Component, Actionable {
     
     public struct Actions {
         public typealias CurrentIndexHandler = (_ page: Int) -> Void
+        public typealias CurrentPoemHandler = (_ poem: Poem) -> Void
         let currentPageHandler: CurrentIndexHandler
+        let currentPoemHandler: CurrentPoemHandler
         
-        public init(currentPageHandler: @escaping CurrentIndexHandler) {
+        public init(currentPageHandler: @escaping CurrentIndexHandler, currentPoemHandler: @escaping CurrentPoemHandler) {
             self.currentPageHandler = currentPageHandler
+            self.currentPoemHandler = currentPoemHandler
         }
     }
     
@@ -109,8 +112,15 @@ extension PoemCarouselComponent: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PoemContent", for: indexPath) as! ComponentCollectionViewCell<PoemContentComponent>
         let poem = viewModel.carouselData.poems[indexPath.row]
-        let cellVM = ComponentCollectionViewCell<PoemContentComponent>.ViewModel(componentViewModel: PoemContentComponent.ViewModel(poemImage: poem.poemImage, poemText: poem.poemContent, isExpanded: false))
+        let cellVM = ComponentCollectionViewCell<PoemContentComponent>.ViewModel(componentViewModel: PoemContentComponent.ViewModel(poemImage: poem.poemImage, poemText: poem.poemContent))
         cell.apply(viewModel: cellVM)
+        cell.component.actions = { [weak self] action in
+            guard let strongSelf = self else { return }
+            switch action {
+            case .readMoreAction:
+                strongSelf.actions?.currentPoemHandler(poem)
+            }
+        }
         return cell
     }
     

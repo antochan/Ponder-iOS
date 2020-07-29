@@ -43,6 +43,8 @@
 		8A32C5D724CD581300A8D2DE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5D624CD581300A8D2DE /* User.swift */; };
 		8A32C5D924CD5C0700A8D2DE /* CommentsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5D824CD5C0700A8D2DE /* CommentsComponent.swift */; };
 		8A32C5DB24CE4F5000A8D2DE /* CommentTextFieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5DA24CE4F5000A8D2DE /* CommentTextFieldComponent.swift */; };
+		8AAA67F424CFDB3C00BAB060 /* HomeExpandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAA67F324CFDB3C00BAB060 /* HomeExpandView.swift */; };
+		8AAA67F624CFDB9400BAB060 /* HomeExpandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAA67F524CFDB9400BAB060 /* HomeExpandViewController.swift */; };
 		EF745C57A8A96D536A5A075C /* Pods_Ponder_PonderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F4D8F2C360A5B6399C7E4E /* Pods_Ponder_PonderUITests.framework */; };
 		FDD3331AC28478B8C532DEFD /* Pods_PonderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFCB436CCD7E06EBACDBB32 /* Pods_PonderTests.framework */; };
 /* End PBXBuildFile section */
@@ -112,6 +114,8 @@
 		8A32C5D624CD581300A8D2DE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8A32C5D824CD5C0700A8D2DE /* CommentsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsComponent.swift; sourceTree = "<group>"; };
 		8A32C5DA24CE4F5000A8D2DE /* CommentTextFieldComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextFieldComponent.swift; sourceTree = "<group>"; };
+		8AAA67F324CFDB3C00BAB060 /* HomeExpandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeExpandView.swift; sourceTree = "<group>"; };
+		8AAA67F524CFDB9400BAB060 /* HomeExpandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeExpandViewController.swift; sourceTree = "<group>"; };
 		9723BC56F014973C3DDCD89D /* Pods-Ponder-PonderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ponder-PonderUITests.debug.xcconfig"; path = "Target Support Files/Pods-Ponder-PonderUITests/Pods-Ponder-PonderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CDCBDD22F9F6C51A41AD9E53 /* Pods-Ponder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ponder.release.xcconfig"; path = "Target Support Files/Pods-Ponder/Pods-Ponder.release.xcconfig"; sourceTree = "<group>"; };
 		D1F4D8F2C360A5B6399C7E4E /* Pods_Ponder_PonderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ponder_PonderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -289,6 +293,7 @@
 				8A2533D424CAA9E60014ACC1 /* Components */,
 				8A14F96A24CA3CE90012B92B /* HomeView.swift */,
 				8A2E06D124CCA49800E195BE /* HomeCommentsView.swift */,
+				8AAA67F324CFDB3C00BAB060 /* HomeExpandView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -307,6 +312,7 @@
 			children = (
 				8A14F95424C95B5A0012B92B /* HomeViewController.swift */,
 				8A2E06CF24CCA43900E195BE /* HomeCommentsViewController.swift */,
+				8AAA67F524CFDB9400BAB060 /* HomeExpandViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -602,6 +608,7 @@
 				8A2533D124CA83E30014ACC1 /* Poem.swift in Sources */,
 				8A14F95B24C969CC0012B92B /* NotificationViewController.swift in Sources */,
 				8A14F97924CA43080012B92B /* PoemContentComponent.swift in Sources */,
+				8AAA67F424CFDB3C00BAB060 /* HomeExpandView.swift in Sources */,
 				8A14F96724CA3B8C0012B92B /* Colors.swift in Sources */,
 				8A14F97424CA3E640012B92B /* Extensions.swift in Sources */,
 				8A14F91D24C9533E0012B92B /* AppDelegate.swift in Sources */,
@@ -614,6 +621,7 @@
 				8A2533CF24CA82CD0014ACC1 /* PoemCarouselComponent.swift in Sources */,
 				8A14F95524C95B5A0012B92B /* HomeViewController.swift in Sources */,
 				8A2533D324CA8A770014ACC1 /* PoemDetailsComponent.swift in Sources */,
+				8AAA67F624CFDB9400BAB060 /* HomeExpandViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

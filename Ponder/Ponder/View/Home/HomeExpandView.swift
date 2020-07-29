@@ -1,15 +1,14 @@
 //
-//  HomeCommentsView.swift
+//  HomeExpandView.swift
 //  Ponder
 //
-//  Created by Antonio Chan on 2020/7/25.
+//  Created by Antonio Chan on 2020/7/27.
 //  Copyright © 2020 Antonio Chan. All rights reserved.
 //
 
 import UIKit
-import Hero
 
-class HomeCommentsView: UIView {
+class HomeExpandView: UIView {
     private let poemImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,38 +49,6 @@ class HomeCommentsView: UIView {
         return label
     }()
     
-    private let hashTagScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.hero.id = HeroIds.poemHashtagView
-        return scrollView
-    }()
-    
-    private let hashTagStack: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.spacing = Spacing.twelve
-        return stackView
-    }()
-    
-    private let headerDividerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.AppColors.lightGray.withAlphaComponent(0.25)
-        view.heightAnchor.constraint(equalToConstant: 2).isActive = true
-        return view
-    }()
-    
-    private let commentsTableView: CommentsTableViewComponent = {
-        let commentsTable = CommentsTableViewComponent()
-        commentsTable.translatesAutoresizingMaskIntoConstraints = false
-        commentsTable.hero.modifiers = [.translate(y: UIScreen.main.bounds.height * 0.5)]
-        return commentsTable
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
@@ -92,14 +59,9 @@ class HomeCommentsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func applyPoem(poem: Poem, user: User?) {
+    func applyPoem(poem: Poem) {
         poemImageView.image = poem.poemImage
         updatePoemLabel(poemText: poem.poemContent)
-        hashTagStack.removeAllArrangedSubviews()
-        poem.poemTags.forEach {
-            hashTagStack.addArrangedSubviews(createHashTagLabel(hashtag: $0))
-        }
-        commentsTableView.apply(viewModel: CommentsTableViewComponent.ViewModel(currentUser: user, comments: poem.comments))
     }
     
     func updatePoemLabel(poemText: String) {
@@ -114,22 +76,20 @@ class HomeCommentsView: UIView {
 
 //MARK: - Private
 
-private extension HomeCommentsView {
+private extension HomeExpandView {
     func commonInit() {
+        poemContentLabel.font = UIFont.georgia(size: 16)
         configureSubviews()
         configureLayout()
     }
     
     func configureSubviews() {
         addSubviews(poemImageView, poemImageOverlayView, poemContentView)
-        poemContentView.addSubviews(dismissButton, poemContentLabel, hashTagScrollView, headerDividerView, commentsTableView)
-        hashTagScrollView.addSubview(hashTagStack)
+        poemContentView.addSubviews(dismissButton, poemContentLabel)
     }
     
     func configureLayout() {
         NSLayoutConstraint.activate([
-            poemContentLabel.heightAnchor.constraint(equalToConstant: 150),
-            
             poemImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             poemImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             poemImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -140,7 +100,7 @@ private extension HomeCommentsView {
             poemImageOverlayView.trailingAnchor.constraint(equalTo: trailingAnchor),
             poemImageOverlayView.bottomAnchor.constraint(equalTo: poemImageView.bottomAnchor),
             
-            poemContentView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.85),
+            poemContentView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.625),
             poemContentView.leadingAnchor.constraint(equalTo: leadingAnchor),
             poemContentView.trailingAnchor.constraint(equalTo: trailingAnchor),
             poemContentView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Spacing.sixteen),
@@ -149,36 +109,10 @@ private extension HomeCommentsView {
             dismissButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             dismissButton.heightAnchor.constraint(equalToConstant: Spacing.sixteen),
             
+            poemContentLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Spacing.fortyEight),
             poemContentLabel.topAnchor.constraint(equalTo: dismissButton.bottomAnchor, constant: Spacing.twentyFour),
             poemContentLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
-            poemContentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
-            
-            hashTagScrollView.topAnchor.constraint(equalTo: poemContentLabel.bottomAnchor, constant: Spacing.thirtyTwo),
-            hashTagScrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
-            hashTagScrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
-            hashTagScrollView.heightAnchor.constraint(equalTo: hashTagStack.heightAnchor),
-            
-            hashTagStack.leadingAnchor.constraint(equalTo: hashTagScrollView.leadingAnchor),
-            hashTagStack.trailingAnchor.constraint(equalTo: hashTagScrollView.trailingAnchor),
-            hashTagStack.topAnchor.constraint(equalTo: hashTagScrollView.topAnchor),
-            hashTagStack.bottomAnchor.constraint(equalTo: hashTagScrollView.bottomAnchor),
-            
-            headerDividerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
-            headerDividerView.topAnchor.constraint(equalTo: hashTagStack.bottomAnchor, constant: Spacing.twentyFour),
-            headerDividerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
-            
-            commentsTableView.topAnchor.constraint(equalTo: headerDividerView.bottomAnchor, constant: Spacing.twentyFour),
-            commentsTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
-            commentsTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
-            commentsTableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Spacing.thirtyTwo)
+            poemContentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour)
         ])
-    }
-    
-    func createHashTagLabel(hashtag: String) -> UILabel {
-        let label = UILabel()
-        label.textColor = UIColor.AppColors.gray
-        label.font = UIFont.main(size: 14)
-        label.text = hashtag
-        return label
     }
 }

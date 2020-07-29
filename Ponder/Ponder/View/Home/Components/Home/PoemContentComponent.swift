@@ -10,10 +10,11 @@ import UIKit
 import Hero
 
 class PoemContentComponent: UIView, Component, Reusable {
+    public var actions: Actions?
+    
     struct ViewModel {
         let poemImage: UIImage
         let poemText: String
-        let isExpanded: Bool
     }
     
     private let poemImageView: UIImageView = {
@@ -39,6 +40,18 @@ class PoemContentComponent: UIView, Component, Reusable {
         label.textColor = .black
         return label
     }()
+    
+    private let readMoreLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.georgia(size: 12)
+        label.textAlignment = .left
+        label.numberOfLines = 1
+        label.textColor = UIColor.AppColors.lightGray
+        label.text = "Read More..."
+        label.isUserInteractionEnabled = true
+        return label
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,17 +64,18 @@ class PoemContentComponent: UIView, Component, Reusable {
     
     func apply(viewModel: ViewModel) {
         poemImageView.image = viewModel.poemImage
-        updatePoemLabel(poemText: viewModel.poemText, isExpanded: viewModel.isExpanded)
+        updatePoemLabel(poemText: viewModel.poemText)
+        readMoreLabel.isHidden = viewModel.poemText.numberOfLines() < Lines.staticLine
     }
     
-    func updatePoemLabel(poemText: String, isExpanded: Bool) {
+    func updatePoemLabel(poemText: String) {
         let attributedString = NSMutableAttributedString(string: poemText)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = Spacing.twelve
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
         poemContentLabel.attributedText = attributedString
         
-        poemContentLabel.numberOfLines = isExpanded ? Lines.multiLine : Lines.staticLine
+        poemContentLabel.numberOfLines = Lines.staticLine
     }
     
     func prepareForReuse() {
@@ -83,7 +97,9 @@ private extension PoemContentComponent {
     }
     
     func configureSubviews() {
-        addSubviews(poemImageView, poemImageOverlayView, poemContentLabel)
+        addSubviews(poemImageView, poemImageOverlayView, poemContentLabel, readMoreLabel)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(readMoreTapped))
+        readMoreLabel.addGestureRecognizer(tap)
     }
     
     func configureLayout() {
@@ -101,6 +117,24 @@ private extension PoemContentComponent {
             poemContentLabel.topAnchor.constraint(equalTo: poemImageOverlayView.bottomAnchor, constant: Spacing.twentyFour),
             poemContentLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
             poemContentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
+            
+            readMoreLabel.topAnchor.constraint(equalTo: poemContentLabel.bottomAnchor, constant: Spacing.sixteen),
+            readMoreLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
+            readMoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
         ])
+    }
+    
+    @objc func readMoreTapped() {
+        actions?(.readMoreAction)
+    }
+}
+
+//MARK: - Actionable
+
+extension PoemContentComponent: Actionable {
+    public typealias Actions = (Action) -> Void
+    
+    public enum Action {
+        case readMoreAction
     }
 }

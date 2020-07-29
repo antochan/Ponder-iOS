@@ -78,6 +78,7 @@ class PoemDetailsComponent: UIView, Component {
         label.font = UIFont.main(size: 13)
         label.textColor = UIColor.AppColors.gray
         label.numberOfLines = 1
+        label.isUserInteractionEnabled = true
         return label
     }()
     
@@ -165,6 +166,9 @@ private extension PoemDetailsComponent {
                                        createIconButton(image: #imageLiteral(resourceName: "more"), buttonType: .more))
         nameStack.addArrangedSubviews(nameLabel, timeLabel)
         socialStatsStack.addArrangedSubviews(likesLabel, commentsLabel)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(commentTapped))
+        commentsLabel.addGestureRecognizer(tap)
     }
     
     func configureLayout() {
@@ -231,5 +235,9 @@ private extension PoemDetailsComponent {
         default:
             break
         }
+    }
+    
+    @objc func commentTapped() {
+        delegate?.buttonTapped(buttonType: .comments)
     }
 }

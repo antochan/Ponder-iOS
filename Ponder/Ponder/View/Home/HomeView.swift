@@ -12,6 +12,7 @@ import Hero
 protocol HomePageDelegate {
     func pageChanged(newPage: Int)
     func iconTapped(buttonType: HomeIconType)
+    func readMoreTapped(poem: Poem)
 }
 
 class HomeView: UIView {
@@ -86,6 +87,9 @@ private extension HomeView {
         poemCarousel.actions = PoemCarouselComponent.Actions(currentPageHandler: { [weak self] currentPage in
             guard let strongSelf = self else { return }
             strongSelf.delegate?.pageChanged(newPage: currentPage)
+        }, currentPoemHandler: { [weak self] poem in
+            guard let strongSelf = self else { return }
+            strongSelf.delegate?.readMoreTapped(poem: poem)
         })
     }
 }

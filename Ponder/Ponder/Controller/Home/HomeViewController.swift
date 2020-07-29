@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
     let mockPoemData: PoemCarouselData = PoemCarouselData(poems: [
         Poem(id: "1",
              poemImage: #imageLiteral(resourceName: "Engage your customers"),
-             poemContent: "you fit into me\nlike a hook into an eye\na fish hook\nan open eye",
+             poemContent: "you fit into me\nlike a hook into an eye\na fish hook\nan open eye\ntest new line\nthis is 6th line\nthisis 7th line!\na fish hook\na fish hook\na fish hook\na fish hook",
              poemTags: ["#Fish", "#Swag", "#Eyes", "#Simple", "#DailyPoetry", "#Inspiration"],
              comments: [Comment(user: User(id: "1", profilePicture: #imageLiteral(resourceName: "User_Unselected"), username: "Hiroo Aoy."), comment: "Amazing, super inspirational! Lets test a super long comments see what happens!"),
                         Comment(user: User(id: "2", profilePicture: #imageLiteral(resourceName: "User_Unselected"), username: "Antochan101"), comment: "^Agreed! Amazing poem!!")],
@@ -102,12 +102,29 @@ extension HomeViewController: HomePageDelegate {
     func pageChanged(newPage: Int) {
         currentPage = newPage
     }
+    
+    func readMoreTapped(poem: Poem) {
+        let homeExpandViewController = HomeExpandViewController(poem: mockPoemData.poems[currentPage - 1])
+        homeView.setupHeroId(shouldAddHero: true, currentPage: currentPage)
+        homeExpandViewController.delegate = self
+        homeExpandViewController.modalPresentationStyle = .fullScreen
+        homeExpandViewController.isHeroEnabled = true
+        present(homeExpandViewController, animated: true)
+    }
 }
 
 //MARK: - HomeCommentsDelegate
 
 extension HomeViewController: HomeCommentsDelegate {
     func dismissed() {
+        homeView.setupHeroId(shouldAddHero: false, currentPage: currentPage)
+    }
+}
+
+//MARK: - HomeExpandDelegate
+
+extension HomeViewController: HomeExpandDelegate {
+    func expandedDismissed() {
         homeView.setupHeroId(shouldAddHero: false, currentPage: currentPage)
     }
 }
