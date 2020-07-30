@@ -52,6 +52,16 @@ class HomeExpandView: UIView {
         return label
     }()
     
+    private let fadeCoverView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.alpha = 1
+        return view
+    }()
+    
+    var poemContentHeightAnchor: NSLayoutConstraint?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
@@ -75,6 +85,12 @@ class HomeExpandView: UIView {
         attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.georgia(size: 16), range: NSMakeRange(0, attributedString.length))
         poemContentLabel.attributedText = attributedString
     }
+    
+    func expandPoemText(shouldExpand: Bool) {
+        
+        poemContentHeightAnchor?.constant = shouldExpand ? UIScreen.main.bounds.height * 0.65 : 150
+        shouldExpand ? fadeCoverView.fadeOut(duration: 0.5) : fadeCoverView.fadeIn()
+    }
 }
 
 //MARK: - Private
@@ -88,10 +104,12 @@ private extension HomeExpandView {
     
     func configureSubviews() {
         addSubviews(poemImageView, poemImageOverlayView, poemContentView)
-        poemContentView.addSubviews(dismissButton, poemContentLabel)
+        poemContentView.addSubviews(dismissButton, poemContentLabel, fadeCoverView)
     }
     
     func configureLayout() {
+        poemContentHeightAnchor = poemContentLabel.heightAnchor.constraint(equalToConstant: 150)
+        poemContentHeightAnchor?.isActive = true
         NSLayoutConstraint.activate([
             poemImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             poemImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -112,10 +130,14 @@ private extension HomeExpandView {
             dismissButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             dismissButton.heightAnchor.constraint(equalToConstant: 35.0),
             
-            poemContentLabel.heightAnchor.constraint(equalToConstant: 150),
             poemContentLabel.topAnchor.constraint(equalTo: dismissButton.bottomAnchor, constant: Spacing.twelve),
             poemContentLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
-            poemContentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour)
+            poemContentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
+            
+            fadeCoverView.topAnchor.constraint(equalTo: poemContentLabel.topAnchor, constant: 150),
+            fadeCoverView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            fadeCoverView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            fadeCoverView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }

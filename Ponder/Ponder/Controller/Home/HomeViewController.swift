@@ -93,7 +93,9 @@ class HomeViewController: UIViewController {
         homeExpandViewController.delegate = self
         homeExpandViewController.modalPresentationStyle = .fullScreen
         homeExpandViewController.isHeroEnabled = true
-        present(homeExpandViewController, animated: true)
+        present(homeExpandViewController, animated: true) {
+            homeExpandViewController.isViewPresented = true
+        }
     }
     
 }

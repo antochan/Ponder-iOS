@@ -16,6 +16,11 @@ class HomeExpandViewController: UIViewController {
     let homeExpandview = HomeExpandView()
     
     private let poem: Poem
+    var isViewPresented: Bool = false {
+        didSet {
+            homeExpandview.expandPoemText(shouldExpand: isViewPresented)
+        }
+    }
     weak var delegate: HomeExpandDelegate?
     
     override func loadView() {
@@ -43,6 +48,7 @@ class HomeExpandViewController: UIViewController {
     }
     
     @objc func dismissTapped() {
+        isViewPresented = false
         dismiss(animated: true) { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.delegate?.expandedDismissed()
