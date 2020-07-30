@@ -40,6 +40,24 @@ class HomeExpandView: UIView {
         return button
     }()
     
+    private let poemContentStack: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = Spacing.twelve
+        stackView.backgroundColor = .white
+        return stackView
+    }()
+    
+    private let poemTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.georgiaBold(size: 16)
+        label.hero.id = HeroIds.poemTitleView
+        label.numberOfLines = 2
+        label.textColor = .black
+        return label
+    }()
+    
     private let poemContentLabel: UITextView = {
         let label = UITextView()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -74,6 +92,8 @@ class HomeExpandView: UIView {
     
     func applyPoem(poem: Poem) {
         poemImageView.image = poem.poemImage
+        poemTitleLabel.text = poem.title
+        poemTitleLabel.isHidden = poem.title == nil
         updatePoemLabel(poemText: poem.poemContent)
     }
     
@@ -88,7 +108,7 @@ class HomeExpandView: UIView {
     
     func expandPoemText(shouldExpand: Bool) {
         
-        poemContentHeightAnchor?.constant = shouldExpand ? UIScreen.main.bounds.height * 0.65 : 150
+        poemContentHeightAnchor?.constant = shouldExpand ? HomeStackConstants.poemContentHeightExpanded : HomeStackConstants.poemContentExpandStaticHeight
         shouldExpand ? fadeCoverView.fadeOut(duration: 0.5) : fadeCoverView.fadeIn()
     }
 }
@@ -104,11 +124,12 @@ private extension HomeExpandView {
     
     func configureSubviews() {
         addSubviews(poemImageView, poemImageOverlayView, poemContentView)
-        poemContentView.addSubviews(dismissButton, poemContentLabel, fadeCoverView)
+        poemContentStack.addArrangedSubviews(poemTitleLabel, poemContentLabel)
+        poemContentView.addSubviews(dismissButton, poemContentStack, fadeCoverView)
     }
     
     func configureLayout() {
-        poemContentHeightAnchor = poemContentLabel.heightAnchor.constraint(equalToConstant: 150)
+        poemContentHeightAnchor = poemContentLabel.heightAnchor.constraint(equalToConstant: HomeStackConstants.poemContentExpandStaticHeight)
         poemContentHeightAnchor?.isActive = true
         NSLayoutConstraint.activate([
             poemImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
@@ -121,20 +142,20 @@ private extension HomeExpandView {
             poemImageOverlayView.trailingAnchor.constraint(equalTo: trailingAnchor),
             poemImageOverlayView.bottomAnchor.constraint(equalTo: poemImageView.bottomAnchor),
             
-            poemContentView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.85),
+            poemContentView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: HomeStackConstants.homeMultiplierStatic),
             poemContentView.leadingAnchor.constraint(equalTo: leadingAnchor),
             poemContentView.trailingAnchor.constraint(equalTo: trailingAnchor),
             poemContentView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Spacing.sixteen),
             
             dismissButton.topAnchor.constraint(equalTo: poemContentView.topAnchor, constant: Spacing.four),
             dismissButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            dismissButton.heightAnchor.constraint(equalToConstant: 35.0),
+            dismissButton.heightAnchor.constraint(equalToConstant: HomeStackConstants.dismissButtonHeight),
             
-            poemContentLabel.topAnchor.constraint(equalTo: dismissButton.bottomAnchor, constant: Spacing.twelve),
-            poemContentLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
-            poemContentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
+            poemContentStack.topAnchor.constraint(equalTo: dismissButton.bottomAnchor, constant: Spacing.twelve),
+            poemContentStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
+            poemContentStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
             
-            fadeCoverView.topAnchor.constraint(equalTo: poemContentLabel.topAnchor, constant: 150),
+            fadeCoverView.topAnchor.constraint(equalTo: poemContentLabel.topAnchor, constant: HomeStackConstants.poemContentExpandStaticHeight),
             fadeCoverView.leadingAnchor.constraint(equalTo: leadingAnchor),
             fadeCoverView.trailingAnchor.constraint(equalTo: trailingAnchor),
             fadeCoverView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)

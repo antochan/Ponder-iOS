@@ -9,7 +9,16 @@
 
 import UIKit
 
+public enum HomeStackConstants {
+    static let poemContentExpandStaticHeight: CGFloat = 161.5
+    static let poemContentCommentStaticHeight: CGFloat = 165
+    static let homeMultiplierStatic: CGFloat = 0.85
+    static let poemContentHeightExpanded: CGFloat = UIScreen.main.bounds.height * 0.65
+    static let dismissButtonHeight: CGFloat = 35
+}
+
 public enum HeroIds {
+    static let poemTitleView = "PoemTitleView"
     static let poemContentView = "PoemContentView"
     static let poemHashtagView = "PoemHashtagView"
 }

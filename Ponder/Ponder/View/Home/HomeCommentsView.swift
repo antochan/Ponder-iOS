@@ -24,6 +24,36 @@ class HomeCommentsView: UIView {
         return view
     }()
     
+    private let poemContentStack: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = Spacing.twelve
+        stackView.backgroundColor = .white
+        return stackView
+    }()
+    
+    private let poemTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.georgiaBold(size: 16)
+        label.hero.id = HeroIds.poemTitleView
+        label.numberOfLines = 2
+        label.textColor = .black
+        return label
+    }()
+    
+    private let poemContentLabel: UITextView = {
+        let label = UITextView()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+        label.isEditable = false
+        label.hero.id = HeroIds.poemContentView
+        label.isScrollEnabled = true
+        label.textContainer.lineFragmentPadding = 0
+        label.isOpaque = false
+        return label
+    }()
+    
     private let poemContentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -39,18 +69,6 @@ class HomeCommentsView: UIView {
         button.imageView?.contentMode = .scaleAspectFit
         button.contentEdgeInsets = UIEdgeInsets(top: Spacing.eight, left: Spacing.four, bottom: Spacing.eight, right: Spacing.four)
         return button
-    }()
-    
-    private let poemContentLabel: UITextView = {
-        let label = UITextView()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .left
-        label.isEditable = false
-        label.hero.id = HeroIds.poemContentView
-        label.isScrollEnabled = true
-        label.textContainer.lineFragmentPadding = 0
-        label.isOpaque = false
-        return label
     }()
     
     private let hashTagScrollView: UIScrollView = {
@@ -103,6 +121,8 @@ class HomeCommentsView: UIView {
             hashTagStack.addArrangedSubviews(createHashTagLabel(hashtag: $0))
         }
         commentsTableView.apply(viewModel: CommentsTableViewComponent.ViewModel(currentUser: user, comments: poem.comments))
+        poemTitleLabel.text = poem.title
+        poemTitleLabel.isHidden = poem.title == nil
     }
     
     func updatePoemLabel(poemText: String) {
@@ -125,7 +145,8 @@ private extension HomeCommentsView {
     
     func configureSubviews() {
         addSubviews(poemImageView, poemImageOverlayView, poemContentView)
-        poemContentView.addSubviews(dismissButton, poemContentLabel, hashTagScrollView, headerDividerView, commentsTableView)
+        poemContentView.addSubviews(dismissButton, poemContentStack, hashTagScrollView, headerDividerView, commentsTableView)
+        poemContentStack.addArrangedSubviews(poemTitleLabel, poemContentLabel)
         hashTagScrollView.addSubview(hashTagStack)
     }
     
@@ -141,19 +162,19 @@ private extension HomeCommentsView {
             poemImageOverlayView.trailingAnchor.constraint(equalTo: trailingAnchor),
             poemImageOverlayView.bottomAnchor.constraint(equalTo: poemImageView.bottomAnchor),
             
-            poemContentView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.85),
+            poemContentView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: HomeStackConstants.homeMultiplierStatic),
             poemContentView.leadingAnchor.constraint(equalTo: leadingAnchor),
             poemContentView.trailingAnchor.constraint(equalTo: trailingAnchor),
             poemContentView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Spacing.sixteen),
             
             dismissButton.topAnchor.constraint(equalTo: poemContentView.topAnchor, constant: Spacing.four),
             dismissButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            dismissButton.heightAnchor.constraint(equalToConstant: 35.0),
+            dismissButton.heightAnchor.constraint(equalToConstant: HomeStackConstants.dismissButtonHeight),
             
-            poemContentLabel.heightAnchor.constraint(equalToConstant: 150),
-            poemContentLabel.topAnchor.constraint(equalTo: dismissButton.bottomAnchor, constant: Spacing.twelve),
-            poemContentLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
-            poemContentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
+            poemContentStack.heightAnchor.constraint(equalToConstant: HomeStackConstants.poemContentCommentStaticHeight),
+            poemContentStack.topAnchor.constraint(equalTo: dismissButton.bottomAnchor, constant: Spacing.twelve),
+            poemContentStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
+            poemContentStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
             
             hashTagScrollView.topAnchor.constraint(equalTo: poemContentLabel.bottomAnchor, constant: Spacing.thirtyTwo),
             hashTagScrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),

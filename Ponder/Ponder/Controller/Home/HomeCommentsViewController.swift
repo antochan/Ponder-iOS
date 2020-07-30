@@ -46,6 +46,7 @@ class HomeCommentsViewController: UIViewController {
     
     
     @objc func dismissTapped() {
+        Vibration.light.vibrate()
         dismiss(animated: true) { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.delegate?.dismissed()

@@ -49,6 +49,7 @@ class HomeExpandViewController: UIViewController {
     
     @objc func dismissTapped() {
         isViewPresented = false
+        Vibration.light.vibrate()
         dismiss(animated: true) { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.delegate?.expandedDismissed()

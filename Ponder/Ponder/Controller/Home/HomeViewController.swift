@@ -33,7 +33,7 @@ class HomeViewController: UIViewController {
         Poem(id: "2",
              poemImage: #imageLiteral(resourceName: "Build faster"),
              title: nil,
-             poemContent: "they leave\nand act like it never happened\nthey come back\nand act like they never left",
+             poemContent: "they leave\nand act like it never happened\nthey come back\nand act like they never left\ntest",
              poemTags: ["#Destiny", "#Daily Poem", "#ForYouPage", "#HypeTrain", "#Developers"],
              comments: [],
              author: "Hiroo",
@@ -89,6 +89,7 @@ class HomeViewController: UIViewController {
     
     @objc func swipeUp() {
         if mockPoemData.poems[currentPage - 1].poemContent.numberOfLines() > Lines.staticLine {
+            Vibration.light.vibrate()
             displayExpand()
         }
     }
@@ -112,8 +113,10 @@ extension HomeViewController: HomePageDelegate {
     func iconTapped(buttonType: HomeIconType) {
         switch buttonType {
         case .like:
+            Vibration.light.vibrate()
             print(mockPoemData.poems[currentPage - 1])
         case .comments:
+            Vibration.light.vibrate()
             homeView.setupHeroId(shouldAddHero: true, currentPage: currentPage)
             let commentsViewController = HomeCommentsViewController(poem: mockPoemData.poems[currentPage - 1], user: mockUser)
             commentsViewController.delegate = self
@@ -121,6 +124,7 @@ extension HomeViewController: HomePageDelegate {
             commentsViewController.isHeroEnabled = true
             present(commentsViewController, animated: true)
         case .more:
+            Vibration.light.vibrate()
             print(mockPoemData.poems[currentPage - 1])
         }
     }
@@ -130,6 +134,7 @@ extension HomeViewController: HomePageDelegate {
     }
     
     func readMoreTapped(poem: Poem) {
+        Vibration.light.vibrate()
         displayExpand()
     }
 }

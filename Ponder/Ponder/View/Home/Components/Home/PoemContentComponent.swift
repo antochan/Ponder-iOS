@@ -102,6 +102,7 @@ class PoemContentComponent: UIView, Component, Reusable {
     
     func setupHeroId(addHero: Bool) {
         poemContentLabel.hero.id = addHero ? HeroIds.poemContentView : nil
+        poemTitleLabel.hero.id = addHero ? HeroIds.poemTitleView : nil
     }
 }
 
