@@ -13,8 +13,7 @@ class PoemContentComponent: UIView, Component, Reusable {
     public var actions: Actions?
     
     struct ViewModel {
-        let poemImage: UIImage
-        let poemText: String
+        let poem: Poem
     }
     
     private let poemImageView: UIImageView = {
@@ -31,14 +30,28 @@ class PoemContentComponent: UIView, Component, Reusable {
         return view
     }()
     
+    private let poemContentStack: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = Spacing.twelve
+        stackView.backgroundColor = .white
+        return stackView
+    }()
+    
+    private let poemTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.georgiaBold(size: 16)
+        label.numberOfLines = 2
+        label.textColor = .black
+        return label
+    }()
+    
     private let poemContentLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.georgia(size: 16)
-        label.textAlignment = .left
         label.numberOfLines = Lines.staticLine
         label.textColor = .black
-        label.isOpaque = false
         return label
     }()
     
@@ -64,9 +77,11 @@ class PoemContentComponent: UIView, Component, Reusable {
     }
     
     func apply(viewModel: ViewModel) {
-        poemImageView.image = viewModel.poemImage
-        updatePoemLabel(poemText: viewModel.poemText)
-        readMoreLabel.isHidden = viewModel.poemText.numberOfLines() < Lines.staticLine
+        poemImageView.image = viewModel.poem.poemImage
+        poemTitleLabel.text = viewModel.poem.title
+        poemTitleLabel.isHidden = viewModel.poem.title == nil
+        updatePoemLabel(poemText: viewModel.poem.poemContent)
+        readMoreLabel.isHidden = viewModel.poem.poemContent.numberOfLines() <= Lines.staticLine
     }
     
     func updatePoemLabel(poemText: String) {
@@ -81,6 +96,7 @@ class PoemContentComponent: UIView, Component, Reusable {
     
     func prepareForReuse() {
         poemImageView.image = nil
+        poemTitleLabel.text = nil
         poemContentLabel.text = nil
     }
     
@@ -98,7 +114,8 @@ private extension PoemContentComponent {
     }
     
     func configureSubviews() {
-        addSubviews(poemImageView, poemImageOverlayView, poemContentLabel, readMoreLabel)
+        addSubviews(poemImageView, poemImageOverlayView, poemContentStack, readMoreLabel)
+        poemContentStack.addArrangedSubviews(poemTitleLabel, poemContentLabel)
         let tap = UITapGestureRecognizer(target: self, action: #selector(readMoreTapped))
         readMoreLabel.addGestureRecognizer(tap)
     }
@@ -115,11 +132,11 @@ private extension PoemContentComponent {
             poemImageOverlayView.trailingAnchor.constraint(equalTo: trailingAnchor),
             poemImageOverlayView.bottomAnchor.constraint(equalTo: poemImageView.bottomAnchor),
             
-            poemContentLabel.topAnchor.constraint(equalTo: poemImageOverlayView.bottomAnchor, constant: Spacing.twentyFour),
-            poemContentLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
-            poemContentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
+            poemContentStack.topAnchor.constraint(equalTo: poemImageOverlayView.bottomAnchor, constant: Spacing.twentyFour),
+            poemContentStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
+            poemContentStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
             
-            readMoreLabel.topAnchor.constraint(equalTo: poemContentLabel.bottomAnchor, constant: Spacing.sixteen),
+            readMoreLabel.topAnchor.constraint(equalTo: poemContentStack.bottomAnchor, constant: Spacing.sixteen),
             readMoreLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
             readMoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
         ])

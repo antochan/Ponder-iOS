@@ -111,7 +111,7 @@ extension PoemCarouselComponent: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PoemContent", for: indexPath) as! ComponentCollectionViewCell<PoemContentComponent>
         let poem = viewModel.carouselData.poems[indexPath.row]
-        let cellVM = ComponentCollectionViewCell<PoemContentComponent>.ViewModel(componentViewModel: PoemContentComponent.ViewModel(poemImage: poem.poemImage, poemText: poem.poemContent))
+        let cellVM = ComponentCollectionViewCell<PoemContentComponent>.ViewModel(componentViewModel: PoemContentComponent.ViewModel(poem: poem))
         cell.apply(viewModel: cellVM)
         cell.component.actions = { [weak self] action in
             guard let strongSelf = self else { return }

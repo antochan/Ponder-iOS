@@ -26,7 +26,7 @@ public enum HomeIconType: Int {
 }
 
 public enum Lines {
-    static let staticLine = 5
+    static let staticLine = 4
     static let multiLine = 0
 }
 
