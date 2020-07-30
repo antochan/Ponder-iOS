@@ -39,6 +39,9 @@ class HomeCommentsViewController: UIViewController {
         hideKeyboardWhenTappedAround()
         homeCommentView.dismissButton.addTarget(self, action: #selector(dismissTapped), for: .touchUpInside)
         homeCommentView.applyPoem(poem: poem, user: user)
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeDown))
+        swipeGesture.direction = [.down]
+        homeCommentView.addGestureRecognizer(swipeGesture)
     }
     
     
@@ -47,5 +50,9 @@ class HomeCommentsViewController: UIViewController {
             guard let strongSelf = self else { return }
             strongSelf.delegate?.dismissed()
         }
+    }
+    
+    @objc func swipeDown() {
+        dismissTapped()
     }
 }

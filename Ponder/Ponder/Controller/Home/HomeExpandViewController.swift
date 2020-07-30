@@ -36,6 +36,9 @@ class HomeExpandViewController: UIViewController {
         super.viewDidLoad()
         homeExpandview.applyPoem(poem: poem)
         homeExpandview.dismissButton.addTarget(self, action: #selector(dismissTapped), for: .touchUpInside)
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeDown))
+        swipeGesture.direction = [.down]
+        homeExpandview.addGestureRecognizer(swipeGesture)
         
     }
     
@@ -44,5 +47,9 @@ class HomeExpandViewController: UIViewController {
             guard let strongSelf = self else { return }
             strongSelf.delegate?.expandedDismissed()
         }
+    }
+    
+    @objc func swipeDown() {
+        dismissTapped()
     }
 }

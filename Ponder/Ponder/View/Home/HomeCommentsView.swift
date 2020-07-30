@@ -36,6 +36,8 @@ class HomeCommentsView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(#imageLiteral(resourceName: "chevron_down"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.contentEdgeInsets = UIEdgeInsets(top: Spacing.eight, left: Spacing.four, bottom: Spacing.eight, right: Spacing.four)
         return button
     }()
     
@@ -47,6 +49,7 @@ class HomeCommentsView: UIView {
         label.hero.id = HeroIds.poemContentView
         label.isScrollEnabled = true
         label.textContainer.lineFragmentPadding = 0
+        label.isOpaque = false
         return label
     }()
     
@@ -128,8 +131,6 @@ private extension HomeCommentsView {
     
     func configureLayout() {
         NSLayoutConstraint.activate([
-            poemContentLabel.heightAnchor.constraint(equalToConstant: 150),
-            
             poemImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             poemImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             poemImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -145,11 +146,12 @@ private extension HomeCommentsView {
             poemContentView.trailingAnchor.constraint(equalTo: trailingAnchor),
             poemContentView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Spacing.sixteen),
             
-            dismissButton.topAnchor.constraint(equalTo: poemContentView.topAnchor, constant: Spacing.sixteen),
+            dismissButton.topAnchor.constraint(equalTo: poemContentView.topAnchor, constant: Spacing.four),
             dismissButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            dismissButton.heightAnchor.constraint(equalToConstant: Spacing.sixteen),
+            dismissButton.heightAnchor.constraint(equalToConstant: 35.0),
             
-            poemContentLabel.topAnchor.constraint(equalTo: dismissButton.bottomAnchor, constant: Spacing.twentyFour),
+            poemContentLabel.heightAnchor.constraint(equalToConstant: 150),
+            poemContentLabel.topAnchor.constraint(equalTo: dismissButton.bottomAnchor, constant: Spacing.twelve),
             poemContentLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
             poemContentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
             

@@ -18,6 +18,23 @@ public extension UIView {
     func apply(borderWidth: BorderWidth) {
         layer.borderWidth = borderWidth.rawValue
     }
+    
+    func fadeOut(duration: TimeInterval = 0.1, delay: TimeInterval = 0) {
+        UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseOut, animations: {
+            self.alpha = 0
+        }, completion: { finished in
+            self.isHidden = true
+        })
+    }
+    
+    func fadeIn(duration: TimeInterval = 0.1, delay: TimeInterval = 0) {
+        isHidden = false
+        UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseOut, animations: {
+            self.alpha = 1
+        }, completion: { finished in
+            self.isHidden = false
+        })
+    }
 }
 
 public extension NSAttributedString {

@@ -74,8 +74,26 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         isHeroEnabled = true
         homeView.delegate = self
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeUp))
+        swipeGesture.direction = [.up]
+        homeView.addGestureRecognizer(swipeGesture)
         homeView.applyPoemList(poems: mockPoemData)
         homeView.applyPoemDetails(poem: mockPoemData.poems[currentPage - 1], totalPage: mockPoemData.poems.count, currentPage: currentPage)
+    }
+    
+    @objc func swipeUp() {
+        if mockPoemData.poems[currentPage - 1].poemContent.numberOfLines() > Lines.staticLine {
+            displayExpand()
+        }
+    }
+    
+    func displayExpand() {
+        let homeExpandViewController = HomeExpandViewController(poem: mockPoemData.poems[currentPage - 1])
+        homeView.setupHeroId(shouldAddHero: true, currentPage: currentPage)
+        homeExpandViewController.delegate = self
+        homeExpandViewController.modalPresentationStyle = .fullScreen
+        homeExpandViewController.isHeroEnabled = true
+        present(homeExpandViewController, animated: true)
     }
     
 }
@@ -104,12 +122,7 @@ extension HomeViewController: HomePageDelegate {
     }
     
     func readMoreTapped(poem: Poem) {
-        let homeExpandViewController = HomeExpandViewController(poem: mockPoemData.poems[currentPage - 1])
-        homeView.setupHeroId(shouldAddHero: true, currentPage: currentPage)
-        homeExpandViewController.delegate = self
-        homeExpandViewController.modalPresentationStyle = .fullScreen
-        homeExpandViewController.isHeroEnabled = true
-        present(homeExpandViewController, animated: true)
+        displayExpand()
     }
 }
 

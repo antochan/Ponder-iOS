@@ -71,7 +71,6 @@ class PoemCarouselComponent: UIView, Component, Actionable {
     func apply(viewModel: ViewModel) {
         self.viewModel = ViewModel(carouselData: viewModel.carouselData)
     }
-    
 }
 
 //MARK: - Private

@@ -38,6 +38,7 @@ class PoemContentComponent: UIView, Component, Reusable {
         label.textAlignment = .left
         label.numberOfLines = Lines.staticLine
         label.textColor = .black
+        label.isOpaque = false
         return label
     }()
     
@@ -48,7 +49,7 @@ class PoemContentComponent: UIView, Component, Reusable {
         label.textAlignment = .left
         label.numberOfLines = 1
         label.textColor = UIColor.AppColors.lightGray
-        label.text = "Read More..."
+        label.text = "Tap here or swipe up to read more..."
         label.isUserInteractionEnabled = true
         return label
     }()
