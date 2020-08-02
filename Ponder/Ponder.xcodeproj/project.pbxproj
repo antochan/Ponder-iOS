@@ -45,6 +45,7 @@
 		8A32C5DB24CE4F5000A8D2DE /* CommentTextFieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5DA24CE4F5000A8D2DE /* CommentTextFieldComponent.swift */; };
 		8AAA67F424CFDB3C00BAB060 /* HomeExpandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAA67F324CFDB3C00BAB060 /* HomeExpandView.swift */; };
 		8AAA67F624CFDB9400BAB060 /* HomeExpandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAA67F524CFDB9400BAB060 /* HomeExpandViewController.swift */; };
+		8AAACFB124D61BBE0039A0A8 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAACFB024D61BBE0039A0A8 /* AddView.swift */; };
 		EF745C57A8A96D536A5A075C /* Pods_Ponder_PonderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F4D8F2C360A5B6399C7E4E /* Pods_Ponder_PonderUITests.framework */; };
 		FDD3331AC28478B8C532DEFD /* Pods_PonderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFCB436CCD7E06EBACDBB32 /* Pods_PonderTests.framework */; };
 /* End PBXBuildFile section */
@@ -116,6 +117,7 @@
 		8A32C5DA24CE4F5000A8D2DE /* CommentTextFieldComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextFieldComponent.swift; sourceTree = "<group>"; };
 		8AAA67F324CFDB3C00BAB060 /* HomeExpandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeExpandView.swift; sourceTree = "<group>"; };
 		8AAA67F524CFDB9400BAB060 /* HomeExpandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeExpandViewController.swift; sourceTree = "<group>"; };
+		8AAACFB024D61BBE0039A0A8 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		9723BC56F014973C3DDCD89D /* Pods-Ponder-PonderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ponder-PonderUITests.debug.xcconfig"; path = "Target Support Files/Pods-Ponder-PonderUITests/Pods-Ponder-PonderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CDCBDD22F9F6C51A41AD9E53 /* Pods-Ponder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ponder.release.xcconfig"; path = "Target Support Files/Pods-Ponder/Pods-Ponder.release.xcconfig"; sourceTree = "<group>"; };
 		D1F4D8F2C360A5B6399C7E4E /* Pods_Ponder_PonderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ponder_PonderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,8 +224,8 @@
 			children = (
 				8A14F95224C958A60012B92B /* TabBarController.swift */,
 				8A2E06CE24CCA3C200E195BE /* Home */,
+				8AAACFAF24D61B5B0039A0A8 /* Add */,
 				8A14F95624C95B6E0012B92B /* SearchViewController.swift */,
-				8A14F95824C964790012B92B /* AddViewController.swift */,
 				8A14F95A24C969CC0012B92B /* NotificationViewController.swift */,
 				8A14F95C24C96B690012B92B /* AccountViewController.swift */,
 			);
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				8A14F97724CA42060012B92B /* Home */,
+				8AAACFAE24D61B4C0039A0A8 /* Add */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -336,6 +339,22 @@
 				8A32C5DA24CE4F5000A8D2DE /* CommentTextFieldComponent.swift */,
 			);
 			path = HomeComments;
+			sourceTree = "<group>";
+		};
+		8AAACFAE24D61B4C0039A0A8 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				8AAACFB024D61BBE0039A0A8 /* AddView.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		8AAACFAF24D61B5B0039A0A8 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				8A14F95824C964790012B92B /* AddViewController.swift */,
+			);
+			path = Add;
 			sourceTree = "<group>";
 		};
 		ACA462083AA40FC491EEE654 /* Pods */ = {
@@ -597,6 +616,7 @@
 				8A14F96124CA3B3D0012B92B /* PressHighlightable.swift in Sources */,
 				8A2E06D224CCA49800E195BE /* HomeCommentsView.swift in Sources */,
 				8A2533D624CAA9FC0014ACC1 /* PageControlComponent.swift in Sources */,
+				8AAACFB124D61BBE0039A0A8 /* AddView.swift in Sources */,
 				8A14F96B24CA3CE90012B92B /* HomeView.swift in Sources */,
 				8A32C5DB24CE4F5000A8D2DE /* CommentTextFieldComponent.swift in Sources */,
 				8A32C5D724CD581300A8D2DE /* User.swift in Sources */,

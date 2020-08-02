@@ -20,6 +20,7 @@ class TabBarController: UITabBarController {
 
 private extension TabBarController {
     func setupTabBar() {
+        delegate = self
         setupTabBarShadows()
         setupTabViewControllers()
         setupTabItemInsets()
@@ -43,7 +44,7 @@ private extension TabBarController {
         let homeViewController = createViewController(vc: HomeViewController(), selectedImage: #imageLiteral(resourceName: "Home_Selected"), unselectedImage: #imageLiteral(resourceName: "Home_Unselected"))
         let searchViewController = createViewController(vc: SearchViewController(), selectedImage: #imageLiteral(resourceName: "Search_Selected"), unselectedImage: #imageLiteral(resourceName: "Search_Unselected"))
         let addViewController = createViewController(vc: AddViewController(), selectedImage: #imageLiteral(resourceName: "Add_Selected"), unselectedImage: #imageLiteral(resourceName: "Add_Unselected"))
-        let notificationViewController = createViewController(vc: AddViewController(), selectedImage: #imageLiteral(resourceName: "Bell_Selected"), unselectedImage: #imageLiteral(resourceName: "Bell_Unselected"))
+        let notificationViewController = createViewController(vc: NotificationViewController(), selectedImage: #imageLiteral(resourceName: "Bell_Selected"), unselectedImage: #imageLiteral(resourceName: "Bell_Unselected"))
         let accountViewController = createViewController(vc: AccountViewController(), selectedImage: #imageLiteral(resourceName: "User_Selected"), unselectedImage: #imageLiteral(resourceName: "User_Unselected"))
         viewControllers = [homeViewController, searchViewController, addViewController, notificationViewController, accountViewController]
     }
@@ -57,5 +58,17 @@ private extension TabBarController {
         vc.tabBarItem.image = unselectedImage
         vc.tabBarItem.selectedImage = selectedImage
         return vc
+    }
+}
+
+extension TabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if viewController is AddViewController {
+            let addVC = AddViewController()
+            addVC.modalPresentationStyle = .fullScreen
+            tabBarController.present(addVC, animated: true)
+            return false
+        }
+        return true
     }
 }
