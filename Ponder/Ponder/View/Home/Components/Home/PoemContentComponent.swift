@@ -26,7 +26,7 @@ class PoemContentComponent: UIView, Component, Reusable {
     private let poemImageOverlayView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.AppColors.lightGray.withAlphaComponent(0.2)
+        view.backgroundColor = UIColor.AppColors.lightGray.withAlphaComponent(0.3)
         return view
     }()
     

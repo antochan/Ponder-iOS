@@ -43,6 +43,8 @@
 		8A32C5D724CD581300A8D2DE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5D624CD581300A8D2DE /* User.swift */; };
 		8A32C5D924CD5C0700A8D2DE /* CommentsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5D824CD5C0700A8D2DE /* CommentsComponent.swift */; };
 		8A32C5DB24CE4F5000A8D2DE /* CommentTextFieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5DA24CE4F5000A8D2DE /* CommentTextFieldComponent.swift */; };
+		8AA64B0824D69F600076CE43 /* PickMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA64B0724D69F600076CE43 /* PickMediaViewController.swift */; };
+		8AA64B0A24D6A12B0076CE43 /* PickMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA64B0924D6A12B0076CE43 /* PickMediaView.swift */; };
 		8AAA67F424CFDB3C00BAB060 /* HomeExpandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAA67F324CFDB3C00BAB060 /* HomeExpandView.swift */; };
 		8AAA67F624CFDB9400BAB060 /* HomeExpandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAA67F524CFDB9400BAB060 /* HomeExpandViewController.swift */; };
 		8AAACFB124D61BBE0039A0A8 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAACFB024D61BBE0039A0A8 /* AddView.swift */; };
@@ -115,6 +117,8 @@
 		8A32C5D624CD581300A8D2DE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8A32C5D824CD5C0700A8D2DE /* CommentsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsComponent.swift; sourceTree = "<group>"; };
 		8A32C5DA24CE4F5000A8D2DE /* CommentTextFieldComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextFieldComponent.swift; sourceTree = "<group>"; };
+		8AA64B0724D69F600076CE43 /* PickMediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
+		8AA64B0924D6A12B0076CE43 /* PickMediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaView.swift; sourceTree = "<group>"; };
 		8AAA67F324CFDB3C00BAB060 /* HomeExpandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeExpandView.swift; sourceTree = "<group>"; };
 		8AAA67F524CFDB9400BAB060 /* HomeExpandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeExpandViewController.swift; sourceTree = "<group>"; };
 		8AAACFB024D61BBE0039A0A8 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
@@ -345,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				8AAACFB024D61BBE0039A0A8 /* AddView.swift */,
+				8AA64B0924D6A12B0076CE43 /* PickMediaView.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				8A14F95824C964790012B92B /* AddViewController.swift */,
+				8AA64B0724D69F600076CE43 /* PickMediaViewController.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -616,9 +622,11 @@
 				8A14F96124CA3B3D0012B92B /* PressHighlightable.swift in Sources */,
 				8A2E06D224CCA49800E195BE /* HomeCommentsView.swift in Sources */,
 				8A2533D624CAA9FC0014ACC1 /* PageControlComponent.swift in Sources */,
+				8AA64B0824D69F600076CE43 /* PickMediaViewController.swift in Sources */,
 				8AAACFB124D61BBE0039A0A8 /* AddView.swift in Sources */,
 				8A14F96B24CA3CE90012B92B /* HomeView.swift in Sources */,
 				8A32C5DB24CE4F5000A8D2DE /* CommentTextFieldComponent.swift in Sources */,
+				8AA64B0A24D6A12B0076CE43 /* PickMediaView.swift in Sources */,
 				8A32C5D724CD581300A8D2DE /* User.swift in Sources */,
 				8A14F96524CA3B600012B92B /* Pressable.swift in Sources */,
 				8A14F95D24C96B690012B92B /* AccountViewController.swift in Sources */,

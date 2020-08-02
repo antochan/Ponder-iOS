@@ -34,6 +34,11 @@ class AddViewController: UIViewController {
     @objc func nextTapped() {
         if addView.poemTextField.text == "Start Writing" || addView.poemTextField.text == "" {
             displayAlert(message: "Please make sure to type something", title: "Oops!")
+        } else {
+            let pickMediaVC = PickMediaViewController()
+            pickMediaVC.isHeroEnabled = true
+            pickMediaVC.modalPresentationStyle = .fullScreen
+            present(pickMediaVC, animated: true)
         }
     }
 

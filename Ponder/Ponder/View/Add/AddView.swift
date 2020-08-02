@@ -17,7 +17,7 @@ class AddView: UIView {
     private let backgroundOverlayView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.AppColors.lightGray.withAlphaComponent(0.2)
+        view.backgroundColor = UIColor.AppColors.lightGray.withAlphaComponent(0.3)
         return view
     }()
     
@@ -33,7 +33,7 @@ class AddView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Close", for: .normal)
-        button.titleLabel?.font = UIFont.main(size: 16)
+        button.titleLabel?.font = UIFont.main(size: 18)
         button.setTitleColor(.black, for: .normal)
         return button
     }()
@@ -42,7 +42,7 @@ class AddView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Next", for: .normal)
-        button.titleLabel?.font = UIFont.main(size: 16)
+        button.titleLabel?.font = UIFont.main(size: 18)
         button.setTitleColor(.black, for: .normal)
         return button
     }()
@@ -116,10 +116,10 @@ private extension AddView {
             backgroundOverlayView.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundOverlayView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 36),
+            closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 38),
             closeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
             
-            nextButton.topAnchor.constraint(equalTo: topAnchor, constant: 36),
+            nextButton.topAnchor.constraint(equalTo: topAnchor, constant: 38),
             nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
             
             addContentView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: Spacing.sixteen),
@@ -132,7 +132,7 @@ private extension AddView {
             titleTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
             
             titleCharacterNumberLabel.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: Spacing.four),
-            titleCharacterNumberLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.thirtyTwo),
+            titleCharacterNumberLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 28),
             
             poemTextField.topAnchor.constraint(equalTo: titleCharacterNumberLabel.bottomAnchor, constant: Spacing.thirtyTwo),
             poemTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
@@ -178,7 +178,7 @@ extension AddView: UITextViewDelegate {
         switch textView.tag {
         case AddViewTextFieldTags.title.rawValue:
             let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
-            return newText.count <= AddViewConstants.titleMaxCount
+            return newText.count <= AddViewConstants.titleMaxCount && newText.numberOfLines() < 2
         default:
             return true
         }

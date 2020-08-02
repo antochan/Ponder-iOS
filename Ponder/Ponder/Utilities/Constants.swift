@@ -12,7 +12,7 @@ import UIKit
 public enum AddViewConstants {
     static let poemPlaceholderText = "Start Writing"
     static let titlePlaceholderText = "Title"
-    static let titleMaxCount: Int = 40
+    static let titleMaxCount: Int = 35
 }
 
 public enum HomeStackConstants {
