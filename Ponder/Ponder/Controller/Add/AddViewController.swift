@@ -32,7 +32,9 @@ class AddViewController: UIViewController {
     }
     
     @objc func nextTapped() {
-        print("next tapped")
+        if addView.poemTextField.text == "Start Writing" || addView.poemTextField.text == "" {
+            displayAlert(message: "Please make sure to type something", title: "Oops!")
+        }
     }
 
 }

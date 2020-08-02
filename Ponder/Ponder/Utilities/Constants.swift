@@ -9,6 +9,12 @@
 
 import UIKit
 
+public enum AddViewConstants {
+    static let poemPlaceholderText = "Start Writing"
+    static let titlePlaceholderText = "Title"
+    static let titleMaxCount: Int = 40
+}
+
 public enum HomeStackConstants {
     static let poemContentExpandStaticHeight: CGFloat = 161.5
     static let poemContentCommentStaticHeight: CGFloat = 165

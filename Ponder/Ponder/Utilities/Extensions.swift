@@ -123,6 +123,21 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    /// This function displays a UIAlertView string for a given `message: String`.
+       ///
+       /// - Warning: Make sure this is called on the main thread
+       ///
+       /// Usage:
+       ///
+       ///     displayAlert("Your Message Here)
+       func displayAlert(message: String, title: String = "") {
+           let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+           let OKAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+           OKAction.setValue(UIColor.black, forKey: "titleTextColor")
+           alertController.addAction(OKAction)
+           self.present(alertController, animated: true, completion: nil)
+       }
 }
 
 enum Vibration {

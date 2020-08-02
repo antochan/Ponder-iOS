@@ -50,7 +50,7 @@ class AddView: UIView {
     let titleTextField: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.text = "Title"
+        textView.text = AddViewConstants.titlePlaceholderText
         textView.textColor = UIColor.AppColors.lightGray
         textView.isScrollEnabled = false
         textView.font = UIFont.georgiaBold(size: 23)
@@ -58,13 +58,27 @@ class AddView: UIView {
         return textView
     }()
     
+    let titleCharacterNumberLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "0 / \(AddViewConstants.titleMaxCount)"
+        label.font = UIFont.main(size: 12)
+        label.textColor = UIColor.AppColors.lightGray
+        return label
+    }()
+    
     let poemTextField: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.text = "Start Writing"
         textView.textColor = UIColor.AppColors.gray
-        textView.font = UIFont.georgia(size: 16)
         textView.tag = AddViewTextFieldTags.poemContent.rawValue
+        let attributedString = NSMutableAttributedString(string: AddViewConstants.poemPlaceholderText)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = Spacing.twelve
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.georgia(size: 16), range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.AppColors.gray, range: NSMakeRange(0, attributedString.length))
+        textView.attributedText = attributedString
         return textView
     }()
     
@@ -84,6 +98,7 @@ class AddView: UIView {
 private extension AddView {
     func commonInit() {
         backgroundColor = .white
+        setupTextView()
         configureSubviews()
         configureLayout()
 
@@ -91,35 +106,38 @@ private extension AddView {
     
     func configureSubviews() {
         addSubviews(backgroundOverlayView, closeButton, nextButton, addContentView)
-        addContentView.addSubviews(titleTextField, poemTextField)
+        addContentView.addSubviews(titleTextField, titleCharacterNumberLabel, poemTextField)
     }
     
     func configureLayout() {
         NSLayoutConstraint.activate([
             backgroundOverlayView.topAnchor.constraint(equalTo: topAnchor),
-            backgroundOverlayView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            backgroundOverlayView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Spacing.fortyEight),
             backgroundOverlayView.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundOverlayView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Spacing.four),
+            closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 36),
             closeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
             
-            nextButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Spacing.four),
+            nextButton.topAnchor.constraint(equalTo: topAnchor, constant: 36),
             nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
             
             addContentView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: Spacing.sixteen),
             addContentView.leadingAnchor.constraint(equalTo: leadingAnchor),
             addContentView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            addContentView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Spacing.twentyFour),
+            addContentView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             titleTextField.topAnchor.constraint(equalTo: addContentView.topAnchor, constant: Spacing.fortyEight),
             titleTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
             titleTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
             
-            poemTextField.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: Spacing.thirtyTwo),
+            titleCharacterNumberLabel.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: Spacing.four),
+            titleCharacterNumberLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.thirtyTwo),
+            
+            poemTextField.topAnchor.constraint(equalTo: titleCharacterNumberLabel.bottomAnchor, constant: Spacing.thirtyTwo),
             poemTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
             poemTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
-            poemTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Spacing.sixteen)
+            poemTextField.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
@@ -143,12 +161,12 @@ extension AddView: UITextViewDelegate {
         switch textView.tag {
         case AddViewTextFieldTags.title.rawValue:
             if textView.text == "" {
-                textView.text = "Title"
+                textView.text = AddViewConstants.titlePlaceholderText
                 textView.textColor = UIColor.AppColors.lightGray
             }
         case AddViewTextFieldTags.poemContent.rawValue:
             if textView.text == "" {
-                textView.text = "Start writing"
+                textView.text = AddViewConstants.poemPlaceholderText
                 textView.textColor = UIColor.AppColors.gray
             }
         default:
@@ -156,14 +174,20 @@ extension AddView: UITextViewDelegate {
         }
     }
     
-//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-//        switch textView.tag {
-//        case AddViewTextFieldTags.title.rawValue:
-//            let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
-//            return newText.count < 20
-//        default:
-//            return true
-//        }
-//    }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        switch textView.tag {
+        case AddViewTextFieldTags.title.rawValue:
+            let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+            return newText.count <= AddViewConstants.titleMaxCount
+        default:
+            return true
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.tag == AddViewTextFieldTags.title.rawValue {
+            titleCharacterNumberLabel.text = "\(textView.text.count) / \(AddViewConstants.titleMaxCount)"
+        }
+    }
 }
 
