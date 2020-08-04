@@ -34,6 +34,23 @@ class PickMediaView: UIView {
         return button
     }()
     
+    let searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.backgroundImage = UIImage()
+        searchBar.barTintColor = .white
+        searchBar.placeholder = "Search Image"
+        return searchBar
+    }()
+    
+    let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        return tableView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -54,7 +71,7 @@ private extension PickMediaView {
     }
     
     func configureSubviews() {
-        addSubviews(backgroundOverlayView, backButton, nextButton)
+        addSubviews(backgroundOverlayView, backButton, nextButton, searchBar, tableView)
     }
     
     func configureLayout() {
@@ -69,6 +86,15 @@ private extension PickMediaView {
             
             nextButton.topAnchor.constraint(equalTo: topAnchor, constant: 38),
             nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
+            
+            searchBar.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: Spacing.eight),
+            searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.sixteen),
+            searchBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.sixteen),
+            
+            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Spacing.twentyFour)
         ])
     }
 }

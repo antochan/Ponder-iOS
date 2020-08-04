@@ -43,6 +43,9 @@
 		8A32C5D724CD581300A8D2DE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5D624CD581300A8D2DE /* User.swift */; };
 		8A32C5D924CD5C0700A8D2DE /* CommentsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5D824CD5C0700A8D2DE /* CommentsComponent.swift */; };
 		8A32C5DB24CE4F5000A8D2DE /* CommentTextFieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5DA24CE4F5000A8D2DE /* CommentTextFieldComponent.swift */; };
+		8A7DDB0C24D9154C0032175A /* PickMediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB0B24D9154C0032175A /* PickMediaViewModel.swift */; };
+		8AA1E6C624D773E400AA1876 /* PickMediaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA1E6C524D773E400AA1876 /* PickMediaComponent.swift */; };
+		8AA1E6CA24D7874B00AA1876 /* PickMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA1E6C924D7874B00AA1876 /* PickMedia.swift */; };
 		8AA64B0824D69F600076CE43 /* PickMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA64B0724D69F600076CE43 /* PickMediaViewController.swift */; };
 		8AA64B0A24D6A12B0076CE43 /* PickMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA64B0924D6A12B0076CE43 /* PickMediaView.swift */; };
 		8AAA67F424CFDB3C00BAB060 /* HomeExpandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAA67F324CFDB3C00BAB060 /* HomeExpandView.swift */; };
@@ -117,6 +120,9 @@
 		8A32C5D624CD581300A8D2DE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8A32C5D824CD5C0700A8D2DE /* CommentsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsComponent.swift; sourceTree = "<group>"; };
 		8A32C5DA24CE4F5000A8D2DE /* CommentTextFieldComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextFieldComponent.swift; sourceTree = "<group>"; };
+		8A7DDB0B24D9154C0032175A /* PickMediaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaViewModel.swift; sourceTree = "<group>"; };
+		8AA1E6C524D773E400AA1876 /* PickMediaComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaComponent.swift; sourceTree = "<group>"; };
+		8AA1E6C924D7874B00AA1876 /* PickMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMedia.swift; sourceTree = "<group>"; };
 		8AA64B0724D69F600076CE43 /* PickMediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
 		8AA64B0924D6A12B0076CE43 /* PickMediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaView.swift; sourceTree = "<group>"; };
 		8AAA67F324CFDB3C00BAB060 /* HomeExpandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeExpandView.swift; sourceTree = "<group>"; };
@@ -239,6 +245,7 @@
 		8A14F94D24C953AF0012B92B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				8A7DDB0B24D9154C0032175A /* PickMediaViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -257,6 +264,7 @@
 			children = (
 				8A2533D024CA83E30014ACC1 /* Poem.swift */,
 				8A32C5D624CD581300A8D2DE /* User.swift */,
+				8AA1E6C924D7874B00AA1876 /* PickMedia.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -345,9 +353,26 @@
 			path = HomeComments;
 			sourceTree = "<group>";
 		};
+		8AA1E6C324D7737A00AA1876 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8AA1E6C424D7739200AA1876 /* PickMedia */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		8AA1E6C424D7739200AA1876 /* PickMedia */ = {
+			isa = PBXGroup;
+			children = (
+				8AA1E6C524D773E400AA1876 /* PickMediaComponent.swift */,
+			);
+			path = PickMedia;
+			sourceTree = "<group>";
+		};
 		8AAACFAE24D61B4C0039A0A8 /* Add */ = {
 			isa = PBXGroup;
 			children = (
+				8AA1E6C324D7737A00AA1876 /* Components */,
 				8AAACFB024D61BBE0039A0A8 /* AddView.swift */,
 				8AA64B0924D6A12B0076CE43 /* PickMediaView.swift */,
 			);
@@ -618,6 +643,7 @@
 				8A32C5D924CD5C0700A8D2DE /* CommentsComponent.swift in Sources */,
 				8A14F95324C958A60012B92B /* TabBarController.swift in Sources */,
 				8A32C5D524CD57F700A8D2DE /* CommentsTableViewComponent.swift in Sources */,
+				8AA1E6C624D773E400AA1876 /* PickMediaComponent.swift in Sources */,
 				8A14F96E24CA3D830012B92B /* ComponentCollectionViewCell.swift in Sources */,
 				8A14F96124CA3B3D0012B92B /* PressHighlightable.swift in Sources */,
 				8A2E06D224CCA49800E195BE /* HomeCommentsView.swift in Sources */,
@@ -634,6 +660,7 @@
 				8A14F96324CA3B500012B92B /* PressScalable.swift in Sources */,
 				8A14F95924C964790012B92B /* AddViewController.swift in Sources */,
 				8A2533D124CA83E30014ACC1 /* Poem.swift in Sources */,
+				8AA1E6CA24D7874B00AA1876 /* PickMedia.swift in Sources */,
 				8A14F95B24C969CC0012B92B /* NotificationViewController.swift in Sources */,
 				8A14F97924CA43080012B92B /* PoemContentComponent.swift in Sources */,
 				8AAA67F424CFDB3C00BAB060 /* HomeExpandView.swift in Sources */,
@@ -648,6 +675,7 @@
 				8A2E06D024CCA43900E195BE /* HomeCommentsViewController.swift in Sources */,
 				8A2533CF24CA82CD0014ACC1 /* PoemCarouselComponent.swift in Sources */,
 				8A14F95524C95B5A0012B92B /* HomeViewController.swift in Sources */,
+				8A7DDB0C24D9154C0032175A /* PickMediaViewModel.swift in Sources */,
 				8A2533D324CA8A770014ACC1 /* PoemDetailsComponent.swift in Sources */,
 				8AAA67F624CFDB9400BAB060 /* HomeExpandViewController.swift in Sources */,
 			);
