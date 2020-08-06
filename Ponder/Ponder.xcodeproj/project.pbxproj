@@ -44,6 +44,8 @@
 		8A32C5D924CD5C0700A8D2DE /* CommentsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5D824CD5C0700A8D2DE /* CommentsComponent.swift */; };
 		8A32C5DB24CE4F5000A8D2DE /* CommentTextFieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5DA24CE4F5000A8D2DE /* CommentTextFieldComponent.swift */; };
 		8A7DDB0C24D9154C0032175A /* PickMediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB0B24D9154C0032175A /* PickMediaViewModel.swift */; };
+		8A7DDB0E24DA6A9F0032175A /* PublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB0D24DA6A9F0032175A /* PublishViewController.swift */; };
+		8A7DDB1024DA6BAB0032175A /* PublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB0F24DA6BAB0032175A /* PublishView.swift */; };
 		8AA1E6C624D773E400AA1876 /* PickMediaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA1E6C524D773E400AA1876 /* PickMediaComponent.swift */; };
 		8AA1E6CA24D7874B00AA1876 /* PickMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA1E6C924D7874B00AA1876 /* PickMedia.swift */; };
 		8AA64B0824D69F600076CE43 /* PickMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA64B0724D69F600076CE43 /* PickMediaViewController.swift */; };
@@ -121,6 +123,8 @@
 		8A32C5D824CD5C0700A8D2DE /* CommentsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsComponent.swift; sourceTree = "<group>"; };
 		8A32C5DA24CE4F5000A8D2DE /* CommentTextFieldComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextFieldComponent.swift; sourceTree = "<group>"; };
 		8A7DDB0B24D9154C0032175A /* PickMediaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaViewModel.swift; sourceTree = "<group>"; };
+		8A7DDB0D24DA6A9F0032175A /* PublishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishViewController.swift; sourceTree = "<group>"; };
+		8A7DDB0F24DA6BAB0032175A /* PublishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishView.swift; sourceTree = "<group>"; };
 		8AA1E6C524D773E400AA1876 /* PickMediaComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaComponent.swift; sourceTree = "<group>"; };
 		8AA1E6C924D7874B00AA1876 /* PickMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMedia.swift; sourceTree = "<group>"; };
 		8AA64B0724D69F600076CE43 /* PickMediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
@@ -375,6 +379,7 @@
 				8AA1E6C324D7737A00AA1876 /* Components */,
 				8AAACFB024D61BBE0039A0A8 /* AddView.swift */,
 				8AA64B0924D6A12B0076CE43 /* PickMediaView.swift */,
+				8A7DDB0F24DA6BAB0032175A /* PublishView.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -384,6 +389,7 @@
 			children = (
 				8A14F95824C964790012B92B /* AddViewController.swift */,
 				8AA64B0724D69F600076CE43 /* PickMediaViewController.swift */,
+				8A7DDB0D24DA6A9F0032175A /* PublishViewController.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -651,6 +657,7 @@
 				8AA64B0824D69F600076CE43 /* PickMediaViewController.swift in Sources */,
 				8AAACFB124D61BBE0039A0A8 /* AddView.swift in Sources */,
 				8A14F96B24CA3CE90012B92B /* HomeView.swift in Sources */,
+				8A7DDB1024DA6BAB0032175A /* PublishView.swift in Sources */,
 				8A32C5DB24CE4F5000A8D2DE /* CommentTextFieldComponent.swift in Sources */,
 				8AA64B0A24D6A12B0076CE43 /* PickMediaView.swift in Sources */,
 				8A32C5D724CD581300A8D2DE /* User.swift in Sources */,
@@ -659,6 +666,7 @@
 				8A14F97224CA3DBC0012B92B /* ButtonComponent.swift in Sources */,
 				8A14F96324CA3B500012B92B /* PressScalable.swift in Sources */,
 				8A14F95924C964790012B92B /* AddViewController.swift in Sources */,
+				8A7DDB0E24DA6A9F0032175A /* PublishViewController.swift in Sources */,
 				8A2533D124CA83E30014ACC1 /* Poem.swift in Sources */,
 				8AA1E6CA24D7874B00AA1876 /* PickMedia.swift in Sources */,
 				8A14F95B24C969CC0012B92B /* NotificationViewController.swift in Sources */,

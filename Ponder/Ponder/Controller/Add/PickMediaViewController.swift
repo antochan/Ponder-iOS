@@ -10,6 +10,8 @@ import UIKit
 
 class PickMediaViewController: UIViewController {
     let pickMediaView = PickMediaView()
+    let poemText: PoemText
+    
     private let mockPickMediaData = [PickMedia(mediaImage: #imageLiteral(resourceName: "camera"), hashtags: ["#camera", "#aeshetics", "#photo", "#photography", "#shutter", "#stock"]),
                                      PickMedia(mediaImage: #imageLiteral(resourceName: "earphones"), hashtags: ["#idea", "#music", "#covid-19", "#earbuds", "#wires", "#unplugged", "#lightbulb"]),
                                      PickMedia(mediaImage: #imageLiteral(resourceName: "girl_back"), hashtags: ["#womensrights", "#feminism", "#equality", "#nudity", "#artwork"])]
@@ -18,6 +20,15 @@ class PickMediaViewController: UIViewController {
         didSet {
             pickMediaView.tableView.reloadData()
         }
+    }
+    
+    init(poemText: PoemText) {
+        self.poemText = poemText
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func loadView() {
@@ -36,7 +47,6 @@ class PickMediaViewController: UIViewController {
     
     func setupActions() {
         pickMediaView.backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
-        pickMediaView.nextButton.addTarget(self, action: #selector(nextTapped), for: .touchUpInside)
     }
     
     func setupTableView() {
@@ -47,10 +57,6 @@ class PickMediaViewController: UIViewController {
     
     @objc func backTapped() {
         dismiss(animated: true)
-    }
-    
-    @objc func nextTapped() {
-        print("next tapped")
     }
     
 }
@@ -69,6 +75,14 @@ extension PickMediaViewController: UITableViewDelegate, UITableViewDataSource {
         cell.apply(viewModel: cellVM)
         cell.selectionStyle = .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        let publishViewController = PublishViewController(media: viewModel.medias[indexPath.row], poemContent: poemText)
+        publishViewController.isHeroEnabled = true
+        publishViewController.modalPresentationStyle = .fullScreen
+        present(publishViewController, animated: true)
     }
 }
 

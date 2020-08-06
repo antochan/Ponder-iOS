@@ -24,16 +24,7 @@ class PickMediaView: UIView {
         button.setTitleColor(.black, for: .normal)
         return button
     }()
-    
-    let nextButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Next", for: .normal)
-        button.titleLabel?.font = UIFont.main(size: 18)
-        button.setTitleColor(.black, for: .normal)
-        return button
-    }()
-    
+
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -71,7 +62,7 @@ private extension PickMediaView {
     }
     
     func configureSubviews() {
-        addSubviews(backgroundOverlayView, backButton, nextButton, searchBar, tableView)
+        addSubviews(backgroundOverlayView, backButton, searchBar, tableView)
     }
     
     func configureLayout() {
@@ -83,9 +74,6 @@ private extension PickMediaView {
             
             backButton.topAnchor.constraint(equalTo: topAnchor, constant: 38),
             backButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
-            
-            nextButton.topAnchor.constraint(equalTo: topAnchor, constant: 38),
-            nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
             
             searchBar.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: Spacing.eight),
             searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.sixteen),

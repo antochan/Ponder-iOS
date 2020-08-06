@@ -35,7 +35,11 @@ class AddViewController: UIViewController {
         if addView.poemTextField.text == "Start Writing" || addView.poemTextField.text == "" {
             displayAlert(message: "Please make sure to type something", title: "Oops!")
         } else {
-            let pickMediaVC = PickMediaViewController()
+            var titleText = ""
+            if addView.titleTextField.textColor != UIColor.AppColors.lightGray {
+                titleText = addView.titleTextField.text
+            }
+            let pickMediaVC = PickMediaViewController(poemText: PoemText(title: titleText, poemContent: addView.poemTextField.text))
             pickMediaVC.isHeroEnabled = true
             pickMediaVC.modalPresentationStyle = .fullScreen
             present(pickMediaVC, animated: true)

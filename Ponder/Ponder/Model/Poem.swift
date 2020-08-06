@@ -22,3 +22,8 @@ struct Poem {
 struct PoemCarouselData {
     let poems: [Poem]
 }
+
+struct PoemText {
+    let title: String
+    let poemContent: String
+}
