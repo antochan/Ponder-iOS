@@ -36,7 +36,7 @@ class HomeCommentsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideKeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAround(shouldEnableToolbar: true)
         homeCommentView.dismissButton.addTarget(self, action: #selector(dismissTapped), for: .touchUpInside)
         homeCommentView.applyPoem(poem: poem, user: user)
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeDown))

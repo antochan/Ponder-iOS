@@ -42,8 +42,9 @@ class PublishViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideKeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAround(shouldEnableToolbar: false)
         setupActions()
+        publishView.delegate = self
         publishView.applyPublishView(poemContent: poemContent, poemMedia: media)
         publishView.applyAddHashtag(isAdding: isAdding)
     }
@@ -130,5 +131,13 @@ extension PublishViewController: UITextFieldDelegate {
                 textField.text = "#"
             }
         }
+    }
+}
+
+//MARK: - PublishViewDelegate
+
+extension PublishViewController: PublishViewDelegate {
+    func removeHashtag(hashtag: String) {
+        hashtags = hashtags.filter { $0 != hashtag }
     }
 }

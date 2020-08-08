@@ -18,7 +18,7 @@ class AddViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideKeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAround(shouldEnableToolbar: true)
         setupActions()
     }
     

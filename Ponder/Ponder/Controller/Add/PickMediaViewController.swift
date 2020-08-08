@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class PickMediaViewController: UIViewController {
     let pickMediaView = PickMediaView()
@@ -38,7 +39,7 @@ class PickMediaViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideKeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAround(shouldEnableToolbar: true)
         setupActions()
         setupTableView()
         pickMediaView.searchBar.delegate = self

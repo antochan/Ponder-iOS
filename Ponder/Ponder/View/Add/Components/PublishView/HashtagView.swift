@@ -13,6 +13,9 @@ class HashtagView: UIView, Component {
         let hashtagText: String
     }
     
+    public var actions: Actions?
+    public var key: String = ""
+    
     private let hashtagLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -39,6 +42,7 @@ class HashtagView: UIView, Component {
     
     func apply(viewModel: ViewModel) {
         hashtagLabel.text = viewModel.hashtagText
+        key = viewModel.hashtagText
     }
 }
 
@@ -51,6 +55,8 @@ private extension HashtagView {
     }
     
     func configureSubviews() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hashtagTapped))
+        addGestureRecognizer(tap)
         addSubviews(hashtagLabel, xButton)
     }
     
@@ -67,5 +73,18 @@ private extension HashtagView {
             xButton.leadingAnchor.constraint(equalTo: hashtagLabel.trailingAnchor, constant: Spacing.four),
             xButton.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
+    }
+    
+    @objc func hashtagTapped() {
+        actions?(.hashtagAction)
+    }
+}
+
+//MARK: - Actionable
+extension HashtagView: Actionable {
+    public typealias Actions = (Action) -> Void
+    
+    public enum Action {
+        case hashtagAction
     }
 }

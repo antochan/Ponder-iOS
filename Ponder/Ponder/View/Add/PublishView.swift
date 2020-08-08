@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol PublishViewDelegate: AnyObject {
+    func removeHashtag(hashtag: String)
+}
+
 class PublishView: UIView {
     private let poemImageView: UIImageView = {
         let imageView = UIImageView()
@@ -97,13 +101,24 @@ class PublishView: UIView {
         return textfield
     }()
     
-    let hashTagStack: UIStackView = {
+    private let hashTagScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.hero.id = HeroIds.poemHashtagView
+        return scrollView
+    }()
+    
+    private let hashTagStack: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fillProportionally
+        stackView.axis = .horizontal
         stackView.spacing = Spacing.sixteen
         return stackView
     }()
+    
+    weak var delegate: PublishViewDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -146,6 +161,13 @@ class PublishView: UIView {
         hashtags.forEach {
             let newHashTagView = HashtagView()
             newHashTagView.apply(viewModel: HashtagView.ViewModel(hashtagText: $0))
+            newHashTagView.actions = { [weak self] action in
+                guard let strongSelf = self else { return }
+                switch action {
+                case .hashtagAction:
+                    strongSelf.delegate?.removeHashtag(hashtag: newHashTagView.key)
+                }
+            }
             hashTagStack.addArrangedSubviews(newHashTagView)
         }
     }
@@ -161,7 +183,9 @@ private extension PublishView {
     }
     
     func configureSubviews() {
-        addSubviews(poemImageView, poemImageOverlayView, backButton, publishButton, poemContentStack, readMoreLabel, addHashtagButton, hashtagTextField, hashTagStack)
+        addSubviews(poemImageView, poemImageOverlayView, backButton, publishButton, poemContentStack, readMoreLabel, addHashtagButton, hashtagTextField, hashTagScrollView
+        )
+        hashTagScrollView.addSubview(hashTagStack)
         poemContentStack.addArrangedSubviews(poemTitleLabel, poemContentLabel)
     }
     
@@ -198,9 +222,15 @@ private extension PublishView {
             hashtagTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
             hashtagTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
             
-            hashTagStack.topAnchor.constraint(equalTo: hashtagTextField.bottomAnchor, constant: Spacing.thirtyTwo),
-            hashTagStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
-            //hashTagStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour)
+            hashTagScrollView.topAnchor.constraint(equalTo: hashtagTextField.bottomAnchor, constant: Spacing.thirtyTwo),
+            hashTagScrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
+            hashTagScrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
+            hashTagScrollView.heightAnchor.constraint(equalTo: hashTagStack.heightAnchor, multiplier: 2),
+            
+            hashTagStack.leadingAnchor.constraint(equalTo: hashTagScrollView.leadingAnchor),
+            hashTagStack.trailingAnchor.constraint(equalTo: hashTagScrollView.trailingAnchor),
+            hashTagStack.topAnchor.constraint(equalTo: hashTagScrollView.topAnchor),
+            hashTagStack.bottomAnchor.constraint(equalTo: hashTagScrollView.bottomAnchor)
         ])
     }
 }

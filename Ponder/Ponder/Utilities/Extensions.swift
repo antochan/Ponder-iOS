@@ -8,6 +8,7 @@
 
 import UIKit
 import AudioToolbox
+import IQKeyboardManagerSwift
 
 public extension UIView {
     func apply(cornerRadius: CornerRadius) {
@@ -114,7 +115,8 @@ extension Int {
 }
 
 extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
+    func hideKeyboardWhenTappedAround(shouldEnableToolbar: Bool) {
+        IQKeyboardManager.shared.enableAutoToolbar = shouldEnableToolbar
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
