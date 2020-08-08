@@ -55,6 +55,7 @@ class PublishView: UIView {
         label.font = UIFont.georgiaBold(size: 16)
         label.numberOfLines = 2
         label.textColor = .black
+        label.hero.id = HeroIds.poemTitleView
         return label
     }()
     
@@ -62,8 +63,46 @@ class PublishView: UIView {
         let label = UILabel()
         label.font = UIFont.georgia(size: 16)
         label.numberOfLines = Lines.staticLine
+        label.hero.id = HeroIds.poemContentView
         label.textColor = .black
         return label
+    }()
+    
+    let readMoreLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.georgia(size: 12)
+        label.textAlignment = .left
+        label.numberOfLines = 1
+        label.textColor = UIColor.AppColors.lightGray
+        label.text = "Tap here or swipe up to read more..."
+        label.isUserInteractionEnabled = true
+        return label
+    }()
+    
+    let addHashtagButton: ButtonComponent = {
+        let button = ButtonComponent()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let buttonVM = ButtonComponent.ViewModel(style: .minimal(UIColor.AppColors.lightGray), text: "Add hashtags", icon: #imageLiteral(resourceName: "plus"), backgroundColor: .white, borderColor: .white, textColor: .black)
+        button.apply(viewModel: buttonVM)
+        return button
+    }()
+    
+    let hashtagTextField: UITextField = {
+        let textfield = UITextField()
+        textfield.translatesAutoresizingMaskIntoConstraints = false
+        textfield.textColor = UIColor.AppColors.gray
+        textfield.font = UIFont.main(size: 16)
+        textfield.returnKeyType = .done
+        return textfield
+    }()
+    
+    let hashTagStack: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fillProportionally
+        stackView.spacing = Spacing.sixteen
+        return stackView
     }()
 
     override init(frame: CGRect) {
@@ -81,6 +120,15 @@ class PublishView: UIView {
         poemTitleLabel.isHidden = poemContent.title == ""
         poemTitleLabel.text = poemContent.title
         updatePoemLabel(poemText: poemContent.poemContent)
+        readMoreLabel.isHidden = poemContent.poemContent.numberOfLines() <= Lines.staticLine
+    }
+    
+    func applyAddHashtag(isAdding: Bool) {
+        addHashtagButton.isHidden = isAdding
+        hashtagTextField.isHidden = !isAdding
+        if isAdding {
+            hashtagTextField.becomeFirstResponder()
+        }
     }
     
     func updatePoemLabel(poemText: String) {
@@ -90,7 +138,16 @@ class PublishView: UIView {
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
         poemContentLabel.attributedText = attributedString
         
-        poemContentLabel.numberOfLines = 6
+        poemContentLabel.numberOfLines = Lines.staticLine
+    }
+    
+    func addHashtags(hashtags: [String]) {
+        hashTagStack.removeAllArrangedSubviews()
+        hashtags.forEach {
+            let newHashTagView = HashtagView()
+            newHashTagView.apply(viewModel: HashtagView.ViewModel(hashtagText: $0))
+            hashTagStack.addArrangedSubviews(newHashTagView)
+        }
     }
     
 }
@@ -104,7 +161,7 @@ private extension PublishView {
     }
     
     func configureSubviews() {
-        addSubviews(poemImageView, poemImageOverlayView, backButton, publishButton, poemContentStack)
+        addSubviews(poemImageView, poemImageOverlayView, backButton, publishButton, poemContentStack, readMoreLabel, addHashtagButton, hashtagTextField, hashTagStack)
         poemContentStack.addArrangedSubviews(poemTitleLabel, poemContentLabel)
     }
     
@@ -129,6 +186,21 @@ private extension PublishView {
             poemContentStack.topAnchor.constraint(equalTo: poemImageOverlayView.bottomAnchor, constant: Spacing.twentyFour),
             poemContentStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
             poemContentStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
+            
+            readMoreLabel.topAnchor.constraint(equalTo: poemContentStack.bottomAnchor, constant: Spacing.sixteen),
+            readMoreLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
+            readMoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
+            
+            addHashtagButton.topAnchor.constraint(equalTo: readMoreLabel.bottomAnchor, constant: Spacing.twentyFour),
+            addHashtagButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.sixteen),
+            
+            hashtagTextField.topAnchor.constraint(equalTo: readMoreLabel.bottomAnchor, constant: Spacing.twentyFour),
+            hashtagTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
+            hashtagTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
+            
+            hashTagStack.topAnchor.constraint(equalTo: hashtagTextField.bottomAnchor, constant: Spacing.thirtyTwo),
+            hashTagStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
+            //hashTagStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour)
         ])
     }
 }

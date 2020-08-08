@@ -46,6 +46,7 @@
 		8A7DDB0C24D9154C0032175A /* PickMediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB0B24D9154C0032175A /* PickMediaViewModel.swift */; };
 		8A7DDB0E24DA6A9F0032175A /* PublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB0D24DA6A9F0032175A /* PublishViewController.swift */; };
 		8A7DDB1024DA6BAB0032175A /* PublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB0F24DA6BAB0032175A /* PublishView.swift */; };
+		8A7DDB1324DD205A0032175A /* HashtagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB1224DD205A0032175A /* HashtagView.swift */; };
 		8AA1E6C624D773E400AA1876 /* PickMediaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA1E6C524D773E400AA1876 /* PickMediaComponent.swift */; };
 		8AA1E6CA24D7874B00AA1876 /* PickMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA1E6C924D7874B00AA1876 /* PickMedia.swift */; };
 		8AA64B0824D69F600076CE43 /* PickMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA64B0724D69F600076CE43 /* PickMediaViewController.swift */; };
@@ -125,6 +126,7 @@
 		8A7DDB0B24D9154C0032175A /* PickMediaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaViewModel.swift; sourceTree = "<group>"; };
 		8A7DDB0D24DA6A9F0032175A /* PublishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishViewController.swift; sourceTree = "<group>"; };
 		8A7DDB0F24DA6BAB0032175A /* PublishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishView.swift; sourceTree = "<group>"; };
+		8A7DDB1224DD205A0032175A /* HashtagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagView.swift; sourceTree = "<group>"; };
 		8AA1E6C524D773E400AA1876 /* PickMediaComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaComponent.swift; sourceTree = "<group>"; };
 		8AA1E6C924D7874B00AA1876 /* PickMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMedia.swift; sourceTree = "<group>"; };
 		8AA64B0724D69F600076CE43 /* PickMediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
@@ -357,9 +359,18 @@
 			path = HomeComments;
 			sourceTree = "<group>";
 		};
+		8A7DDB1124DD19750032175A /* PublishView */ = {
+			isa = PBXGroup;
+			children = (
+				8A7DDB1224DD205A0032175A /* HashtagView.swift */,
+			);
+			path = PublishView;
+			sourceTree = "<group>";
+		};
 		8AA1E6C324D7737A00AA1876 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				8A7DDB1124DD19750032175A /* PublishView */,
 				8AA1E6C424D7739200AA1876 /* PickMedia */,
 			);
 			path = Components;
@@ -652,6 +663,7 @@
 				8AA1E6C624D773E400AA1876 /* PickMediaComponent.swift in Sources */,
 				8A14F96E24CA3D830012B92B /* ComponentCollectionViewCell.swift in Sources */,
 				8A14F96124CA3B3D0012B92B /* PressHighlightable.swift in Sources */,
+				8A7DDB1324DD205A0032175A /* HashtagView.swift in Sources */,
 				8A2E06D224CCA49800E195BE /* HomeCommentsView.swift in Sources */,
 				8A2533D624CAA9FC0014ACC1 /* PageControlComponent.swift in Sources */,
 				8AA64B0824D69F600076CE43 /* PickMediaViewController.swift in Sources */,

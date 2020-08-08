@@ -139,7 +139,7 @@ private extension PoemContentComponent {
             
             readMoreLabel.topAnchor.constraint(equalTo: poemContentStack.bottomAnchor, constant: Spacing.sixteen),
             readMoreLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
-            readMoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
+            readMoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour)
         ])
     }
     
