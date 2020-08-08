@@ -98,6 +98,7 @@ class PublishView: UIView {
         textfield.textColor = UIColor.AppColors.gray
         textfield.font = UIFont.main(size: 16)
         textfield.returnKeyType = .done
+        textfield.autocapitalizationType = .none
         return textfield
     }()
     
