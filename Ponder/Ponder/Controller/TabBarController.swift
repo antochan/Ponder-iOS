@@ -45,7 +45,7 @@ private extension TabBarController {
         let searchViewController = createViewController(vc: SearchViewController(), selectedImage: #imageLiteral(resourceName: "Search_Selected"), unselectedImage: #imageLiteral(resourceName: "Search_Unselected"))
         let addViewController = createViewController(vc: AddViewController(), selectedImage: #imageLiteral(resourceName: "Add_Selected"), unselectedImage: #imageLiteral(resourceName: "Add_Unselected"))
         let notificationViewController = createViewController(vc: NotificationViewController(), selectedImage: #imageLiteral(resourceName: "Bell_Selected"), unselectedImage: #imageLiteral(resourceName: "Bell_Unselected"))
-        let accountViewController = createViewController(vc: AccountViewController(), selectedImage: #imageLiteral(resourceName: "User_Selected"), unselectedImage: #imageLiteral(resourceName: "User_Unselected"))
+        let accountViewController = createViewController(vc: AccountViewController(pageType: .own), selectedImage: #imageLiteral(resourceName: "User_Selected"), unselectedImage: #imageLiteral(resourceName: "User_Unselected"))
         viewControllers = [homeViewController, searchViewController, addViewController, notificationViewController, accountViewController]
     }
     

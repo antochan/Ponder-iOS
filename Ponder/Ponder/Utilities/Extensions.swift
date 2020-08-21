@@ -36,6 +36,13 @@ public extension UIView {
             self.isHidden = false
         })
     }
+    
+    func createDividerView() -> UIView {
+        let view = UIView()
+        view.backgroundColor = UIColor.AppColors.lightGray
+        view.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        return view
+    }
 }
 
 public extension NSAttributedString {

@@ -9,6 +9,28 @@
 
 import UIKit
 
+public enum EmailSignupSteps: CaseIterable {
+    case enterEmail
+    case enterPassword
+    case enterHandle
+    
+    var listTextType: ListTextType {
+        switch self {
+        case .enterEmail:
+            return .email
+        case .enterPassword:
+            return .password
+        case .enterHandle:
+            return .username
+        }
+    }
+}
+
+public enum AccountPageType {
+    case own
+    case other
+}
+
 public enum AddViewConstants {
     static let poemPlaceholderText = "Start Writing"
     static let titlePlaceholderText = "Title"

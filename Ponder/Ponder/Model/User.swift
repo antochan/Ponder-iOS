@@ -12,6 +12,9 @@ struct User {
     let id: String
     let profilePicture: UIImage
     let username: String
+    let bio: String?
+    let followerCount: Int
+    let followingCount: Int
 }
 
 struct Comment {

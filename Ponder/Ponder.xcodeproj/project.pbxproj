@@ -47,6 +47,8 @@
 		8A7DDB0E24DA6A9F0032175A /* PublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB0D24DA6A9F0032175A /* PublishViewController.swift */; };
 		8A7DDB1024DA6BAB0032175A /* PublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB0F24DA6BAB0032175A /* PublishView.swift */; };
 		8A7DDB1324DD205A0032175A /* HashtagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB1224DD205A0032175A /* HashtagView.swift */; };
+		8A7DDB5524DF377F0032175A /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB5424DF377F0032175A /* AccountView.swift */; };
+		8A7DDB5924DF6F870032175A /* AccountHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB5824DF6F870032175A /* AccountHeaderView.swift */; };
 		8AA1E6C624D773E400AA1876 /* PickMediaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA1E6C524D773E400AA1876 /* PickMediaComponent.swift */; };
 		8AA1E6CA24D7874B00AA1876 /* PickMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA1E6C924D7874B00AA1876 /* PickMedia.swift */; };
 		8AA64B0824D69F600076CE43 /* PickMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA64B0724D69F600076CE43 /* PickMediaViewController.swift */; };
@@ -54,6 +56,12 @@
 		8AAA67F424CFDB3C00BAB060 /* HomeExpandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAA67F324CFDB3C00BAB060 /* HomeExpandView.swift */; };
 		8AAA67F624CFDB9400BAB060 /* HomeExpandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAA67F524CFDB9400BAB060 /* HomeExpandViewController.swift */; };
 		8AAACFB124D61BBE0039A0A8 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAACFB024D61BBE0039A0A8 /* AddView.swift */; };
+		8ADB598C24ECEFC8000AD321 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADB598B24ECEFC8000AD321 /* WelcomeViewController.swift */; };
+		8ADB598E24ECEFDB000AD321 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADB598D24ECEFDB000AD321 /* WelcomeView.swift */; };
+		8ADB599024ECF612000AD321 /* ListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADB598F24ECF612000AD321 /* ListComponent.swift */; };
+		8ADB599224EE1EDE000AD321 /* EmailSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADB599124EE1EDE000AD321 /* EmailSignupView.swift */; };
+		8ADB599424EE1EE9000AD321 /* EmailSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADB599324EE1EE9000AD321 /* EmailSignupViewController.swift */; };
+		8ADB599624EE4E15000AD321 /* ListTextComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADB599524EE4E15000AD321 /* ListTextComponent.swift */; };
 		EF745C57A8A96D536A5A075C /* Pods_Ponder_PonderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F4D8F2C360A5B6399C7E4E /* Pods_Ponder_PonderUITests.framework */; };
 		FDD3331AC28478B8C532DEFD /* Pods_PonderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFCB436CCD7E06EBACDBB32 /* Pods_PonderTests.framework */; };
 /* End PBXBuildFile section */
@@ -127,6 +135,8 @@
 		8A7DDB0D24DA6A9F0032175A /* PublishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishViewController.swift; sourceTree = "<group>"; };
 		8A7DDB0F24DA6BAB0032175A /* PublishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishView.swift; sourceTree = "<group>"; };
 		8A7DDB1224DD205A0032175A /* HashtagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagView.swift; sourceTree = "<group>"; };
+		8A7DDB5424DF377F0032175A /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		8A7DDB5824DF6F870032175A /* AccountHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountHeaderView.swift; sourceTree = "<group>"; };
 		8AA1E6C524D773E400AA1876 /* PickMediaComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaComponent.swift; sourceTree = "<group>"; };
 		8AA1E6C924D7874B00AA1876 /* PickMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMedia.swift; sourceTree = "<group>"; };
 		8AA64B0724D69F600076CE43 /* PickMediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +144,12 @@
 		8AAA67F324CFDB3C00BAB060 /* HomeExpandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeExpandView.swift; sourceTree = "<group>"; };
 		8AAA67F524CFDB9400BAB060 /* HomeExpandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeExpandViewController.swift; sourceTree = "<group>"; };
 		8AAACFB024D61BBE0039A0A8 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		8ADB598B24ECEFC8000AD321 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		8ADB598D24ECEFDB000AD321 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		8ADB598F24ECF612000AD321 /* ListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListComponent.swift; sourceTree = "<group>"; };
+		8ADB599124EE1EDE000AD321 /* EmailSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignupView.swift; sourceTree = "<group>"; };
+		8ADB599324EE1EE9000AD321 /* EmailSignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignupViewController.swift; sourceTree = "<group>"; };
+		8ADB599524EE4E15000AD321 /* ListTextComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTextComponent.swift; sourceTree = "<group>"; };
 		9723BC56F014973C3DDCD89D /* Pods-Ponder-PonderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ponder-PonderUITests.debug.xcconfig"; path = "Target Support Files/Pods-Ponder-PonderUITests/Pods-Ponder-PonderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CDCBDD22F9F6C51A41AD9E53 /* Pods-Ponder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ponder.release.xcconfig"; path = "Target Support Files/Pods-Ponder/Pods-Ponder.release.xcconfig"; sourceTree = "<group>"; };
 		D1F4D8F2C360A5B6399C7E4E /* Pods_Ponder_PonderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ponder_PonderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,11 +255,12 @@
 			isa = PBXGroup;
 			children = (
 				8A14F95224C958A60012B92B /* TabBarController.swift */,
+				8ADB598A24ECEEB0000AD321 /* Auth */,
 				8A2E06CE24CCA3C200E195BE /* Home */,
+				8ADB598824ECEE98000AD321 /* Search */,
 				8AAACFAF24D61B5B0039A0A8 /* Add */,
-				8A14F95624C95B6E0012B92B /* SearchViewController.swift */,
-				8A14F95A24C969CC0012B92B /* NotificationViewController.swift */,
-				8A14F95C24C96B690012B92B /* AccountViewController.swift */,
+				8ADB598924ECEEA2000AD321 /* Notification */,
+				8A7DDB5624DF397C0032175A /* Account */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -259,8 +276,10 @@
 		8A14F94E24C953B30012B92B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8ADB598724ECEE7F000AD321 /* Auth */,
 				8A14F97724CA42060012B92B /* Home */,
 				8AAACFAE24D61B4C0039A0A8 /* Add */,
+				8A7DDB5324DF36900032175A /* Account */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -293,6 +312,8 @@
 				8A14F96D24CA3D830012B92B /* ComponentCollectionViewCell.swift */,
 				8A14F96F24CA3DAC0012B92B /* ComponentTableViewCell.swift */,
 				8A14F97124CA3DBC0012B92B /* ButtonComponent.swift */,
+				8ADB598F24ECF612000AD321 /* ListComponent.swift */,
+				8ADB599524EE4E15000AD321 /* ListTextComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -367,6 +388,31 @@
 			path = PublishView;
 			sourceTree = "<group>";
 		};
+		8A7DDB5324DF36900032175A /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				8A7DDB5724DF605F0032175A /* Component */,
+				8A7DDB5424DF377F0032175A /* AccountView.swift */,
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
+		8A7DDB5624DF397C0032175A /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				8A14F95C24C96B690012B92B /* AccountViewController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		8A7DDB5724DF605F0032175A /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				8A7DDB5824DF6F870032175A /* AccountHeaderView.swift */,
+			);
+			name = Component;
+			sourceTree = "<group>";
+		};
 		8AA1E6C324D7737A00AA1876 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -403,6 +449,40 @@
 				8A7DDB0D24DA6A9F0032175A /* PublishViewController.swift */,
 			);
 			path = Add;
+			sourceTree = "<group>";
+		};
+		8ADB598724ECEE7F000AD321 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				8ADB598D24ECEFDB000AD321 /* WelcomeView.swift */,
+				8ADB599124EE1EDE000AD321 /* EmailSignupView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		8ADB598824ECEE98000AD321 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				8A14F95624C95B6E0012B92B /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		8ADB598924ECEEA2000AD321 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				8A14F95A24C969CC0012B92B /* NotificationViewController.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		8ADB598A24ECEEB0000AD321 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				8ADB598B24ECEFC8000AD321 /* WelcomeViewController.swift */,
+				8ADB599324EE1EE9000AD321 /* EmailSignupViewController.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		ACA462083AA40FC491EEE654 /* Pods */ = {
@@ -671,7 +751,10 @@
 				8A14F96B24CA3CE90012B92B /* HomeView.swift in Sources */,
 				8A7DDB1024DA6BAB0032175A /* PublishView.swift in Sources */,
 				8A32C5DB24CE4F5000A8D2DE /* CommentTextFieldComponent.swift in Sources */,
+				8ADB599424EE1EE9000AD321 /* EmailSignupViewController.swift in Sources */,
+				8A7DDB5924DF6F870032175A /* AccountHeaderView.swift in Sources */,
 				8AA64B0A24D6A12B0076CE43 /* PickMediaView.swift in Sources */,
+				8A7DDB5524DF377F0032175A /* AccountView.swift in Sources */,
 				8A32C5D724CD581300A8D2DE /* User.swift in Sources */,
 				8A14F96524CA3B600012B92B /* Pressable.swift in Sources */,
 				8A14F95D24C96B690012B92B /* AccountViewController.swift in Sources */,
@@ -687,16 +770,21 @@
 				8A14F96724CA3B8C0012B92B /* Colors.swift in Sources */,
 				8A14F97424CA3E640012B92B /* Extensions.swift in Sources */,
 				8A14F91D24C9533E0012B92B /* AppDelegate.swift in Sources */,
+				8ADB598E24ECEFDB000AD321 /* WelcomeView.swift in Sources */,
 				8A14F91F24C9533E0012B92B /* SceneDelegate.swift in Sources */,
 				8A14F96924CA3C0F0012B92B /* Constants.swift in Sources */,
 				8A14F97624CA3FDD0012B92B /* Fonts.swift in Sources */,
+				8ADB598C24ECEFC8000AD321 /* WelcomeViewController.swift in Sources */,
 				8A14F95F24CA3B160012B92B /* Components.swift in Sources */,
 				8A14F97024CA3DAC0012B92B /* ComponentTableViewCell.swift in Sources */,
 				8A2E06D024CCA43900E195BE /* HomeCommentsViewController.swift in Sources */,
+				8ADB599624EE4E15000AD321 /* ListTextComponent.swift in Sources */,
+				8ADB599224EE1EDE000AD321 /* EmailSignupView.swift in Sources */,
 				8A2533CF24CA82CD0014ACC1 /* PoemCarouselComponent.swift in Sources */,
 				8A14F95524C95B5A0012B92B /* HomeViewController.swift in Sources */,
 				8A7DDB0C24D9154C0032175A /* PickMediaViewModel.swift in Sources */,
 				8A2533D324CA8A770014ACC1 /* PoemDetailsComponent.swift in Sources */,
+				8ADB599024ECF612000AD321 /* ListComponent.swift in Sources */,
 				8AAA67F624CFDB9400BAB060 /* HomeExpandViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

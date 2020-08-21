@@ -21,6 +21,10 @@ extension UIFont {
         return UIFont(name: "HelveticaNeue", size: size)!
     }
     
+    class func mainItalic(size: CGFloat) -> UIFont {
+        return UIFont(name: "HelveticaNeue-Italic", size: size)!
+    }
+    
     class func mainBold(size: CGFloat) -> UIFont {
         return UIFont(name: "HelveticaNeue-Bold", size: size)!
     }

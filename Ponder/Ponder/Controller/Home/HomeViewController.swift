@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    let mockUser = User(id: "123", profilePicture: #imageLiteral(resourceName: "Me copy"), username: "AntoGOV")
+    let mockUser = User(id: "123", profilePicture: #imageLiteral(resourceName: "Me copy"), username: "AntoGOV", bio: "Coder at heart", followerCount: 12, followingCount: 42)
     
     let mockPoemData: PoemCarouselData = PoemCarouselData(poems: [
         Poem(id: "1",
@@ -26,8 +26,8 @@ class HomeViewController: UIViewController {
              title: "When designer forgets to tell you about Title",
              poemContent: "you fit into me\nlike a hook into an eye\na fish hook\nan open eye\ntest new line\nthis is 6th line\nthisis 7th line!\na fish hook\na fish hook\na fish hook\na fish hook",
              poemTags: ["#Fish", "#Swag", "#Eyes", "#Simple", "#DailyPoetry", "#Inspiration"],
-             comments: [Comment(user: User(id: "1", profilePicture: #imageLiteral(resourceName: "User_Unselected"), username: "Hiroo Aoy."), comment: "Amazing, super inspirational! Lets test a super long comments see what happens!"),
-                        Comment(user: User(id: "2", profilePicture: #imageLiteral(resourceName: "User_Unselected"), username: "Antochan101"), comment: "^Agreed! Amazing poem!!")],
+             comments: [Comment(user: User(id: "1", profilePicture: #imageLiteral(resourceName: "User_Unselected"), username: "HirooAoy", bio: "Designer at heart", followerCount: 12, followingCount: 42), comment: "Great poen!!"),
+                        Comment(user: User(id: "2", profilePicture: #imageLiteral(resourceName: "User_Unselected"), username: "AntoGOV", bio: "Coder at heart", followerCount: 12, followingCount: 42), comment: "^Agreed!, Great poen!!")],
              author: "Antonio",
              likes: 10),
         Poem(id: "2",
