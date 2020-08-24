@@ -9,8 +9,8 @@
 
 import UIKit
 
-public enum EmailSignupSteps: CaseIterable {
-    case enterEmail
+public enum EmailSignupSteps: Int, CaseIterable {
+    case enterEmail = 1
     case enterPassword
     case enterHandle
     
@@ -24,6 +24,16 @@ public enum EmailSignupSteps: CaseIterable {
             return .username
         }
     }
+//    
+//    func getListTextType(index: Int) -> ListTextType {
+//        if index == 1 {
+//            return .email
+//        } else if index == 2 {
+//            return .password
+//        } else {
+//            return .username
+//        }
+//    }
 }
 
 public enum AccountPageType {

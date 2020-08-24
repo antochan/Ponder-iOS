@@ -202,3 +202,10 @@ extension String {
         return count
     }
 }
+
+extension UIButton {
+    func makeEnabled(_ shouldEnable: Bool) {
+        isEnabled = shouldEnable
+        setTitleColor(shouldEnable ? .black : UIColor.AppColors.gray, for: .normal)
+    }
+}

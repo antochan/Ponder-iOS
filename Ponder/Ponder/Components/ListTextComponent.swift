@@ -15,6 +15,10 @@ enum ListTextStyle {
     case noDividers
 }
 
+protocol ListTextDelegate: AnyObject {
+    func enteredText(text: String, listTextType: ListTextType)
+}
+
 public enum ListTextType {
     case email
     case password
@@ -41,9 +45,20 @@ public enum ListTextType {
             return "Username"
         }
     }
+    
+    public var shouldSecureEntry: Bool {
+        switch self {
+        case .password:
+            return true
+        default:
+            return false
+        }
+    }
 }
 
 class ListTextComponent: UIView, Component, Reusable {
+    weak var delegate: ListTextDelegate?
+    private var listTextType: ListTextType?
     private var placeholder = ""
     
     struct ViewModel {
@@ -79,6 +94,7 @@ class ListTextComponent: UIView, Component, Reusable {
         textView.textColor = UIColor.AppColors.lightGray
         textView.isScrollEnabled = false
         textView.font = UIFont.main(size: 16)
+        textView.autocapitalizationType = .none
         return textView
     }()
     
@@ -106,9 +122,12 @@ class ListTextComponent: UIView, Component, Reusable {
     }
     
     func apply(viewModel: ViewModel) {
+        listTextType = viewModel.listTextType
         placeholder = viewModel.listTextType.placeholderText
         titleLabel.text = viewModel.listTextType.titleText
         listTextField.text = viewModel.listTextType.placeholderText
+        
+        listTextField.isSecureTextEntry = viewModel.listTextType.shouldSecureEntry
         
         switch viewModel.listTextStyle {
         case .bothDividers:
@@ -172,6 +191,9 @@ extension ListTextComponent: UITextViewDelegate {
         if textView.text == "" {
             textView.text = placeholder
             textView.textColor = UIColor.AppColors.lightGray
+        } else {
+            guard let textType = listTextType else { return }
+            delegate?.enteredText(text: textView.text, listTextType: textType)
         }
     }
 }

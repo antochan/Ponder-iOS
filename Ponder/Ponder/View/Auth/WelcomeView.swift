@@ -34,14 +34,10 @@ class WelcomeView: UIView {
         return listComponent
     }()
     
-    let haveAnAccountLoginLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
-        label.textAlignment = .center
-        label.font = UIFont.main(size: 15)
-        label.text = "Have an account? Log in"
-        return label
+    let loginListComponent: ListComponent = {
+        let listComponent = ListComponent()
+        listComponent.apply(viewModel: ListComponent.ViewModel(title: "Have an account? Log in"))
+        return listComponent
     }()
 
     override init(frame: CGRect) {
@@ -64,8 +60,8 @@ private extension WelcomeView {
     }
     
     func configureSubviews() {
-        addSubviews(titleLabel, welcomeOptionsStack, haveAnAccountLoginLabel)
-        welcomeOptionsStack.addArrangedSubviews(createDividerView(), signUpWithEmail, createDividerView())
+        addSubviews(titleLabel, welcomeOptionsStack)
+        welcomeOptionsStack.addArrangedSubviews(createDividerView(), signUpWithEmail, createDividerView(), loginListComponent, createDividerView())
     }
     
     func configureLayout() {
@@ -76,10 +72,7 @@ private extension WelcomeView {
             
             welcomeOptionsStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: UIScreen.main.bounds.height * 0.1),
             welcomeOptionsStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.twentyFour),
-            welcomeOptionsStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour),
-            
-            haveAnAccountLoginLabel.topAnchor.constraint(equalTo: welcomeOptionsStack.bottomAnchor, constant: UIScreen.main.bounds.height * 0.15),
-            haveAnAccountLoginLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+            welcomeOptionsStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.twentyFour)
         ])
     }
 }

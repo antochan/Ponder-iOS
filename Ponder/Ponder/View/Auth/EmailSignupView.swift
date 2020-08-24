@@ -22,7 +22,6 @@ class EmailSignupView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Next", for: .normal)
         button.titleLabel?.font = UIFont.main(size: 16)
-        button.setTitleColor(UIColor.AppColors.gray, for: .normal)
         return button
     }()
     
@@ -68,6 +67,8 @@ class EmailSignupView: UIView {
         collectionView.isPagingEnabled = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .white
+        collectionView.isScrollEnabled = false
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
     
@@ -80,7 +81,7 @@ class EmailSignupView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateStepLabel(step: Int, totalSteps: Int) {
+    func updateView(step: Int, totalSteps: Int) {
         subtitleLabel.text = "Step \(step) out \(totalSteps)"
     }
 }
