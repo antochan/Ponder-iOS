@@ -16,6 +16,10 @@ class EmailSignupViewController: UIViewController {
         }
     }
     
+    private var email = ""
+    private var password = ""
+    private var username = ""
+    
     override func loadView() {
         super.loadView()
         view = emailSignupView
@@ -23,8 +27,8 @@ class EmailSignupViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideKeyboardWhenTappedAround(shouldEnableToolbar: true)
-        emailSignupView.nextButton.makeEnabled(false)
+        hideKeyboardWhenTappedAround(shouldEnableToolbar: false)
+        configureNextButton()
         emailSignupView.updateView(step: currentPage, totalSteps: EmailSignupSteps.allCases.count)
         setupCollectionView()
         configureActions()
@@ -47,16 +51,30 @@ class EmailSignupViewController: UIViewController {
         } else {
             let indexPath = IndexPath(row: currentPage - 2, section: 0)
             emailSignupView.collectionView.scrollToItem(at: indexPath, at: [.centeredVertically, .centeredHorizontally], animated: true)
-            emailSignupView.nextButton.makeEnabled(true)
         }
         currentPage -= 1
+        configureNextButton()
     }
     
     @objc func nextTapped() {
-        let indexPath = IndexPath(row: currentPage, section: 0)
-        emailSignupView.collectionView.scrollToItem(at: indexPath, at: [.centeredVertically, .centeredHorizontally], animated: true)
-        emailSignupView.nextButton.makeEnabled(false)
-        currentPage += 1
+        if currentPage == EmailSignupSteps.allCases.count {
+            print("email: \(email), password \(password), username \(username)")
+        } else {
+            let indexPath = IndexPath(row: currentPage, section: 0)
+            emailSignupView.collectionView.scrollToItem(at: indexPath, at: [.centeredVertically, .centeredHorizontally], animated: true)
+            currentPage += 1
+        }
+        configureNextButton()
+    }
+    
+    func configureNextButton() {
+        if currentPage == 1 {
+            emailSignupView.nextButton.makeEnabled(email != "")
+        } else if currentPage == 2 {
+            emailSignupView.nextButton.makeEnabled(password != "")
+        } else {
+            emailSignupView.nextButton.makeEnabled(username != "")
+        }
     }
 }
 
@@ -96,7 +114,14 @@ extension EmailSignupViewController: UICollectionViewDelegate, UICollectionViewD
 
 extension EmailSignupViewController: ListTextDelegate {
     func enteredText(text: String, listTextType: ListTextType) {
-        print(listTextType)
-        emailSignupView.nextButton.makeEnabled(true)
+        switch listTextType {
+        case .email:
+            email = text
+        case .password:
+            password = text
+        case .username:
+            username = text
+        }
+        configureNextButton()
     }
 }

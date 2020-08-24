@@ -88,11 +88,10 @@ class ListTextComponent: UIView, Component, Reusable {
         return label
     }()
     
-    private let listTextField: UITextView = {
-        let textView = UITextView()
+    private let listTextField: UITextField = {
+        let textView = UITextField()
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.textColor = UIColor.AppColors.lightGray
-        textView.isScrollEnabled = false
+        textView.textColor = .black
         textView.font = UIFont.main(size: 16)
         textView.autocapitalizationType = .none
         return textView
@@ -125,7 +124,7 @@ class ListTextComponent: UIView, Component, Reusable {
         listTextType = viewModel.listTextType
         placeholder = viewModel.listTextType.placeholderText
         titleLabel.text = viewModel.listTextType.titleText
-        listTextField.text = viewModel.listTextType.placeholderText
+        listTextField.placeholder = viewModel.listTextType.placeholderText
         
         listTextField.isSecureTextEntry = viewModel.listTextType.shouldSecureEntry
         
@@ -177,23 +176,26 @@ private extension ListTextComponent {
     }
 }
 
-//MARK: - TextView Delegate
+//MARK: - TextField Delegate
 
-extension ListTextComponent: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.AppColors.lightGray {
-            textView.text = nil
-            textView.textColor = .black
+extension ListTextComponent: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if listTextType == .username {
+            textField.text = "@"
         }
     }
     
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text == "" {
-            textView.text = placeholder
-            textView.textColor = UIColor.AppColors.lightGray
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        guard let enteredText = textField.text else {
+            textField.text = placeholder
+            return
+        }
+        guard let textType = listTextType else { return }
+        if enteredText == "" || enteredText == "@" {
+            textField.text = nil
+            delegate?.enteredText(text: "", listTextType: textType)
         } else {
-            guard let textType = listTextType else { return }
-            delegate?.enteredText(text: textView.text, listTextType: textType)
+            delegate?.enteredText(text: enteredText, listTextType: textType)
         }
     }
 }

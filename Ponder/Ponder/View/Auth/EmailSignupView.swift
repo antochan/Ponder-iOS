@@ -20,7 +20,6 @@ class EmailSignupView: UIView {
     let nextButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Next", for: .normal)
         button.titleLabel?.font = UIFont.main(size: 16)
         return button
     }()
@@ -83,6 +82,11 @@ class EmailSignupView: UIView {
     
     func updateView(step: Int, totalSteps: Int) {
         subtitleLabel.text = "Step \(step) out \(totalSteps)"
+        if step == EmailSignupSteps.allCases.count {
+            nextButton.setTitle("Finish", for: .normal)
+        } else {
+            nextButton.setTitle("Next", for: .normal)
+        }
     }
 }
 
