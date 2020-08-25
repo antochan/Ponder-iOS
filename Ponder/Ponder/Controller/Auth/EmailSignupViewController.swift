@@ -51,8 +51,8 @@ class EmailSignupViewController: UIViewController {
         } else {
             let indexPath = IndexPath(row: currentPage - 2, section: 0)
             emailSignupView.collectionView.scrollToItem(at: indexPath, at: [.centeredVertically, .centeredHorizontally], animated: true)
+            currentPage -= 1
         }
-        currentPage -= 1
         configureNextButton()
     }
     
