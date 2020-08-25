@@ -111,6 +111,15 @@ class ListTextComponent: UIView, Component, Reusable {
         return view
     }()
     
+    private let atHandlerLabel: UILabel = {
+        let label = UILabel()
+        label.text = "@ "
+        label.sizeToFit()
+        label.font = UIFont.main(size: 16)
+        label.textColor = .black
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -127,6 +136,8 @@ class ListTextComponent: UIView, Component, Reusable {
         listTextField.placeholder = viewModel.listTextType.placeholderText
         
         listTextField.isSecureTextEntry = viewModel.listTextType.shouldSecureEntry
+        listTextField.leftView = listTextType == .username ? atHandlerLabel : nil
+        listTextField.leftViewMode = .always
         
         switch viewModel.listTextStyle {
         case .bothDividers:
@@ -179,19 +190,13 @@ private extension ListTextComponent {
 //MARK: - TextField Delegate
 
 extension ListTextComponent: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if listTextType == .username {
-            textField.text = "@"
-        }
-    }
-    
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         guard let enteredText = textField.text else {
             textField.text = placeholder
             return
         }
         guard let textType = listTextType else { return }
-        if enteredText == "" || enteredText == "@" {
+        if enteredText == "" {
             textField.text = nil
             delegate?.enteredText(text: "", listTextType: textType)
         } else {

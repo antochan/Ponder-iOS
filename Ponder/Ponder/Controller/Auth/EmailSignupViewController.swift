@@ -24,7 +24,7 @@ class EmailSignupViewController: UIViewController {
         super.loadView()
         view = emailSignupView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround(shouldEnableToolbar: false)
@@ -39,7 +39,7 @@ class EmailSignupViewController: UIViewController {
         emailSignupView.collectionView.delegate = self
         emailSignupView.collectionView.dataSource = self
     }
-
+    
     func configureActions() {
         emailSignupView.backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
         emailSignupView.nextButton.addTarget(self, action: #selector(nextTapped), for: .touchUpInside)
@@ -57,13 +57,28 @@ class EmailSignupViewController: UIViewController {
     }
     
     @objc func nextTapped() {
-        if currentPage == EmailSignupSteps.allCases.count {
-            print("email: \(email), password \(password), username \(username)")
-        } else {
-            let indexPath = IndexPath(row: currentPage, section: 0)
-            emailSignupView.collectionView.scrollToItem(at: indexPath, at: [.centeredVertically, .centeredHorizontally], animated: true)
-            currentPage += 1
+        // Email Validation
+        if currentPage == EmailSignupSteps.enterEmail.rawValue {
+            validateEmail()
         }
+        // Password Validation
+        else if currentPage == EmailSignupSteps.enterPassword.rawValue {
+            validatePassword()
+        }
+        // Username Validation
+        else if currentPage == EmailSignupSteps.allCases.count {
+            validateUsername()
+        }
+        // Unknown Case
+        else {
+            return
+        }
+    }
+    
+    func continueToNextStep() {
+        let indexPath = IndexPath(row: currentPage, section: 0)
+        emailSignupView.collectionView.scrollToItem(at: indexPath, at: [.centeredVertically, .centeredHorizontally], animated: true)
+        currentPage += 1
         configureNextButton()
     }
     
@@ -74,6 +89,30 @@ class EmailSignupViewController: UIViewController {
             emailSignupView.nextButton.makeEnabled(password != "")
         } else {
             emailSignupView.nextButton.makeEnabled(username != "")
+        }
+    }
+    
+    func validateEmail() {
+        if email.isValidEmail() {
+            continueToNextStep()
+        } else {
+            displayAlert(message: "Badly formatted email. Make sure to enter a valid email!", title: "Invalid Email")
+        }
+    }
+    
+    func validatePassword() {
+        if password.count > 5 {
+            continueToNextStep()
+        } else {
+            displayAlert(message: "Please make sure your password is at least 5 characters long.", title: "Invalid Password")
+        }
+    }
+    
+    func validateUsername() {
+        if username.count > 20 {
+            displayAlert(message: "Please make sure your username is less than 20 characters long.", title: "Invalid Username")
+        } else {
+            print("email: \(email), password \(password), username \(username)")
         }
     }
 }
