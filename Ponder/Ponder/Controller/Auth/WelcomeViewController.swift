@@ -30,7 +30,7 @@ class WelcomeViewController: UIViewController {
     }
     
     func presentEmailSignup() {
-        let emailSignupViewController = EmailSignupViewController()
+        let emailSignupViewController = EmailSignupViewController(authService: AuthService())
         emailSignupViewController.isHeroEnabled = true
         emailSignupViewController.modalPresentationStyle = .fullScreen
         present(emailSignupViewController, animated: true)

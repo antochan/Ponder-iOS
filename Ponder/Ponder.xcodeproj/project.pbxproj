@@ -49,6 +49,13 @@
 		8A7DDB1324DD205A0032175A /* HashtagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB1224DD205A0032175A /* HashtagView.swift */; };
 		8A7DDB5524DF377F0032175A /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB5424DF377F0032175A /* AccountView.swift */; };
 		8A7DDB5924DF6F870032175A /* AccountHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB5824DF6F870032175A /* AccountHeaderView.swift */; };
+		8A81166B24F5FDD4001BB929 /* GenericAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81166A24F5FDD4001BB929 /* GenericAPI.swift */; };
+		8A81166D24F5FDFF001BB929 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81166C24F5FDFF001BB929 /* APIError.swift */; };
+		8A81166F24F5FE15001BB929 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81166E24F5FE15001BB929 /* Result.swift */; };
+		8A81167124F5FE3D001BB929 /* HTTPMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81167024F5FE3D001BB929 /* HTTPMethods.swift */; };
+		8A81167324F5FE55001BB929 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81167224F5FE55001BB929 /* HTTPHeader.swift */; };
+		8A81167524F60286001BB929 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81167424F60286001BB929 /* Endpoint.swift */; };
+		8A81167824F60BA9001BB929 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81167724F60BA9001BB929 /* AuthService.swift */; };
 		8AA1E6C624D773E400AA1876 /* PickMediaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA1E6C524D773E400AA1876 /* PickMediaComponent.swift */; };
 		8AA1E6CA24D7874B00AA1876 /* PickMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA1E6C924D7874B00AA1876 /* PickMedia.swift */; };
 		8AA64B0824D69F600076CE43 /* PickMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA64B0724D69F600076CE43 /* PickMediaViewController.swift */; };
@@ -137,6 +144,13 @@
 		8A7DDB1224DD205A0032175A /* HashtagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagView.swift; sourceTree = "<group>"; };
 		8A7DDB5424DF377F0032175A /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		8A7DDB5824DF6F870032175A /* AccountHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountHeaderView.swift; sourceTree = "<group>"; };
+		8A81166A24F5FDD4001BB929 /* GenericAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericAPI.swift; sourceTree = "<group>"; };
+		8A81166C24F5FDFF001BB929 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		8A81166E24F5FE15001BB929 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		8A81167024F5FE3D001BB929 /* HTTPMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethods.swift; sourceTree = "<group>"; };
+		8A81167224F5FE55001BB929 /* HTTPHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeader.swift; sourceTree = "<group>"; };
+		8A81167424F60286001BB929 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		8A81167724F60BA9001BB929 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		8AA1E6C524D773E400AA1876 /* PickMediaComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaComponent.swift; sourceTree = "<group>"; };
 		8AA1E6C924D7874B00AA1876 /* PickMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMedia.swift; sourceTree = "<group>"; };
 		8AA64B0724D69F600076CE43 /* PickMediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +232,7 @@
 		8A14F91B24C9533D0012B92B /* Ponder */ = {
 			isa = PBXGroup;
 			children = (
+				8A81166724F5F91A001BB929 /* WebService */,
 				8A14F95124C953C50012B92B /* Components */,
 				8A14F94F24C953B80012B92B /* Model */,
 				8A14F94E24C953B30012B92B /* View */,
@@ -411,6 +426,28 @@
 				8A7DDB5824DF6F870032175A /* AccountHeaderView.swift */,
 			);
 			name = Component;
+			sourceTree = "<group>";
+		};
+		8A81166724F5F91A001BB929 /* WebService */ = {
+			isa = PBXGroup;
+			children = (
+				8A81167724F60BA9001BB929 /* AuthService.swift */,
+				8A81167624F60B9A001BB929 /* Helpers */,
+			);
+			path = WebService;
+			sourceTree = "<group>";
+		};
+		8A81167624F60B9A001BB929 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8A81166A24F5FDD4001BB929 /* GenericAPI.swift */,
+				8A81166C24F5FDFF001BB929 /* APIError.swift */,
+				8A81166E24F5FE15001BB929 /* Result.swift */,
+				8A81167024F5FE3D001BB929 /* HTTPMethods.swift */,
+				8A81167224F5FE55001BB929 /* HTTPHeader.swift */,
+				8A81167424F60286001BB929 /* Endpoint.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		8AA1E6C324D7737A00AA1876 /* Components */ = {
@@ -736,11 +773,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A81166F24F5FE15001BB929 /* Result.swift in Sources */,
 				8A14F95724C95B6E0012B92B /* SearchViewController.swift in Sources */,
 				8A32C5D924CD5C0700A8D2DE /* CommentsComponent.swift in Sources */,
 				8A14F95324C958A60012B92B /* TabBarController.swift in Sources */,
 				8A32C5D524CD57F700A8D2DE /* CommentsTableViewComponent.swift in Sources */,
 				8AA1E6C624D773E400AA1876 /* PickMediaComponent.swift in Sources */,
+				8A81167824F60BA9001BB929 /* AuthService.swift in Sources */,
 				8A14F96E24CA3D830012B92B /* ComponentCollectionViewCell.swift in Sources */,
 				8A14F96124CA3B3D0012B92B /* PressHighlightable.swift in Sources */,
 				8A7DDB1324DD205A0032175A /* HashtagView.swift in Sources */,
@@ -757,11 +796,13 @@
 				8A7DDB5524DF377F0032175A /* AccountView.swift in Sources */,
 				8A32C5D724CD581300A8D2DE /* User.swift in Sources */,
 				8A14F96524CA3B600012B92B /* Pressable.swift in Sources */,
+				8A81166B24F5FDD4001BB929 /* GenericAPI.swift in Sources */,
 				8A14F95D24C96B690012B92B /* AccountViewController.swift in Sources */,
 				8A14F97224CA3DBC0012B92B /* ButtonComponent.swift in Sources */,
 				8A14F96324CA3B500012B92B /* PressScalable.swift in Sources */,
 				8A14F95924C964790012B92B /* AddViewController.swift in Sources */,
 				8A7DDB0E24DA6A9F0032175A /* PublishViewController.swift in Sources */,
+				8A81166D24F5FDFF001BB929 /* APIError.swift in Sources */,
 				8A2533D124CA83E30014ACC1 /* Poem.swift in Sources */,
 				8AA1E6CA24D7874B00AA1876 /* PickMedia.swift in Sources */,
 				8A14F95B24C969CC0012B92B /* NotificationViewController.swift in Sources */,
@@ -775,6 +816,7 @@
 				8A14F96924CA3C0F0012B92B /* Constants.swift in Sources */,
 				8A14F97624CA3FDD0012B92B /* Fonts.swift in Sources */,
 				8ADB598C24ECEFC8000AD321 /* WelcomeViewController.swift in Sources */,
+				8A81167524F60286001BB929 /* Endpoint.swift in Sources */,
 				8A14F95F24CA3B160012B92B /* Components.swift in Sources */,
 				8A14F97024CA3DAC0012B92B /* ComponentTableViewCell.swift in Sources */,
 				8A2E06D024CCA43900E195BE /* HomeCommentsViewController.swift in Sources */,
@@ -783,7 +825,9 @@
 				8A2533CF24CA82CD0014ACC1 /* PoemCarouselComponent.swift in Sources */,
 				8A14F95524C95B5A0012B92B /* HomeViewController.swift in Sources */,
 				8A7DDB0C24D9154C0032175A /* PickMediaViewModel.swift in Sources */,
+				8A81167124F5FE3D001BB929 /* HTTPMethods.swift in Sources */,
 				8A2533D324CA8A770014ACC1 /* PoemDetailsComponent.swift in Sources */,
+				8A81167324F5FE55001BB929 /* HTTPHeader.swift in Sources */,
 				8ADB599024ECF612000AD321 /* ListComponent.swift in Sources */,
 				8AAA67F624CFDB9400BAB060 /* HomeExpandViewController.swift in Sources */,
 			);

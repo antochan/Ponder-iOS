@@ -9,16 +9,28 @@
 import UIKit
 
 class EmailSignupViewController: UIViewController {
-    let emailSignupView = EmailSignupView()
-    var currentPage: Int = 1 {
+    private let authService: AuthService
+    private let emailSignupView = EmailSignupView()
+    private var email = ""
+    private var password = ""
+    private var username = ""
+    
+    private var currentPage: Int = 1 {
         didSet {
             emailSignupView.updateView(step: currentPage, totalSteps: EmailSignupSteps.allCases.count)
         }
     }
     
-    private var email = ""
-    private var password = ""
-    private var username = ""
+
+    
+    init(authService: AuthService) {
+        self.authService = authService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
@@ -112,7 +124,14 @@ class EmailSignupViewController: UIViewController {
         if username.count > 20 {
             displayAlert(message: "Please make sure your username is less than 20 characters long.", title: "Invalid Username")
         } else {
-            print("email: \(email), password \(password), username \(username)")
+            authService.signUp(signInData: ["email": email, "password": password, "username": username]) { result in
+                switch result {
+                case .success(let signInId):
+                    print(signInId.id)
+                case .failure(let error):
+                    print(error)
+                }
+            }
         }
     }
 }
