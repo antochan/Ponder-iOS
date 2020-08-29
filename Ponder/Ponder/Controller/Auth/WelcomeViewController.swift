@@ -36,15 +36,15 @@ class WelcomeViewController: UIViewController {
     
     func presentEmailSignup() {
         let emailSignupViewController = EmailSignupViewController(authService: AuthService())
-        emailSignupViewController.isHeroEnabled = true
-        emailSignupViewController.modalPresentationStyle = .fullScreen
+        emailSignupViewController.modalTransitionStyle = .crossDissolve
+        emailSignupViewController.modalPresentationStyle = .overCurrentContext
         present(emailSignupViewController, animated: true)
     }
     
     func presentLogin() {
         let loginViewController = LoginViewController(authService: AuthService())
-        loginViewController.isHeroEnabled = true
-        loginViewController.modalPresentationStyle = .fullScreen
+        loginViewController.modalTransitionStyle = .crossDissolve
+        loginViewController.modalPresentationStyle = .overCurrentContext
         present(loginViewController, animated: true)
     }
 }

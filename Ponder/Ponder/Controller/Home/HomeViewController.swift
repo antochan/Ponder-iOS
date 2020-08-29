@@ -113,8 +113,12 @@ extension HomeViewController: HomePageDelegate {
     func iconTapped(buttonType: HomeIconType) {
         switch buttonType {
         case .like:
-            Vibration.light.vibrate()
-            print(mockPoemData.poems[currentPage - 1])
+            if HTTPCookieStorage.shared.cookies?.count ?? 0 < 2 {
+                present(WelcomeViewController(), animated: true)
+            } else {
+                Vibration.light.vibrate()
+                print(mockPoemData.poems[currentPage - 1])
+            }
         case .comments:
             Vibration.light.vibrate()
             homeView.setupHeroId(shouldAddHero: true, currentPage: currentPage)

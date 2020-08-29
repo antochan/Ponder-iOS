@@ -149,15 +149,22 @@ class EmailSignupViewController: UIViewController {
             guard let strongSelf = self else { return }
             switch result {
             case .success(let loginObject):
-                guard let id = loginObject.id else {
+                guard let _ = loginObject.id else {
                     strongSelf.displayAlert(message: "\(loginObject.error ?? ErrorConstants.unknownErrorText)", title: ErrorConstants.invalidLogin)
                     return
                 }
-                print(id)
-                print(HTTPCookieStorage.shared.cookies)
+                strongSelf.validateUserSessionCookes()
             case .failure(let error):
                 strongSelf.displayAlert(message: error.localizedDescription)
             }
+        }
+    }
+    
+    func validateUserSessionCookes() {
+        if HTTPCookieStorage.shared.cookies?.count == 2 {
+            self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        } else {
+            displayAlert(message: "Something went wrong with storing your usersession cookie, Please try again!", title: "Oops")
         }
     }
 }

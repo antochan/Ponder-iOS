@@ -67,7 +67,7 @@ class LoginViewController: UIViewController {
     
     func validateUserSessionCookes() {
         if HTTPCookieStorage.shared.cookies?.count == 2 {
-            dismiss(animated: true)
+            self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
         } else {
             displayAlert(message: "Something went wrong with storing your usersession cookie, Please try again!", title: "Oops")
         }
