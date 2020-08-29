@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AuthService: GenericAPIClient {
+class AuthService: GenericAPIClient {    
     internal let session: URLSession
     
     init(configuration: URLSessionConfiguration) {
@@ -19,18 +19,33 @@ class AuthService: GenericAPIClient {
         self.init(configuration: .default)
     }
     
-    func signUp(signInData: [String: Any], completion: @escaping (Result<SignInId, APIError>) -> ()) {
+    func signUp(signInData: [String: Any], completion: @escaping (Result<SignupObject, APIError>) -> ()) {
         guard let request = AuthType.signup.postRequest(bodyData: signInData, headers: [HTTPHeader.contentType("application/json")]) else { return }
-        fetch(with: request, decode: { json -> SignInId? in
-            guard let results = json as? SignInId else { return  nil }
+        fetch(with: request, decode: { json -> SignupObject? in
+            guard let results = json as? SignupObject else { return  nil }
+            return results
+        }, completion: completion)
+    }
+    
+    func login(loginData: [String: Any], completion: @escaping (Result<LoginObject, APIError>) -> ()) {
+        guard let request = AuthType.login.postRequest(bodyData: loginData, headers: [HTTPHeader.contentType("application/json")]) else { return }
+        fetch(with: request, hasCookies: true, decode: { json -> LoginObject? in
+            guard let results = json as? LoginObject else { return  nil }
             return results
         }, completion: completion)
     }
     
 }
 
-struct SignInId: Decodable {
-    let id: String
+struct LoginObject: Decodable {
+    let id: String?
+    let error: String?
+}
+
+struct SignupObject: Decodable {
+    let id: String?
+    let error: String?
+    let fields: [String]?
 }
 
 enum AuthType {

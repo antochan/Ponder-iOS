@@ -24,16 +24,6 @@ public enum EmailSignupSteps: Int, CaseIterable {
             return .username
         }
     }
-//    
-//    func getListTextType(index: Int) -> ListTextType {
-//        if index == 1 {
-//            return .email
-//        } else if index == 2 {
-//            return .password
-//        } else {
-//            return .username
-//        }
-//    }
 }
 
 public enum AccountPageType {
@@ -59,6 +49,13 @@ public enum HeroIds {
     static let poemTitleView = "PoemTitleView"
     static let poemContentView = "PoemContentView"
     static let poemHashtagView = "PoemHashtagView"
+}
+
+public enum ErrorConstants {
+    public static let unknownErrorText = "Unknown error, please report this to customer service, Code 102."
+    public static let unknown = "Unknown"
+    public static let invalidSignup = "Invalid Signup"
+    public static let invalidLogin = "Invalid Login"
 }
 
 public enum HomeConstants {

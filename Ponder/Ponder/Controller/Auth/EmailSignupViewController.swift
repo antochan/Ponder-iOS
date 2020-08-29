@@ -21,7 +21,7 @@ class EmailSignupViewController: UIViewController {
         }
     }
     
-
+    
     
     init(authService: AuthService) {
         self.authService = authService
@@ -73,15 +73,15 @@ class EmailSignupViewController: UIViewController {
         if currentPage == EmailSignupSteps.enterEmail.rawValue {
             validateEmail()
         }
-        // Password Validation
+            // Password Validation
         else if currentPage == EmailSignupSteps.enterPassword.rawValue {
             validatePassword()
         }
-        // Username Validation
+            // Username Validation
         else if currentPage == EmailSignupSteps.allCases.count {
             validateUsername()
         }
-        // Unknown Case
+            // Unknown Case
         else {
             return
         }
@@ -124,13 +124,39 @@ class EmailSignupViewController: UIViewController {
         if username.count > 20 {
             displayAlert(message: "Please make sure your username is less than 20 characters long.", title: "Invalid Username")
         } else {
-            authService.signUp(signInData: ["email": email, "password": password, "username": username]) { result in
-                switch result {
-                case .success(let signInId):
-                    print(signInId.id)
-                case .failure(let error):
-                    print(error)
+            signupRequest()
+        }
+    }
+    
+    func signupRequest() {
+        authService.signUp(signInData: ["email": email, "password": password, "username": username]) { [weak self] result in
+            guard let strongSelf = self else { return }
+            switch result {
+            case .success(let signupObject):
+                guard let _ = signupObject.id else {
+                    strongSelf.displayAlert(message: "\(signupObject.error ?? ErrorConstants.unknownErrorText): \(signupObject.fields?[0] ?? ErrorConstants.unknown)", title: ErrorConstants.invalidSignup)
+                    return
                 }
+                strongSelf.loginRequest()
+            case .failure(let error):
+                strongSelf.displayAlert(message: error.localizedDescription)
+            }
+        }
+    }
+    
+    func loginRequest() {
+        authService.login(loginData: ["email": email, "password": password]) { [weak self] result in
+            guard let strongSelf = self else { return }
+            switch result {
+            case .success(let loginObject):
+                guard let id = loginObject.id else {
+                    strongSelf.displayAlert(message: "\(loginObject.error ?? ErrorConstants.unknownErrorText)", title: ErrorConstants.invalidLogin)
+                    return
+                }
+                print(id)
+                print(HTTPCookieStorage.shared.cookies)
+            case .failure(let error):
+                strongSelf.displayAlert(message: error.localizedDescription)
             }
         }
     }
@@ -179,6 +205,8 @@ extension EmailSignupViewController: ListTextDelegate {
             password = text
         case .username:
             username = text
+        default:
+            return
         }
         configureNextButton()
     }

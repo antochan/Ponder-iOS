@@ -27,6 +27,11 @@ class WelcomeViewController: UIViewController {
             guard let strongSelf = self else { return }
             strongSelf.presentEmailSignup()
         }
+        
+        welcomeView.loginListComponent.actions = { [weak self] _ in
+            guard let strongSelf = self else { return }
+            strongSelf.presentLogin()
+        }
     }
     
     func presentEmailSignup() {
@@ -34,5 +39,12 @@ class WelcomeViewController: UIViewController {
         emailSignupViewController.isHeroEnabled = true
         emailSignupViewController.modalPresentationStyle = .fullScreen
         present(emailSignupViewController, animated: true)
+    }
+    
+    func presentLogin() {
+        let loginViewController = LoginViewController(authService: AuthService())
+        loginViewController.isHeroEnabled = true
+        loginViewController.modalPresentationStyle = .fullScreen
+        present(loginViewController, animated: true)
     }
 }

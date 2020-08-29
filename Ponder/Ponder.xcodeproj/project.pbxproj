@@ -43,6 +43,8 @@
 		8A32C5D724CD581300A8D2DE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5D624CD581300A8D2DE /* User.swift */; };
 		8A32C5D924CD5C0700A8D2DE /* CommentsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5D824CD5C0700A8D2DE /* CommentsComponent.swift */; };
 		8A32C5DB24CE4F5000A8D2DE /* CommentTextFieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32C5DA24CE4F5000A8D2DE /* CommentTextFieldComponent.swift */; };
+		8A6BEBBF24F9E8AE00FD3AFF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6BEBBE24F9E8AE00FD3AFF /* LoginViewController.swift */; };
+		8A6BEBC124F9E8C900FD3AFF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6BEBC024F9E8C900FD3AFF /* LoginView.swift */; };
 		8A7DDB0C24D9154C0032175A /* PickMediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB0B24D9154C0032175A /* PickMediaViewModel.swift */; };
 		8A7DDB0E24DA6A9F0032175A /* PublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB0D24DA6A9F0032175A /* PublishViewController.swift */; };
 		8A7DDB1024DA6BAB0032175A /* PublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DDB0F24DA6BAB0032175A /* PublishView.swift */; };
@@ -138,6 +140,8 @@
 		8A32C5D624CD581300A8D2DE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8A32C5D824CD5C0700A8D2DE /* CommentsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsComponent.swift; sourceTree = "<group>"; };
 		8A32C5DA24CE4F5000A8D2DE /* CommentTextFieldComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextFieldComponent.swift; sourceTree = "<group>"; };
+		8A6BEBBE24F9E8AE00FD3AFF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8A6BEBC024F9E8C900FD3AFF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		8A7DDB0B24D9154C0032175A /* PickMediaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaViewModel.swift; sourceTree = "<group>"; };
 		8A7DDB0D24DA6A9F0032175A /* PublishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishViewController.swift; sourceTree = "<group>"; };
 		8A7DDB0F24DA6BAB0032175A /* PublishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishView.swift; sourceTree = "<group>"; };
@@ -493,6 +497,7 @@
 			children = (
 				8ADB598D24ECEFDB000AD321 /* WelcomeView.swift */,
 				8ADB599124EE1EDE000AD321 /* EmailSignupView.swift */,
+				8A6BEBC024F9E8C900FD3AFF /* LoginView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -518,6 +523,7 @@
 			children = (
 				8ADB598B24ECEFC8000AD321 /* WelcomeViewController.swift */,
 				8ADB599324EE1EE9000AD321 /* EmailSignupViewController.swift */,
+				8A6BEBBE24F9E8AE00FD3AFF /* LoginViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -807,6 +813,7 @@
 				8AA1E6CA24D7874B00AA1876 /* PickMedia.swift in Sources */,
 				8A14F95B24C969CC0012B92B /* NotificationViewController.swift in Sources */,
 				8A14F97924CA43080012B92B /* PoemContentComponent.swift in Sources */,
+				8A6BEBBF24F9E8AE00FD3AFF /* LoginViewController.swift in Sources */,
 				8AAA67F424CFDB3C00BAB060 /* HomeExpandView.swift in Sources */,
 				8A14F96724CA3B8C0012B92B /* Colors.swift in Sources */,
 				8A14F97424CA3E640012B92B /* Extensions.swift in Sources */,
@@ -814,6 +821,7 @@
 				8ADB598E24ECEFDB000AD321 /* WelcomeView.swift in Sources */,
 				8A14F91F24C9533E0012B92B /* SceneDelegate.swift in Sources */,
 				8A14F96924CA3C0F0012B92B /* Constants.swift in Sources */,
+				8A6BEBC124F9E8C900FD3AFF /* LoginView.swift in Sources */,
 				8A14F97624CA3FDD0012B92B /* Fonts.swift in Sources */,
 				8ADB598C24ECEFC8000AD321 /* WelcomeViewController.swift in Sources */,
 				8A81167524F60286001BB929 /* Endpoint.swift in Sources */,

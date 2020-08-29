@@ -128,25 +128,25 @@ extension UIViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
     /// This function displays a UIAlertView string for a given `message: String`.
-       ///
-       /// - Warning: Make sure this is called on the main thread
-       ///
-       /// Usage:
-       ///
-       ///     displayAlert("Your Message Here)
-       func displayAlert(message: String, title: String = "") {
-           let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-           let OKAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-           OKAction.setValue(UIColor.black, forKey: "titleTextColor")
-           alertController.addAction(OKAction)
-           self.present(alertController, animated: true, completion: nil)
-       }
+    ///
+    /// - Warning: Make sure this is called on the main thread
+    ///
+    /// Usage:
+    ///
+    ///     displayAlert("Your Message Here)
+    func displayAlert(message: String, title: String = "") {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        OKAction.setValue(UIColor.black, forKey: "titleTextColor")
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 
 enum Vibration {
@@ -162,7 +162,7 @@ enum Vibration {
     case rigid
     case selection
     case oldSchool
-
+    
     public func vibrate() {
         switch self {
         case .error:
@@ -214,5 +214,14 @@ extension String {
     func isValidEmail() -> Bool {
         let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
         return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
+    }
+    
+    func slice(from: String, to: String) -> String? {
+        
+        return (range(of: from)?.upperBound).flatMap { substringFrom in
+            (range(of: to, range: substringFrom..<endIndex)?.lowerBound).map { substringTo in
+                String(self[substringFrom..<substringTo])
+            }
+        }
     }
 }
